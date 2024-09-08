@@ -4,7 +4,4 @@ class StationsController < ApplicationController
     @stations = Station.all.order(identifier: :asc)
   end
   
-  def initialize
-    self.index
-  end
 end
