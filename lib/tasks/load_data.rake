@@ -3,14 +3,18 @@ namespace :load_data do
 
     desc "Reads the bike and station data in from the CSV." 
     #TODO this is probably a bad implementation that doesn't clean the data well. 
-    #something something dev left something something Rails Way idk what i'm doing T-T.
-    task :load_data => :environment do
-        CSV.foreach('notes/bike-data.csv', :headers => true) do |row| #bikes
-            Bikes.create!(row.to_hash)
+    #something something dev left something something Rails Way idk what i'm doing.
+
+    path = '/home/jadelilian/valetbike/notes/'
+    task :bike => :environment do
+        CSV.foreach(path + 'bike-data.csv', :headers => true) do |row| #bikes
+            Bike.new(row)
         end
+    end
         
-        CSV.foreach('notes/station-data.csv', :headers => true) do |row| #stations
-            Station.create!(row.to_hash)
+    task :station => :environment do
+        CSV.foreach(path + 'station-data.csv', :headers => true) do |row| #stations
+            Station.new(row)
         end
     end
 end
