@@ -2,8 +2,14 @@
   <div class="section-inner flexbox vertical stretch">
     <div class="section-title">
       Welcome to ValetBike <3
-    </div>  
-    <div class="flexbox vertical stretch">
+    </div> 
+    <button type="button">
+      !!DISABLED!! Click for Default Order
+    </button> 
+    <button type="button">
+      !!DISABLED!! Click for Reverse Order
+    </button> 
+    <div class="flexbox vertical stretch" id="stations">
       <% if @stations.present? %>
         <%= render(partial: "stations/row", collection: @stations, as: :station) %>
       <% else %>
