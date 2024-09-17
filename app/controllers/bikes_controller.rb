@@ -1,7 +1,7 @@
 class BikesController < ApplicationController
-  def index
-  end
 
   def _row
+    @bikes = Bike.all.order(identifier: :asc)
   end
+
 end
