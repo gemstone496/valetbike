@@ -1,3 +1,9 @@
 <div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
   <%= station.identifier %>: <%= station.name %> (<%= station.address %>)
+  <div class="flexbox vertical stretch">
+    <%= station.docked_bikes.size %> available bikes:
+  </div>
+  <div class="flexbox vertical stretch">
+    <%= render(partial: "bikes/row", collection: @bikes, as: :bike )%>
+  </div>
 </div>

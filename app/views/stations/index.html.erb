@@ -17,6 +17,12 @@
         No stations found.
       </div>
       <% end %>
+      <% if @bikes.present? %>
+        <%= render(partial: "bikes/row", collection: @bikes, as: :bike) %><% else %>
+      <div class="empty">
+        No bikes found.
+      </div>
+      <% end %>
     </div>
 	</div>
 </div>
