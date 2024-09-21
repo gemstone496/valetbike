@@ -3,12 +3,6 @@
     <div class="section-title">
       Welcome to ValetBike <3
     </div> 
-    <button type="button">
-      !!DISABLED!! Click for Default Order
-    </button> 
-    <button type="button">
-      !!DISABLED!! Click for Reverse Order
-    </button> 
     <div class="flexbox vertical stretch" id="stations">
       <% if @stations.present? %>
         <%= render(partial: "stations/row", collection: @stations, as: :station) %>
@@ -17,12 +11,6 @@
         No stations found.
       </div>
       <% end %>
-      <% if @bikes.present? %>
-        <%= render(partial: "bikes/row", collection: @bikes, as: :bike) %><% else %>
-      <div class="empty">
-        No bikes found.
-      </div>
-      <% end %>
     </div>
-	</div>
+  </div>
 </div>
