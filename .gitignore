@@ -38,3 +38,7 @@
 
 # Ignore ENV variable file
 .env
+
+# Ignore Gemfiles
+Gemfile
+Gemfile.lock
