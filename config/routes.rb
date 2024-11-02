@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'stations/index'
   get 'bikes/index'
   get 'bikes/_row'
 
@@ -14,4 +15,11 @@ Rails.application.routes.draw do
   patch "password/reset/edit", to: "password_resets#update"
 
   root to: "stations#index"
+  get 'main/pricing'
+  get 'main/account'
+  get 'main/contact'
+
+
+
+  root to: "main#index"
 end
