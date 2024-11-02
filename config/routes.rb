@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get 'stations/index'
   get 'bikes/index'
   get 'bikes/_row'
-
+  get 'main/pricing'
+  get 'main/account'
+  get 'main/contact'
+  
   get "sign-up", to: "user#new"
   post "sign-up", to: "user#create"
 
@@ -13,5 +17,6 @@ Rails.application.routes.draw do
   get "password/reset/edit", to: "password_resets#edit"
   patch "password/reset/edit", to: "password_resets#update"
 
-  root to: "stations#index"
+
+  root to: "main#index"
 end

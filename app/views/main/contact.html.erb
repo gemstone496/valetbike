@@ -1,9 +1,7 @@
-
-
 <div class="page-section flexbox vertical stretch">
   <div class="section-inner flexbox vertical stretch">
     <div class="section-title">
-      Bikes and Stations
+      Contact Page
     </div>
 
     <div class="horizontal">
@@ -13,15 +11,6 @@
       <%= link_to('Contact', {controller: 'main' , action: 'contact'}) %> |
       <%= link_to('Account', {controller: 'main' , action: 'account'}) %>
     </div>
-
-    <div class="flexbox vertical stretch" id="stations">
-      <% if @stations.present? %>
-        <%= render(partial: "stations/row", collection: @stations, as: :station) %>
-      <% else %>
-      <div class="empty">
-        No stations found.
-      </div>
-      <% end %>
-    </div>
   </div>
 </div>
+    
