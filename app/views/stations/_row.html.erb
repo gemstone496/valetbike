@@ -4,6 +4,6 @@
     <%= Bike.where(current_station_id: station.identifier).length %> available bikes:
   </div>
   <div class="flexbox vertical stretch">
-    <%= render(partial: "bikes/row", collection: Bike.where(current_station_id: station.identifier), as: :bike )%>
+    <%= link_to("Station #{station.identifier}", {controller: 'stations' , action: 'station'}) %>
   </div>
 </div>

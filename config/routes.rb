@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'stations/index'
+  get 'stations/station'
   get 'bikes/index'
   get 'bikes/_row'
   get 'main/pricing'
