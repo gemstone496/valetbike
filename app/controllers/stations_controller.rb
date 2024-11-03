@@ -1,7 +1,7 @@
 class StationsController < ApplicationController
+  layout 'main'
 
   def index
-    layout 'main'
     @stations = Station.all.order(identifier: :asc)
   end
   
