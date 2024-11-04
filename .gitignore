@@ -43,6 +43,8 @@
 Gemfile
 Gemfile.lock
 
-# Ignore emacs backups
+# ignore emacs backup files
 *~
-#*#
+\#*\#
+.idea
+
