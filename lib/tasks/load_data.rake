@@ -11,7 +11,10 @@ namespace :load_data do
   desc "Reads the bike data in from the CSV." 
   task :bike => :environment do
     CSV.foreach('/home/jadelilian/valetbike/notes/bike-data.csv', :headers => true) do |row| #bikes
-      Bike.create!(identifier: row[0], current_station: Station.find_by(identifier: row[1]))
+      station = Station.find_by(identifier: row[1])
+      bike = Bike.create(identifier: row[0], current_station: station)
+      bike.current_station_id = station != nil ? station.id : nil
+      bike.save
     end
   end
         
