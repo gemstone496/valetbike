@@ -42,3 +42,9 @@
 # Ignore Gemfiles
 Gemfile
 Gemfile.lock
+
+# ignore emacs backup files
+
+*~
+\#*\#
+.idea
