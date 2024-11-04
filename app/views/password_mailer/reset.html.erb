@@ -1,0 +1,11 @@
+<div class = "container">
+    <%= image_tag('logo.png', alt: 'valetbike-logo') %>
+
+    <div class = "mt-2">
+        <h4>Hi <%= @user.email %>,</h4>
+
+        <p>If it was you who requested a password reset, please click on the link below to reset your password. The link will expire in 15 minutes.</p>
+
+        <%= link_to "Reset Password", password_reset_edit_url(token: @token) %>
+    </div>
+</div>
