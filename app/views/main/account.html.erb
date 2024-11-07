@@ -4,13 +4,7 @@
     <div class="section-title">
       Account Page
     </div>
-
-    <div class="horizontal">
-      <%= link_to('Home Page', {controller: 'main' , action: 'index'}) %> |
-      <%= link_to('Bikes/Stations', {controller: 'stations' , action: 'index'}) %> |
-      <%= link_to('Pricing', {controller: 'main' , action: 'pricing'}) %> |
-      <%= link_to('Contact', {controller: 'main' , action: 'contact'}) %> |
-      <%= link_to('Account', {controller: 'main' , action: 'account'}) %>
-    </div>
+    <%= link_to '<button type="button">Login</button>'.html_safe, log_in_path %>
+    <%= link_to '<button type="button">Sign Up</button>'.html_safe, sign_up_path %>
   </div>
 </div>
