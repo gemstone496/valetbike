@@ -5,7 +5,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
-  <script src='javascript/osm_map.js'></script>
+  <script src="javascript/osm_map.js"></script>
 <% end %>
 
 <% content_for :content do %>
@@ -15,7 +15,7 @@
         Bikes and Stations
       </div>
 
-      <div style='height:400px;' id="osm-map"></div>
+      <div id="osm-map"></div>
 
       <div style="max-width:100%;list-style:none; transition: none;overflow:hidden;width:500px;height:500px;">
         <div id="canvas-for-googlemap" style="height:100%; width:100%;max-width:100%;">
@@ -37,5 +37,6 @@
       </div>
     </div>
   </div>
+  mapInit()
 <% end %>
 <%= render template: "layouts/main" %>

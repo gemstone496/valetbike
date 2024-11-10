@@ -13,11 +13,7 @@
     <%= yield :head %>
     <title>ValetBike</title>
   </head>
-  <% if content_for(:loader) do %>
-    <%= yield :loader %>
-  <% else %>
   <body>
-  <% end %>
     <div id="site-container" class="flexbox vertical stretch flex-1">
       <div class="flexbox vertical center">
         <%= yield :menu %>
