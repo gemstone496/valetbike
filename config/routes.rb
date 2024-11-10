@@ -5,8 +5,15 @@ Rails.application.routes.draw do
   get 'main/pricing'
   get 'main/account'
   get 'main/contact'
-  
-  get "sign-up", to: "user#new"
+
+  # resources :bikes
+  # resources :stations
+    resources :stations, only: [:index, :show] do
+      resources :bikes, only: [:index, :show]
+    end
+
+
+    get "sign-up", to: "user#new"
   post "sign-up", to: "user#create"
 
   get "log-in", to: "access#login"
