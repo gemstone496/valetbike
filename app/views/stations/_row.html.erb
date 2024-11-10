@@ -1,9 +1,10 @@
 <div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
-  <%= station.identifier %>: <%= station.name %> (<%= station.address %>)
+  Station <%= station.identifier %>: <%= station.name %> (<%= station.address %>)
   <div class="flexbox vertical stretch">
-    <%= Bike.where(current_station_id: station.id).length %> available bikes:
+    <%= Bike.where(current_station_id: station.id).length %> available bikes
   </div>
   <div class="flexbox vertical stretch">
-    <%= render(partial: "bikes/row", collection: Bike.where(current_station_id: station.id), as: :bike )%>
+    <%= link_to('More Details', station_path(station), class: 'action :show') %>
+    <%#= render(partial: "bikes/row", collection: Bike.where(current_station_id: station.id), as: :bike )%>
   </div>
 </div>
