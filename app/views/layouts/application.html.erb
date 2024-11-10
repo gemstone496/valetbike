@@ -15,7 +15,8 @@
   <body>
     <div id="site-container" class="flexbox vertical stretch flex-1">
       <div class="flexbox vertical center">
-        <%= yield %>
+        <%= yield :menu %>
+        <%= content_for(:content) ? yield(:content) : yield %>
       </div>
     </div>
   </body>
