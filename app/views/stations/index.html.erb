@@ -6,6 +6,15 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
   <script src='javascript/osm_map.js'></script>
+  <script>
+    function addMarker(lat, lng) {
+      var map = document.getElementById('osm-map').map;
+
+      var target = L.latLng(lat, lng);
+
+      L.marker(target).addTo(map);
+    }
+  </script>
 <% end %>
 
 <% content_for :content do %>
