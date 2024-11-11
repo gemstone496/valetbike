@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'bikes/index'
   get 'bikes/_row'
   get 'main/pricing'
-  get 'main/account'
   get 'main/contact'
 
   # resources :bikes
@@ -13,7 +12,7 @@ Rails.application.routes.draw do
     end
 
 
-    get "sign-up", to: "user#new"
+  get "sign-up", to: "user#new"
   post "sign-up", to: "user#create"
 
   get "log-in", to: "access#login"
@@ -24,6 +23,7 @@ Rails.application.routes.draw do
   get "password/reset/edit", to: "password_resets#edit"
   patch "password/reset/edit", to: "password_resets#update"
 
+  resources :account, only: [:index, :destroy]
 
   root to: "main#index"
 end

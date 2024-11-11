@@ -1,0 +1,18 @@
+<div class="page-section flexbox vertical stretch">
+  <div class="section-inner flexbox vertical stretch">
+    <div class="section-title">
+      My account
+    </div>
+
+    <% if @user %>
+        <%= @user[:email] %>
+        
+        <%= button_to('Delete account', account_path(@user[:id]), class: "mt-3 custom-btn btn-danger", method: :delete) %>
+    <% else %>
+      <div class="alert alert-warning">
+        No account found.
+      </div>
+    <% end %>
+
+  </div>
+</div>
