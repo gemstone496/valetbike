@@ -7,8 +7,8 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet-geosearch@latest/dist/bundle.min.js"></script>
-  <script type="text/javascript" src='javascript/osm_map.js'></script>
+  <%= javascript_include_tag('https://unpkg.com/leaflet-geosearch@latest/dist/bundle.min.js') %>
+  <%= javascript_include_tag('osm_map.js') %>
 <% end %>
 
 <% content_for :content do %>
@@ -18,19 +18,7 @@
         Bikes and Stations
       </div>
 
-      <div style='height:400px;' id="osm-map"></div>
-    
-      <script>
-        var element = document.getElementById("osm-map");
-        var map = L.map(element);
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        var target = L.latLng('42.328674', '-72.664658');
-        map.setView(target, 14);
-        L.marker(target).addTo(map);
-        document.element.map = map;   
-      </script>
+      <%= render partial: "stations/leaflet", locals: {stations: @stations} %>
 
       <div class="flexbox vertical stretch" id="stations">
         <% if @stations.present? %>

@@ -11,9 +11,7 @@ initializes the map for future use
 TODO
  - figure out the tiling thing and how to get an actual image rendered
 */
-function mapInit(){
-    // Where you want to render the map.
-    var element = document.getElementById("osm-map");
+function mapInit(element){
 
     // Create Leaflet map on map element.
     var map = L.map(element);
@@ -33,6 +31,8 @@ function mapInit(){
     L.marker(target).addTo(map);
 
     document.element.map = map;
+
+    return map
 }
 
 /*
@@ -41,9 +41,7 @@ TODO
  - hoping that the map var is getting set correctly
  - add a popup to the marker to link to the station page
 */
-function addMarker(lat, lng) {
-    var map = document.getElementById('osm-map').map;
-
+function addMarker(map, lat, lng) {
     // Target's GPS coordinates.
     var target = L.latLng(lat, lng);
 
