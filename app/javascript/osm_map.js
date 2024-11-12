@@ -5,6 +5,7 @@ Answer by user totymedli
 
 const northamptonLat = '42.328674'; // what it says on the tag
 const northamptonLng = '-72.664658'; // rough center of northampton
+const center = L.latLng(northamptonLat, northamptonLng);
 
 /*
 initializes the map for future use
@@ -21,17 +22,12 @@ function mapInit(element){
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Target's GPS coordinates.
-    var target = L.latLng(northamptonLat, northamptonLng);
-
     // Set map's center to target with zoom 14.
-    map.setView(target, 14); // consider changing zoom
+    map.setView(center, 14); // consider changing zoom
 
     // Place a marker on the location.
-    L.marker(target).addTo(map);
-
-    document.element.map = map;
-
+    L.marker(center).addTo(map);
+    
     return map
 }
 
@@ -46,5 +42,8 @@ function addMarker(map, lat, lng) {
     var target = L.latLng(lat, lng);
 
     // Place a marker on the location.
-    L.marker(target).addTo(map);
+    L.marker(target).addTo(map);    
+    
+    // Set map's center to target with zoom 14.
+    map.setView(center, 14); // consider changing zoom
 }
