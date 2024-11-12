@@ -1,12 +1,3 @@
-<% content_for :menu do %>
-  <div class="horizontal">
-    <%= link_to('Home Page', {controller: 'main' , action: 'index'}) %> |
-    <%= link_to('Bikes/Stations', {controller: 'stations' , action: 'index'}) %> |
-    <%= link_to('Pricing', {controller: 'main' , action: 'pricing'}) %> |
-    <%= link_to('Contact', {controller: 'main' , action: 'contact'}) %> |
-    <%= link_to('Account', {controller: 'main' , action: 'account'}) %>
-  </div>
-<% end %>
 <% content_for :content do %>
   <%= yield %>
 <% end %>
