@@ -3,21 +3,12 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
   <link rel="stylesheet"
-    href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"
-  />
+    href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
-  <script src='javascript/osm_map.js'></script>
-  <script>
-    function addMarker(lat, lng) {
-      var map = document.getElementById('osm-map').map;
-
-      var target = L.latLng(lat, lng);
-
-      L.marker(target).addTo(map);
-    }
-  </script>
+  <script src="https://unpkg.com/leaflet-geosearch@latest/dist/bundle.min.js"></script>
+  <script type="text/javascript" src='javascript/osm_map.js'></script>
 <% end %>
 
 <% content_for :content do %>
@@ -37,6 +28,7 @@
         }).addTo(map);
         var target = L.latLng('42.328674', '-72.664658');
         map.setView(target, 14);
+        L.marker(target).addTo(map);
         document.element.map = map;   
       </script>
 

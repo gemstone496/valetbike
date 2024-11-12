@@ -16,11 +16,13 @@
   <body>
     <div id="site-container" class="flexbox vertical stretch flex-1">
       <div class="flexbox vertical center">
-        <%= link_to('Home Page', {controller: 'main' , action: 'index'}) %> |
-        <%= link_to('Bikes/Stations', {controller: 'stations' , action: 'index'}) %> |
-        <%= link_to('Pricing', {controller: 'main' , action: 'pricing'}) %> |
-        <%= link_to('Contact', {controller: 'main' , action: 'contact'}) %> |
-        <%= link_to('Account', {controller: 'main' , action: 'account'}) %>
+        <div class="horizontal">
+          <%= link_to('Home Page', {controller: 'main' , action: 'index'}) %> |
+          <%= link_to('Bikes/Stations', {controller: 'stations' , action: 'index'}) %> |
+          <%= link_to('Pricing', {controller: 'main' , action: 'pricing'}) %> |
+          <%= link_to('Contact', {controller: 'main' , action: 'contact'}) %> |
+          <%= link_to('Account', {controller: 'main' , action: 'account'}) %>
+        </div>
         <%= content_for(:content) ? yield(:content) : yield %>
       </div>
     </div>

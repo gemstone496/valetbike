@@ -88,3 +88,5 @@ gem 'dotenv-rails'
 # gem 'will_paginate'
 
 gem "nio4r", "~> 2.5"
+
+gem 'geocoder', '~> 1.3', '>= 1.3.7'
