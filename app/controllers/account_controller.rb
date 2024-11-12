@@ -1,4 +1,5 @@
 class AccountController < ApplicationController
+  layout 'main'
   before_action :get_user_info_from_session
   def index
     if !logged_in? || !@user
