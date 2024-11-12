@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get "log-in", to: "access#login"
   post "log-in", to: "access#create"
+  post "log-out", to: "access#destroy"
 
   get "password/reset", to: "password_resets#new"
   post "password/reset", to: "password_resets#create"
