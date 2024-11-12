@@ -16,6 +16,7 @@ class AccountController < ApplicationController
   end
 
   private 
+=begin
   def get_user_info_from_session
     @user = User.find_by(id: session[:user_id])
   end
@@ -24,4 +25,5 @@ class AccountController < ApplicationController
     # Check user's log in status
     session[:user_id].present?
   end
+=end
 end
