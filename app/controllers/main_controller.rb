@@ -7,9 +7,6 @@ class MainController < ApplicationController
   def pricing
   end
 
-  def account
-  end
-
   def contact
   end
 end
