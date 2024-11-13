@@ -3,11 +3,4 @@
 <script>
   var element = document.getElementById("osm-map");
   var map = mapInit(element);
-  <% @stations.each do |station| %>
-    var lat = <%= station.latitude %>;
-    var long = <%= station.longitude %>;
-    if (lat !== null && long !== null) {
-      addMarker(map, lat, long);
-    }
-  <% end %>
 </script>
