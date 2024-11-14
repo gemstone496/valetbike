@@ -1,0 +1,14 @@
+<div>
+  <h2>Create Task</h2>
+
+  <%= form_for(@trip) do |f| %>
+    <% # url: tasks_path, method: 'post' %>
+
+    <%= render(partial: 'form', locals: {f: f}) %>
+
+    <div class="form-buttons">
+      <%= f.submit("Create Trip") %>
+    </div>
+
+  <% end %>
+</div>

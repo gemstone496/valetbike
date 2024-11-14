@@ -1,15 +1,26 @@
-<div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
-  Bike <%= bike.identifier %> <br>
-  <% if bike.is_available  %>
-      Available
-    <% else  %>
-      Unavailable
-    <% end %>
-
-  <% if logged_in? %>
-    Logged in!!
+<div class="page-section flexbox vertical stretch">
+  <div class="section-inner flexbox vertical stretch">
+  <% user = get_user_info_from_session %>
+  Bike <%= bike.identifier %>
+  <% if !logged_in? %>
+    <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
+      <small> log in to reserve bike </small>
+  <% else if !bike.is_available? %>
+        <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
+        <small> Bike is currently Unavailable </small>
   <% else  %>
-    Logged out!!
+    <%= button_to('Return Bike', {controller: 'stations', action: 'index'}, class: "custom-btn btn-outline", method: :get) %>
+<% end %>
   <% end %>
 
+  <% if user %>
+    <%= user.email %>
+  <% end %>
+
+<!--  <%# if bike.is_users?(@user) %>
+    Yours!!
+  <%# else  %>
+    Not Yours!!
+  <%# end %>-->
+</div>
 </div>

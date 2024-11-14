@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_10_210524) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_14_033050) do
   create_table "bikes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "identifier"
     t.integer "current_station_id"
@@ -40,12 +40,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_10_210524) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email", null: false
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "string"
     t.string "phone_number"
+    t.integer "current_bike_id"
   end
 
 end

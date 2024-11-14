@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'trips/index'
+  get 'trips/new'
+  get 'trips/edit'
   get 'stations/index'
   get 'bikes/index'
   get 'bikes/_row'
