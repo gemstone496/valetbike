@@ -1,14 +1,35 @@
-<div>
-  <h2>Create Task</h2>
+<div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
+  <%= link_to("Back to Bikes", station_path(@station), method: :get) %>
 
-  <%= form_for(@trip) do |f| %>
-    <% # url: tasks_path, method: 'post' %>
+  <div class="trip new">
+    <h2>New Trip</h2>
+    <table summary="Trip details">
+    <tr>
+      <th>Bike ID: </th>
+      <td><%= @bike.identifier %></td>
+    </tr>
+    <tr>
+    <tr>
+      <th>User ID:</th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+    <tr>
+      <th>Station:</th>
+      <td><%= @station.identifier %></td>
+    </tr>
+    <tr>
+    </table>
 
-    <%= render(partial: 'form', locals: {f: f}) %>
+    <%= form_for(@trip) do |f| %>
+      <% # url: tasks_path, method: 'post' %>
 
-    <div class="form-buttons">
-      <%= f.submit("Create Trip") %>
-    </div>
+      <%= render(partial: 'form', locals: {f: f}) %>
 
-  <% end %>
+      <div class="form-buttons">
+        <%= f.submit("Create Trip") %>
+      </div>
+
+    <% end %>
+  </div>
 </div>

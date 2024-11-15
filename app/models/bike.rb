@@ -12,4 +12,8 @@ class Bike < ApplicationRecord
     is_available
   end
 
+  def get_station
+     Station.find(current_station_id)
+  end
+
 end

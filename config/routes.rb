@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'trips/index'
-  get 'trips/new'
-  get 'trips/edit'
   get 'stations/index'
+  get 'stations/show'
   get 'bikes/index'
   get 'bikes/_row'
   get 'main/pricing'
@@ -14,6 +12,7 @@ Rails.application.routes.draw do
       resources :bikes, only: [:index, :show]
     end
 
+  resources :trips, except: [:destroy]
 
   get "sign-up", to: "user#new"
   post "sign-up", to: "user#create"
