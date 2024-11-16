@@ -5,6 +5,7 @@ class StationsController < ApplicationController
     @lats = Array.new # array of latitudes
     @longs = Array.new # array of longitudes
     @stations.each do |s|
+      puts s.latitude 
       @lats.append(s.latitude)
       @longs.append(s.longitude)
     end

@@ -6,8 +6,20 @@
 <script>
   var element = document.getElementById("osm-map");
   var map = mapInit(element);
-  var lats = document.getElementById("lats");
-  var longs = document.getElementById("longs");
+  var lats = document.getElementById("lats").dataset.source;
+  var longs = document.getElementById("longs").dataset.source;
 
-  console.log(lats.dataset.source);
+  // Convert to objects
+  lats = JSON.parse(lats);
+  longs = JSON.parse(longs);
+
+  // Add the markers for each station
+  for (let i = 0; i < lats.length; i++)
+  {
+    if (lats[i] !== null && longs[i] !== null)
+    {
+        addMarker(map, lats[i], longs[i]);
+    }
+  }
+  
 </script>
