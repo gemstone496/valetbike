@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get 'main/pricing'
   get 'main/contact'
 
+
+  get 'trip/confirmation'
+
+
   # resources :bikes
   # resources :stations
     resources :stations, only: [:index, :show] do
