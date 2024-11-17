@@ -4,7 +4,7 @@ Answer by user totymedli
 */
 
 const northamptonLat = '42.328674'; // what it says on the tag
-const northamptonLng = '-72.664658'; // rough center of northampton
+const northamptonLng = '-72.646'; // rough center of northampton
 const center = L.latLng(northamptonLat, northamptonLng);
 
 /*
@@ -24,9 +24,6 @@ function mapInit(element){
 
     // Set map's center to target with zoom 14.
     map.setView(center, 14); // consider changing zoom
-
-    // Place a marker on the location.
-    L.marker(center).addTo(map);
     
     return map
 }
