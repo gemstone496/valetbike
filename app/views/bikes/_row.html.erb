@@ -1,3 +1,15 @@
 <div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
-  Bike <%= bike.identifier %>
+  Bike <%= bike.identifier %> <br>
+  <% if bike.is_available  %>
+      Available
+    <% else  %>
+      Unavailable
+    <% end %>
+
+  <% if logged_in? %>
+    Logged in!!
+  <% else  %>
+    Logged out!!
+  <% end %>
+
 </div>

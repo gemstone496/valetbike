@@ -10,5 +10,9 @@ class StationsController < ApplicationController
       @longs.append(s.longitude)
     end
   end
+
+  def show
+    @station = Station.find(params[:id])
+  end
   
 end

@@ -9,9 +9,10 @@
     margin-top: 2rem;
 }
 
-.form-wrapper input[type=submit] {
+.form-wrapper input[type=submit], .form-wrapper button {
     display: block;
     margin: auto;
+    width: 100%;
 }
 
 .form-title {
