@@ -4,7 +4,9 @@ namespace :load_data do
   desc "Reads the station data in from the CSV."
   task :station => :environment do
     CSV.foreach('notes/station-data.csv', :headers => true) do |row| #stations
-      Station.create!(identifier: row[0], name: row[1], address: row[6])
+      station = Station.create(identifier: row[0], 
+                                      name: row[1], 
+                                      address: row[6])
     end
   end
 
