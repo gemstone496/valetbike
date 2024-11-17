@@ -3,16 +3,16 @@
   <% user = get_user_info_from_session %>
     <% station = bike.get_station%>
   Bike <%= bike.identifier %>
-  <% if !logged_in? %>
+  <% if !logged_in? || !user %>
     <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
     <small> Please log in to reserve bike </small>
   <% else if bike.is_users?(user)%>
     <%#= button_to('Manage Reservation', {controller: 'stations', action: 'index'}, class: "custom-btn btn-outline", method: :get) %>
 <!--   TODO: manage reservation-->
-  <% else if user.has_bike?%>
+  <% else if user.has_bike? %>
     <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
     <small> Please return your current bike to reserve a new one </small>
-  <% else if !bike.is_available? %>
+  <% else if !bike.available? %>
     <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
     <small> Bike is currently Unavailable </small>
   <% else %>
