@@ -25,6 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_14_204842) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude", limit: 53
+    t.float "longitude", limit: 53
   end
 
   create_table "trips", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

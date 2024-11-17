@@ -1,5 +1,4 @@
 class TripsController < ApplicationController
-  layout 'main'
   def new
     @trip = Trip.new
     @bike = Bike.find(params[:bike_id])
