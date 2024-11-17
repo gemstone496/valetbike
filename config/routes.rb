@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'main/contact'
 
 
-  get 'trip/confirmation'
+  get "confirm", to: "trips#confirmation"
 
 
   # resources :bikes
