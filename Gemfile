@@ -86,3 +86,6 @@ gem 'dotenv-rails'
 # gem 'paperclip
 # gem 'uniquify'
 # gem 'will_paginate'
+
+# Rails error told me to add this
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'

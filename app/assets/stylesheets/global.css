@@ -22,6 +22,20 @@ body {
   -ms-text-size-adjust:100%;
 }
 
+caption{
+  font-size:15pt;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+}
+
+sub-caption{
+  font-size:12pt;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+}
+
 #site-container{
   position: relative;
   width: 100%;
@@ -57,3 +71,11 @@ body {
     background: var(--white-color);
     color: var(--black-color);
 }
+
+img{
+  height: 40%;
+  width: 40%;
+  margin-top: .5em;
+  border-radius: 15%;
+  border: 3px solid whitesmoke;
+} 
