@@ -7,10 +7,5 @@ class User < ApplicationRecord
                       format: {with: EMAIL_REGEX}
     has_many :trips, dependent: :destroy
 
-    def has_bike?
-        unless current_bike_id.nil?
-        current_bike_id
-        end
-    end
 
 end

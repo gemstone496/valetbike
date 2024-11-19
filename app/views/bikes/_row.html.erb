@@ -8,8 +8,7 @@
     <small> Please log in to reserve bike </small>
   <% else if bike.is_users?(user)%>
     <%#= button_to('Manage Reservation', {controller: 'stations', action: 'index'}, class: "custom-btn btn-outline", method: :get) %>
-<!--   TODO: manage reservation-->
-  <% else if user.has_bike? %>
+  <% else if user.current_bike_id %>
     <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
     <small> Please return your current bike to reserve a new one </small>
   <% else if !bike.available? %>

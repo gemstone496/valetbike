@@ -12,7 +12,9 @@ class StationsController < ApplicationController
   end
 
   def show
+    @user = get_user_info_from_session
     @station = Station.find(params[:id])
+    @trip = Trip.find(params[:id])
   end
   
 end
