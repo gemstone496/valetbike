@@ -1,6 +1,10 @@
 <%= button_to('< Back to Stations', {controller: 'stations', action: 'index'}, class: "mt-3 custom-btn btn-outline", method: :get) %>
 <br>
 Info for Station: <%= @station.identifier %>: <%= @station.name %> (<%= @station.address %>)
+<% unless @user.current_bike_id.nil? %>
+
+  <%= button_to('Return Bike to This Station', end_confirm_path(trip_id: @trip.id, end_station_id: @station.identifier), class: "mt-3 custom-btn btn-outline", method: :get) %>
+<% end %>
 <div class="flexbox vertical stretch">
   <%= Bike.where(current_station_id: @station.id).length %> available bikes:
   <%= render(partial: "bikes/row", collection: Bike.where(current_station_id: @station.id), as: :bike )%>

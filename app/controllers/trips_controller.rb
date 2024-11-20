@@ -9,6 +9,11 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     if @trip.save
+      @bike = Bike.where(:identifier => @trip.bike_id)
+      @station = Station.where(:identifier => @trip.start_station_is)
+      @user = User.find(@trip.user_id)
+      @user.update(current_bike_id: @trip.bike_id)
+      @bike.update(is_available: false, current_station_id: nil)
       redirect_to confirm_path(trip_id: @trip.id)
     else
       render :new
@@ -22,6 +27,13 @@ class TripsController < ApplicationController
      @trip = Trip.find(params[:trip_id])
   end
 
+  def end_confirmation
+    @trip = Trip.find(params[:trip_id])
+    @end_station_id = Station.find(params[:end_station_id])
+    @user.update(current_bike_id: nil)
+    @bike.update(is_available: true, current_station_id: @end_station_id)
+    @trip.update(end_station_id: @end_station_id, end_time: Time.now)
+  end
 
   def update
   end
