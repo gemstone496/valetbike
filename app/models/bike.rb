@@ -5,7 +5,7 @@ class Bike < ApplicationRecord
   belongs_to :current_station, class_name: :Station, foreign_key: :current_station_id, optional: true
   def is_users?(user)
     return false unless user
-    user.current_bike_id == id
+    Bike.find(user.current_trip_id).id == id
   end
 
   def available?
