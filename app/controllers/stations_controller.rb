@@ -14,7 +14,9 @@ class StationsController < ApplicationController
   def show
     @user = get_user_info_from_session
     @station = Station.find(params[:id])
-    @trip = Trip.find(params[:id])
+    unless @user.current_trip_id.nil?
+      @trip = Trip.find(@user.current_trip_id)
+    end
   end
   
 end
