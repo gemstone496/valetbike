@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 
   get "confirm", to: "trips#confirmation"
+  get "end_confirm", to: "trips#end_confirmation"
 
 
   # resources :bikes
