@@ -1,7 +1,7 @@
 <%= button_to('< Back to Stations', {controller: 'stations', action: 'index'}, class: "mt-3 custom-btn btn-outline", method: :get) %>
 <br>
 Info for Station: <%= @station.identifier %>: <%= @station.name %> (<%= @station.address %>)
-<% unless @user.current_trip_id.nil? && @trip.nil?%>
+<% unless @user&.current_trip_id.nil? && @trip&.id.nil? %>
   <%= link_to 'Return Bike to This Station', end_confirm_path(trip_id: @trip.id, end_station_id: @station.id),
                 class: "mt-3 custom-btn btn-outline" %>
 <% end %>
