@@ -27,6 +27,7 @@ caption{
   -webkit-text-size-adjust:100%;
   -moz-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
+  text-align: center;
 }
 
 sub-caption{
@@ -34,6 +35,7 @@ sub-caption{
   -webkit-text-size-adjust:100%;
   -moz-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
+  text-align: center;
 }
 
 #site-container{
@@ -81,6 +83,7 @@ img{
   margin-top: .5em;
   border-radius: 15%;
   border: 3px solid whitesmoke;
+  image-orientation: center;
 } 
 .btn-outline {
     background: var(--white-color);
