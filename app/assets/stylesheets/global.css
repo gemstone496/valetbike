@@ -52,19 +52,22 @@ sub-caption{
     background-color: var(--theme-color);
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 3rem;
 }
 
 .custom-btn {
     padding: 0.5rem 1.5rem;
     border-radius: var(--btn-radius);
+    transition: 0.1s ease;
 }
+
 
 .btn-fill {
     background: var(--theme-color);
     color: var(--white-color);
     border: var(--btn-thickness) solid var(--theme-color);
-    transition: 0.1s ease;
 }
 
 .btn-fill:hover {
@@ -79,3 +82,22 @@ img{
   border-radius: 15%;
   border: 3px solid whitesmoke;
 } 
+.btn-outline {
+    background: var(--white-color);
+    border: var(--btn-thickness) solid var(--theme-color);
+}
+
+.btn-outline:hover {
+    background: var(--theme-color);
+    color: var(--white-color);
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: var(--white-color);
+}
+
+.btn-invalid {
+    background: var(--invalid-color);
+    color: var(--white-color);
+}

@@ -14,7 +14,6 @@
                             <p class="error-message"><%= flash[:notice] %></p>
                         </div>
                     <% end %>
-
                     <%= form_with model: @user, url: log_in_path do |f| %>
                         <div class = "form-field">
                             <%= f.label :email, "Email" %>
@@ -26,6 +25,7 @@
                         </div>
                         <%= f.submit "Log in", class: "mt-3 custom-btn btn-fill" %>
                     <% end %>
+                    <%= button_to('Cancel', root_path, class: "mt-3 custom-btn btn-outline", method: :get) %>
                 </div>
                 <div class="form-links">
                     <p><%= link_to('Sign up', sign_up_path) %></p>

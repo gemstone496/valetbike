@@ -8,9 +8,7 @@ class UserController < ApplicationController
         # Process sign up information
         @user = User.new(user_params)
         if @user.save 
-            cookies[:username] = user_params[:email]
-            session[:user_id] = @user[:id]
-            redirect_to root_path
+            redirect_to log_in_path # make them log in
         else 
             render :new, status: 422
         end

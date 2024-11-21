@@ -11,19 +11,8 @@ class AccessController < ApplicationController
     end
   end
 
-  private 
-  def fetch_user_info
-    @user_id = session[:user_id]
-
-    if @user_id
-        @user = User.find_by(id: @user_id)
-    else 
-        @user = nil 
-    end
-  end
-
-  def logged_in?
-    # Check user's log in status
-    session[:user_id].present?
+  def destroy
+    session[:user_id] = nil 
+    redirect_to root_path
   end
 end

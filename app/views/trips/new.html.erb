@@ -1,0 +1,38 @@
+<div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
+  <%= button_to("Back to Bikes", station_path(@station), class: "mt-3 custom-btn btn-outline", method: :get) %>
+
+  <%= form_for(@trip) do |f| %>
+  <table summary="Trip form fields">
+    <h2>New Trip</h2>
+    <tr>
+      <th>Bike ID: </th>
+      <td><%= @bike.identifier %></td>
+    </tr>
+    <tr>
+    <tr>
+      <th>User ID:</th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+    <tr>
+      <th>Station:</th>
+      <td><%= @station.identifier %></td>
+    </tr>
+    <tr>
+    <tr>
+      <%= f.hidden_field :bike_id, value: @bike.identifier %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.hidden_field :start_station_is, value: @station.identifier %>
+
+    <tr>
+      <th>Pickup Time</th>
+      <td><%= f.time_field(:start_time) %></td>
+    </tr>
+    </table>
+
+      <div class="form-buttons">
+        <%= f.submit("Create Trip") %>
+      </div>
+
+    <% end %>
+  </div>
