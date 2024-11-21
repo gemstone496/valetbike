@@ -12,7 +12,9 @@ initializes the map for future use
 TODO
  - figure out the tiling thing and how to get an actual image rendered
 */
-function mapInit(element){
+document.body.onload = function(){
+
+    var element = document.getElementById("osm-map");
 
     // Create Leaflet map on map element.
     var map = L.map(element);
