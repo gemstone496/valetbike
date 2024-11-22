@@ -1,5 +1,8 @@
 <div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
-  Station <%= station.identifier %>: <%= station.name %> (<%= station.address %>)
+  <%= station.name %> 
+  <% unless station.identifier == 29 then %>
+    (<%= station.address %>)
+  <% end %>
   <div class="flexbox vertical stretch">
     <%= Bike.where(current_station_id: station.id).length %> available bikes
   </div>
