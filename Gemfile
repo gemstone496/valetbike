@@ -90,3 +90,5 @@ gem 'dotenv-rails'
 gem "nio4r", "~> 2.5"
 
 gem 'geocoder', '~> 1.3', '>= 1.3.7'
+
+gem 'stripe'
