@@ -1,6 +1,6 @@
 :root {
-  --title-font:             'Rubik', 'Arial';
-  --body-font:              'Rubik', 'Arial';
+  --title-font:             'Climate Crisis', 'Arial';
+  --body-font:              'Geologica', 'Arial';
 
   --black-color:            #160919;
   --light-black-color:      #2E2230;
@@ -11,7 +11,7 @@
   --white-color:            #FFFFFF;
   --invalid-color:          #B1B1B1;
 
-  --theme-color:            #905ADB;
+  --theme-color:            #7C88F4;
   --btn-radius:  0.3rem;
   --widget-radius: 0.5rem;
   --btn-thickness: 2px;
