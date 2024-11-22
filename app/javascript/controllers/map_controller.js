@@ -17,15 +17,15 @@ export default class extends Controller {
       TODO
         - hoping that the map var is getting set correctly
         - add a popup to the marker to link to the station page */
-    const addMarker = (lat, lng) => {
+    const addMarker = (lat, lng, name) => {
       // Target's GPS coordinates.
       var target = L.latLng(lat, lng);
 
       // Place a marker on the location.
-      L.marker(target).addTo(map).bindPopup('test').openPopup();    
+      L.marker(target).addTo(this.map).bindPopup(name);    
       
       // Set map's center to target with zoom 14.
-      map.setView(center, 14); // consider changing zoom
+      this.map.setView(center, 14); // consider changing zoom
     };
 
     /* initializes the map for future use */
@@ -36,26 +36,29 @@ export default class extends Controller {
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(this.map);
-      // Set map's center to target with zoom 14.
-      this.map.setView(center, 14); // consider changing zoom
 
       let lats = this.latsTarget.dataset.source;
       let longs = this.longsTarget.dataset.source;
+      let names = this.namesTarget.dataset.source;
+      let ids = this.idsTarget.dataset.source;
 
-        // // Convert to objects
-        // lats = JSON.parse(lats);
-        // longs = JSON.parse(longs);
+      // Convert to objects
+      lats = JSON.parse(lats);
+      longs = JSON.parse(longs);
+      names = JSON.parse(names);
+      ids = JSON.parse(ids);
 
-        // // Add the markers for each station
-        // for (let i = 0; i < lats.length; i++)
-        // {
-        //   if (lats[i] !== null && longs[i] !== null)
-        //   {
-        //       addMarker(map, lats[i], longs[i]);
-        //   }
-        // }
+      // Add the markers for each station
+      for (let i = 0; i < lats.length; i++)
+      {
+        if (lats[i] !== null && longs[i] !== null && names[i] !== null)
+        {
+            addMarker(lats[i], longs[i], names[i]);
+        }
+      }
       
-      L.marker(center).addTo(this.map).bindPopup("test").openPopup();
+      // Set map's center to target with zoom 14.
+      this.map.setView(center, 14); // consider changing zoom
     };
     
     mapInit();
