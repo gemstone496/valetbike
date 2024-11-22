@@ -24,9 +24,10 @@ export default class extends Controller {
         let lat = this.latValue[i];
         let long = this.longValue[i];
         let name = this.nameValue[i];
+        let id = this.idValue[i];
         if (lat !== null && long !== null && name !== null)
         {
-            this.addMarker(lat, long, name);
+            this.addMarker(lat, long, name, id);
         }
       }
   }
@@ -51,10 +52,17 @@ export default class extends Controller {
   /* adds a marker to the leaflet
   TODO
     - link popup to the station page */
-  addMarker(lat, long, name) {
+  addMarker(lat, long, name, id) {
     // Place a marker on the location.
     L.marker([lat, long])
       .addTo(this.map)
-      .bindPopup(name);
+      .bindPopup(this.buttonTo(name, id));
+  }
+
+  /* helper method to get the button_to link to place in the popup */
+  buttonTo(name, id) {
+    return `<form class='button_to' method='get' action='/stations/${id}'> 
+      <button class='mt-3 custom-btn btn-outline' type='submit'>${name}
+      </button></form>`
   }
 }

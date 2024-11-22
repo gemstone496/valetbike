@@ -11,7 +11,7 @@ class StationsController < ApplicationController
         @lats.append(s.latitude)
         @longs.append(s.longitude)
         @names.append(s.name)
-        @ids.append(s.identifier)
+        @ids.append(s.id)
       end
     end
   end
