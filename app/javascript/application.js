@@ -4,3 +4,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 import "bootstrap"
+
+import "leaflet"
+import "leaflet-providers"
+import "geocoder"
