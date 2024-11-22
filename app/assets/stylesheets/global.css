@@ -22,6 +22,22 @@ body {
   -ms-text-size-adjust:100%;
 }
 
+caption{
+  font-size:15pt;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  text-align: center;
+}
+
+sub-caption{
+  font-size:12pt;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  text-align: center;
+}
+
 #site-container{
   position: relative;
   width: 100%;
@@ -60,6 +76,14 @@ body {
     color: var(--black-color);
 }
 
+img{
+  height: 40%;
+  width: 40%;
+  margin-top: .5em;
+  border-radius: 15%;
+  border: 3px solid whitesmoke;
+  image-orientation: center;
+} 
 .btn-outline {
     background: var(--white-color);
     border: var(--btn-thickness) solid var(--theme-color);
