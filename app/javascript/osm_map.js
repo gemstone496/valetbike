@@ -12,9 +12,7 @@ initializes the map for future use
 TODO
  - figure out the tiling thing and how to get an actual image rendered
 */
-document.body.onload = function(){
-
-    var element = document.getElementById("osm-map");
+function mapInit(element){
 
     // Create Leaflet map on map element.
     var map = L.map(element);
@@ -41,7 +39,7 @@ function addMarker(map, lat, lng) {
     var target = L.latLng(lat, lng);
 
     // Place a marker on the location.
-    L.marker(target).addTo(map);    
+    L.marker(target).addTo(map).bindPopup('test').openPopup();    
     
     // Set map's center to target with zoom 14.
     map.setView(center, 14); // consider changing zoom
