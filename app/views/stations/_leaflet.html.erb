@@ -1,6 +1,8 @@
-<div id="osm-map" data-controller="map">
-  <%= content_tag :div, '', id: 'lats', 'data-map-target': 'lats', data: {source: lats} %>
-  <%= content_tag :div, '', id: 'longs', 'data-map-target': 'longs', data: {source: longs} %>
-  <%= content_tag :div, '', id: 'names', 'data-map-target': 'names', data: {source: names} %>
-  <%= content_tag :div, '', id: 'ids', 'data-map-target': 'ids', data: {source: ids} %>
+<div id="map-controller" 
+  data-controller="map"
+  data-map-lat-value="<%= lats %>"
+  data-map-long-value="<%= longs %>"
+  data-map-name-value="<%= names %>"
+  data-map-id-value="<%= ids %>"
+>
 </div>
