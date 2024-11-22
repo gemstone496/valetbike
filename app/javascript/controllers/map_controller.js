@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import L from 'leaflet'
 
 export default class extends Controller {
+  static targets = [ "container" ];
   static values = {
     lat: Array,
     long: Array,
@@ -12,7 +13,7 @@ export default class extends Controller {
   connect(){
     console.log("Controller Connected!!");
 
-    this.element.style.height = "400px"; // pulled this out here ig? should likely be in a css script
+    this.containerTarget.style.height = "400px"; // pulled this out here ig? should likely be in a css script
     
     this.createMap();
 
@@ -33,16 +34,16 @@ export default class extends Controller {
   /* initializes the map for future use */
   createMap() {
     // Create Leaflet map on map element.
-    this.map = L.map(this.element);
+    this.map = L.map(this.containerTarget);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
     
     // Set map's center to target.
-    const northamptonLat = '42.328674'; // what it says on the tag
+    const northamptonLat = '42.327'; // what it says on the tag
     const northamptonLng = '-72.646'; // rough center of northampton
     const center = L.latLng(northamptonLat, northamptonLng);
-    this.map.setView(center, 14); // consider changing zoom
+    this.map.setView(center, 13.5); // consider changing zoom
 
     console.log("Map Loaded!!");
   }
