@@ -1,7 +1,7 @@
-<%= content_tag :div, '', id: 'lats', data: {source: lats} %>
-<%= content_tag :div, '', id: 'longs', data: {source: longs} %>
-
-<div id="osm-map" data-controller="map"></div>
+<div id="osm-map" data-controller="map">
+  <%= content_tag :div, '', id: 'lats', 'data-map-target': 'lats', data: {source: lats} %>
+  <%= content_tag :div, '', id: 'longs', 'data-map-target': 'longs', data: {source: longs} %>
+</div>
 
 <script>
   // var element = document.getElementById("osm-map");
