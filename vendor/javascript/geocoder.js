@@ -1,0 +1,4 @@
+// geocoder@0.2.3 downloaded from https://ga.jspm.io/npm:geocoder@0.2.3/index.js
+
+var e="undefined"!==typeof globalThis?globalThis:"undefined"!==typeof self?self:global;var r={};var o="0.2.3";function Geocoder(){this.selectProvider("google")}Geocoder.prototype={selectProvider:function(r,o){if(!r)return cbk(new Error("Geocoder.selectProvider requires a name."));(this||e).provider=r;(this||e).providerOpts=o||{};(this||e).providerObj=require("./providers/"+r)},geocode:function(r,o,i){return r?(this||e).providerObj.geocode((this||e).providerOpts,r,o,i):o(new Error("Geocoder.geocode requires a location."))},reverseGeocode:function(r,o,i,d){return r&&o?(this||e).providerObj.reverseGeocode((this||e).providerOpts,r,o,i,d):i(new Error("Geocoder.reverseGeocode requires a latitude and longitude."))},version:o};r=new Geocoder;var i=r;export default i;
+

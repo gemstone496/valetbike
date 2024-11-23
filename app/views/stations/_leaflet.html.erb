@@ -1,24 +1,9 @@
-<div style='height:400px;' id="osm-map"></div>
-
-<%= content_tag :div, '', id: 'lats', data: {source: lats} %>
-<%= content_tag :div, '', id: 'longs', data: {source: longs} %>
-
-<script>
-  var element = document.getElementById("osm-map");
-  var map = mapInit(element);
-  var lats = document.getElementById("lats").dataset.source;
-  var longs = document.getElementById("longs").dataset.source;
-
-  // Convert to objects
-  lats = JSON.parse(lats);
-  longs = JSON.parse(longs);
-
-  // Add the markers for each station
-  for (let i = 0; i < lats.length; i++)
-  {
-    if (lats[i] !== null && longs[i] !== null)
-    {
-        addMarker(map, lats[i], longs[i]);
-    }
-  }
-</script>
+<div id="map-controller" 
+  data-controller="map"
+  data-map-lat-value="<%= lats %>"
+  data-map-long-value="<%= longs %>"
+  data-map-name-value="<%= names %>"
+  data-map-id-value="<%= ids %>"
+>
+  <div id="map-interactive" data-map-target="container"></div>
+</div>

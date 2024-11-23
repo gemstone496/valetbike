@@ -4,10 +4,15 @@ class StationsController < ApplicationController
     @stations = Station.all.order(identifier: :asc)
     @lats = Array.new # array of latitudes
     @longs = Array.new # array of longitudes
+    @names = Array.new # station names
+    @ids = Array.new # station ids
     @stations.each do |s|
-      puts s.latitude 
-      @lats.append(s.latitude)
-      @longs.append(s.longitude)
+      if s.latitude && s.longitude then  # block when geocode fails
+        @lats.append(s.latitude)
+        @longs.append(s.longitude)
+        @names.append(s.name)
+        @ids.append(s.id)
+      end
     end
   end
 
