@@ -9,16 +9,12 @@
                     Reset your password
                 </div> 
                 <div class="form-wrapper">
+                    <% if flash[:notice].present? %>
+                        <div class = "alert alert-<%= @success? 'success' : 'warning' %>">
+                            <p class="error-message"><%= flash[:notice] %></p>
+                        </div>
+                    <% end %>
                     <%= form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |f| %>
-                        <% if f.object && f.object.errors.any? %>
-                            <div class = "alert alert-warning">
-                                <ul class="error-message">
-                                    <% f.object.errors.full_messages.each do |message| %>
-                                        <li><%= message %></li>
-                                    <% end %>
-                                </ul>
-                            </div>
-                        <% end %>
                         <div class = "form-field">
                             <%= f.label :password, "Password" %>
                             <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
