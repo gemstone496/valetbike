@@ -1,0 +1,15 @@
+footer {
+    background-color: var(--theme-color);
+    width: 100%;
+    padding: 3rem auto;
+    margin-top: 5rem;
+    min-height: 300px;
+}
+
+footer .page-section {
+    margin: 5rem auto;
+}
+
+footer .page-section .section-title {
+    font-size: 1.3em;
+}

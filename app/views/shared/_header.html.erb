@@ -1,0 +1,21 @@
+<nav class="navbar fixed-top">
+    <div class="container">
+        <ul class="header">
+            <li>
+                <%= link_to('Home', {controller: 'main' , action: 'index'}) %> 
+            </li>
+            <li>
+                <%= link_to('Bikes/Stations', {controller: 'stations' , action: 'index'}) %> 
+            </li>
+            <li>
+                <%= link_to('Pricing', {controller: 'main' , action: 'pricing'}) %> 
+            </li>
+            <li>
+                <%= link_to('Contact', {controller: 'main' , action: 'contact'}) %> 
+            </li>
+            <li>
+                <%= link_to('Account', {controller: 'account' , action: 'index'}) %>
+            </li>
+        </ul>
+    </div>
+</nav>

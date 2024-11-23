@@ -4,7 +4,7 @@
 <% content_for :content do %>
   <div class="page-section flexbox vertical stretch">
     <div class="section-inner flexbox vertical stretch">
-      <div class="section-title">
+      <div class="section-title text-center">
         Bikes and Stations
       </div>
 
@@ -15,7 +15,7 @@
         ids: @ids} 
       %>
 
-      <div class="flexbox vertical stretch" id="stations">
+      <div class="flexbox vertical stretch mt-5" id="stations">
         <% if @stations.present? %>
           <%= render(partial: "stations/row", collection: @stations, as: :station) %>
         <% else %>
