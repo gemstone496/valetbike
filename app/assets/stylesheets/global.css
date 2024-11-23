@@ -22,6 +22,22 @@ body {
   -ms-text-size-adjust:100%;
 }
 
+caption{
+  font-size:15pt;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  text-align: center;
+}
+
+sub-caption{
+  font-size:12pt;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  text-align: center;
+}
+
 #site-container{
   position: relative;
   width: 100%;
@@ -32,4 +48,50 @@ body {
   font-weight: 400;
   color: var(--black-color);
   background: var(--white-color);
+}
+
+.bg-fill {
+    background-color: var(--theme-color);
+    position: absolute;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 3rem;
+}
+
+.custom-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--btn-radius);
+    transition: 0.1s ease;
+}
+
+.btn-fill {
+    background: var(--theme-color);
+    color: var(--white-color);
+    border: var(--btn-thickness) solid var(--theme-color);
+}
+
+.btn-fill:hover {
+    background: var(--white-color);
+    color: var(--black-color);
+}
+
+.btn-outline {
+    background: var(--white-color);
+    border: var(--btn-thickness) solid var(--theme-color);
+}
+
+.btn-outline:hover {
+    background: var(--theme-color);
+    color: var(--white-color);
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: var(--white-color);
+}
+
+.btn-invalid {
+    background: var(--invalid-color);
+    color: var(--white-color);
 }

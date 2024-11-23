@@ -1,16 +1,29 @@
-<div class="page-section flexbox vertical stretch">
-  <div class="section-inner flexbox vertical stretch">
-    <div class="section-title">
-      Welcome to ValetBike <3
-    </div> 
-    <div class="flexbox vertical stretch" id="stations">
-      <% if @stations.present? %>
-        <%= render(partial: "stations/row", collection: @stations, as: :station) %>
-      <% else %>
-      <div class="empty">
-        No stations found.
+<% content_for :head do %>
+<% end %>
+
+<% content_for :content do %>
+  <div class="page-section flexbox vertical stretch">
+    <div class="section-inner flexbox vertical stretch">
+      <div class="section-title">
+        Bikes and Stations
       </div>
-      <% end %>
+
+      <%= render partial: "stations/leaflet", locals: 
+        {lats: @lats, 
+        longs: @longs,
+        names: @names, 
+        ids: @ids} 
+      %>
+
+      <div class="flexbox vertical stretch" id="stations">
+        <% if @stations.present? %>
+          <%= render(partial: "stations/row", collection: @stations, as: :station) %>
+        <% else %>
+        <div class="empty">
+          No stations found.
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

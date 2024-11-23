@@ -1,0 +1,41 @@
+<div class="bg-fill row">
+        <div class = "col-lg-4"></div>
+        <div class = "col-lg-4">
+            <div class="form-container">
+                <div class="form-logo">
+                    <%= image_tag('logo.png', alt: 'valetbike-logo') %>
+                </div>
+                <div class="form-title">
+                    Reset your password
+                </div> 
+                <div class="form-wrapper">
+                    <%= form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |f| %>
+                        <% if f.object && f.object.errors.any? %>
+                            <div class = "alert alert-warning">
+                                <ul class="error-message">
+                                    <% f.object.errors.full_messages.each do |message| %>
+                                        <li><%= message %></li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        <% end %>
+                        <div class = "form-field">
+                            <%= f.label :password, "Password" %>
+                            <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
+                        </div>
+                        <div class = "form-field">
+                            <%= f.label :password_confirmation, "Confirm your password" %>
+                            <%= f.password_field :password_confirmation, placeholder: "Enter your password again", class: "form-control" %>
+                        </div>
+                        <%= f.submit "Reset", class: "mt-3 custom-btn btn-fill" %>
+                    <% end %>
+                    <%= button_to('Cancel', root_path, class: "mt-3 custom-btn btn-outline", method: :get) %>
+                </div>
+                <div class="form-links">
+                    <p><%= link_to('Sign up', sign_up_path) %></p>
+                    <p><%= link_to('Log in', log_in_path) %></p>
+                </div>
+            </div>
+        </div>
+        <div class = "col-lg-4"></div>
+</div>

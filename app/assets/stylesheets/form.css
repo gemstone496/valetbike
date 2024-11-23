@@ -1,0 +1,55 @@
+.form-container {
+    background-color: var(--white-color);
+    margin-top: 5rem;
+    padding: 2rem;
+    border-radius: var(--widget-radius);
+}
+
+.form-wrapper {
+    margin-top: 2rem;
+}
+
+.form-wrapper input[type=submit], .form-wrapper button {
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+
+.form-title {
+    font-family: var(--title-font);
+    font-weight: 500;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.form-field label {
+    font-size: 0.8em;   
+}
+
+.form-field .form-control {
+    border-radius: var(--btn-radius);
+    border: var(--btn-thickness) solid var(--gray-color);
+}
+
+.error-message {
+    font-size: 0.8em;
+    margin-bottom: 0;
+}
+
+.error-message li {
+    list-style-type: circle;
+}
+
+.form-logo img {
+    width: 180px;
+    margin: 0 auto;
+}
+
+.form-links {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.form-links p a {
+    color: var(--theme-color);
+}
