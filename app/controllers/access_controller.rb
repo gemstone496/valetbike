@@ -1,4 +1,6 @@
 class AccessController < ApplicationController
+  before_action :disable_navigation
+  
   def create
     # Process log in information
     @user = User.find_by(email: params[:email])
