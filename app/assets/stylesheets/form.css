@@ -40,11 +40,6 @@
     list-style-type: circle;
 }
 
-.form-logo img {
-    width: 180px;
-    margin: 0 auto;
-}
-
 .form-links {
     margin-top: 1em;
     text-align: center;
@@ -52,4 +47,21 @@
 
 .form-links p a {
     color: var(--theme-color);
+}
+
+.logo-header {
+    height: 6em;
+    width: auto;
+    margin: 0 auto;
+}
+
+/** Account page **/
+
+.edit-btn::before {
+    background-color: var(--black-color);
+}
+
+.sm-icon {
+    width: 15px;
+    height: 15px;
 }

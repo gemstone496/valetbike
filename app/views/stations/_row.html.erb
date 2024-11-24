@@ -1,11 +1,13 @@
-<div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
-  <%= station.name %> 
-  <% unless station.identifier == 29 then %>
-    (<%= station.address %>)
-  <% end %>
-  <div class="flexbox vertical stretch">
-    <%= Bike.where(current_station_id: station.id).length %> available bikes
-  </div>
+<div class="record-row flexbox vertical stretch">
+  <div class="record-name">
+    Station <%= station.identifier %>: <%= station.name %>
+    </div>
+    <div class="record-details">
+        <%= station.address %>
+    </div>
+    <div class="record-details">
+        <%= Bike.where(current_station_id: station.id).length %> available bikes
+    </div>
   <div class="flexbox vertical stretch">
     <%= button_to('More Details', station_path(station), class: "mt-3 custom-btn btn-outline", method: :get) %>
     <%#= link_to('More Details', station_path(station), class: 'action :show') %>

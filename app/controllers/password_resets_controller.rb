@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  before_action :disable_navigation
+  
   def create 
     # Process email and send reset link
     @user = User.find_by(email: params[:email])
@@ -31,8 +33,10 @@ class PasswordResetsController < ApplicationController
 
     if @user.update(password_params)
       flash[:notice] = "Your password was reset successfully. Please sign in."
+      @success = true
       redirect_to log_in_path
     else 
+      @success = false
       render :edit, status: 422 # have to set status. otherwise, the errors won't render
     end
 
