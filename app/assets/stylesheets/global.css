@@ -45,10 +45,11 @@ sub-caption{
   height: auto !important;
   min-height: 100%;
   font-family: var(--body-font);
-  font-weight: 400;
+  font-weight: 100;
   color: var(--black-color);
   background: var(--white-color);
 }
+
 
 .bg-fill {
     background-color: var(--theme-color);
@@ -81,6 +82,7 @@ sub-caption{
     border: var(--btn-thickness) solid var(--theme-color);
 }
 
+
 .btn-outline:hover {
     background: var(--theme-color);
     color: var(--white-color);
@@ -95,3 +97,5 @@ sub-caption{
     background: var(--invalid-color);
     color: var(--white-color);
 }
+
+

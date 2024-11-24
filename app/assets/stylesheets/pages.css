@@ -15,9 +15,10 @@
 
 .page-section .section-title {
   font-family: var(--title-font);
-  font-weight: 500;
-  font-size: 2.5em;
-  margin-bottom: 1em;
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-bottom: .4em;
+  margin-top: .4em;
 }
 
 .record-row {
@@ -26,6 +27,7 @@
   line-height: 1.75em;
 }
 
+/*
 .record-row.even {
   background: var(--medium-white-color);
 }
@@ -34,6 +36,7 @@
   background: var(--dark-white-color);
 }
 
+*/
 
 /***********************************/
 /*         Responsiveness          */
