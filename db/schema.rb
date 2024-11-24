@@ -48,7 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_20_010325) do
     t.string "password_digest"
     t.string "string"
     t.string "phone_number"
-    t.integer "current_bike_id"
     t.integer "current_trip_id"
   end
 
