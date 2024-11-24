@@ -6,7 +6,7 @@
   <% if !logged_in? || !user %>
     <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
     <small> Please log in to reserve bike </small>
- <% else if user.has_trip?%>
+  <% else if user.has_trip?%>
     <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
     <small> Please return your current bike to reserve a new one </small>
   <% else if !bike.available? %>
