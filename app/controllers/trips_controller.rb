@@ -45,7 +45,4 @@ class TripsController < ApplicationController
     params.require(:trip).permit(:bike_id, :user_id, :start_station_is, :start_time)
   end
 
-  def payments
-  end
-
 end
