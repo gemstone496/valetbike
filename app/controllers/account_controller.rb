@@ -1,5 +1,6 @@
 class AccountController < ApplicationController
   before_action :get_user_info_from_session
+  before_action :redirect_edit, only: [:edit, :update]
 
   def index
     if !logged_in? || !@user
@@ -24,11 +25,18 @@ class AccountController < ApplicationController
   def update 
     if !!@user && @user.update(user_params)
       flash[:notice] = "Your details were updated successfully!"
-      @success = true
       redirect_to account_index_path 
     else
-      render :index, status: 422, notice: "Something went wrong. Please try again."
-      @success = false 
+      render :index, status: 422
+    end
+  end
+
+  def upload_profile_img
+    if !!@user && @user.update_attribute(:avatar, params[:avatar])
+      flash[:notice] = "Avatar uploaded successfully!"
+      redirect_to account_index_path 
+    else 
+      render :index, status: 422, error: "Something went wrong. Please try again."
     end
   end
 
@@ -42,4 +50,10 @@ class AccountController < ApplicationController
     @edit_btn_text = 'Edit'
     @enable_edit = false 
   end
+
+  def redirect_edit
+    # Cancel the edits
+    redirect_to account_index_path if params[:cancel_edit]
+  end
+
 end

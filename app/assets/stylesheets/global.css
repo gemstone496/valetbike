@@ -105,9 +105,15 @@ input[type=submit]:disabled {
     color: var(--white-color);
 }
 
-.btn-danger {
+.btn-fill-danger {
     background: var(--danger-color);
     color: var(--white-color);
+    border: var(--btn-thickness) solid var(--danger-color);
+}
+
+.btn-fill-danger:hover {
+    background-color: var(--white-color);
+    color: var(--danger-color);
 }
 
 .btn-invalid {
@@ -132,6 +138,22 @@ input[type=submit]:disabled {
     width: 100%;
 }
 
+.btn-underline.regular::before {
+    background-color: var(--black-color);
+}
+
+.btn-underline.danger::before {
+    background-color: var(--danger-color);
+}
+
+.btn-underline:hover {
+    opacity: 0.7;
+}
+
 .highlighter {
     color: var(--theme-color);
+}
+
+.danger {
+    color: var(--danger-color);
 }

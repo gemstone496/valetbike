@@ -7,6 +7,23 @@
     <% if @user %>
         <div class = "row">
             <div class = "col-lg-6">
+                <%= image_tag(@user.avatar_url) if @user.avatar? %>
+
+                <%= form_with url: {action: :upload_profile_img} do |f| %>
+                    <%= f.label :avatar, "Profile picture" %>
+                    <%= f.file_field :avatar %>
+                    <%= f.hidden_field :avatar_cache %>
+                    <%= f.submit "Upload", class: "mt-3 custom-btn btn-fill"%>
+
+                    <p>
+                        <label>
+                        <%= f.check_box :remove_avatar %>
+                        Remove avatar
+                        </label>
+                    </p>
+                <% end %>
+            </div>
+            <div class = "col-lg-6">
                 <div class = "row">
                     <div class = "col-lg-8">
                         <div class = "section-heading">
@@ -16,21 +33,27 @@
                     <div class = "col-lg-4">
                         <%= button_to 'Edit', 
                             edit_account_path(@user[:id]), 
-                            class: "btn-underline edit-btn float-right", 
-                            :form => { :id => "togglerBtn" },
+                            class: "btn-underline regular float-right", 
                             method: :get %>
                     </div>
                 </div>
                 <%= form_with model: @user, url: account_path(@user[:id]) do |f| %>
-                    <% if f.object && f.object.errors.any? %>
-                        <div class = "alert alert-warning">
-                            <ul class="error-message">
-                                <% f.object.errors.full_messages.each do |message| %>
-                                    <li><%= message %></li>
-                                <% end %>
-                            </ul>
+                    <% if flash[:notice] %>
+                        <div class = "alert alert-success">
+                            <p class = "error-message"><%= flash[:notice] %></p>
                         </div>
+                    <% else %>
+                        <% if f.object && f.object.errors.any? %>
+                            <div class = "alert alert-warning">
+                                <ul class="error-message">
+                                    <% f.object.errors.full_messages.each do |message| %>
+                                        <li><%= message %></li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        <% end %>
                     <% end %>
+
                     <div class = "form-field">
                         <%= f.label :name, "Full name" %>
                         <%= f.text_field :name, placeholder: @user[:name]? @user[:name] : '-' , class: "form-control", :readonly => !@enable_edit %>
@@ -43,10 +66,17 @@
                         <%= f.label :phone_number, "Phone number" %>
                         <%= f.text_field :phone_number, placeholder: @user[:phone_number]? @user[:phone_number] : '-', class: "form-control", :readonly => !@enable_edit %>
                     </div>
-                    <%= f.submit "Reset", class: "mt-3 custom-btn btn-fill", disabled: !@enable_edit %>
+                    <% if !!@enable_edit %>
+                        <%= f.submit "Reset", class: "mt-3 custom-btn btn-fill" %>
+                        <%= button_tag t('buttons.cancel'),
+                            type: 'submit',
+                            name: 'cancel_edit',
+                            disabled: !@enable_edit,
+                            class: "ms-3 custom-btn btn-outline" %>
+                    <% end %>
                 <% end %>
 
-                <div class = "row mt-3">
+                <div class = "row mt-5">
                     <div class = "col-lg-8">
                         <div class = "section-heading">
                             Account
@@ -54,10 +84,55 @@
                     </div>
                     <div class = "col-lg-4"></div>
                 </div>
-                <%= button_to('Delete account', account_path(@user[:id]), class: "mt-3 custom-btn btn-danger", method: :delete) %>
-                <%= button_to('Log out', log_out_path, class: "mt-3 custom-btn btn-outline", method: :post) %>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="mt-3 btn-underline danger">
+                    Delete your account 
+                </button>
+                <div   class = "modal" id = "deleteModal" 
+                        aria-labelledby="deleteModal" 
+                        aria-hidden="true"
+                        tabindex="-1">
+                    <div class = "modal-dialog modal-lg modal-dialog-centered">
+                        <div class = "modal-content">
+                            <div class = "modal-header">
+                                <h5 class="modal-title">Delete account</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class = "modal-body">
+                                Are you sure that you want to delete your account? We will miss you 😔.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="custom-btn btn-outline" data-bs-dismiss="modal">Close</button>
+                                <%= button_to('Delete account', account_path(@user[:id]), class: "custom-btn btn-fill-danger", method: :delete) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" data-bs-toggle="modal" data-bs-target="#logoutModal" class="mt-3 btn-underline regular">
+                    Log out 
+                </button>
+
+                <div   class = "modal" id = "logoutModal" 
+                        aria-labelledby="logoutModal" 
+                        aria-hidden="true"
+                        tabindex="-1">
+                    <div class = "modal-dialog modal-lg modal-dialog-centered">
+                        <div class = "modal-content">
+                            <div class = "modal-header">
+                                <h5 class="modal-title">Log out</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class = "modal-body">
+                                Proceed to log out?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="custom-btn btn-outline" data-bs-dismiss="modal">Close</button>
+                                <%= button_to('Log out', log_out_path, class: "custom-btn btn-fill", method: :post) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class = "col-lg-6"></div>
         </div>
     <% else %>
       <div class="alert alert-warning">
