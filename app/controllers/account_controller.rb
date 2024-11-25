@@ -1,6 +1,7 @@
 class AccountController < ApplicationController
   before_action :get_user_info_from_session
   before_action :redirect_edit, only: [:edit, :update]
+  before_action :remove_pfp_upload, only: [:edit_profile_img, :upload_profile_img]
 
   def index
     if !logged_in? || !@user
@@ -31,6 +32,11 @@ class AccountController < ApplicationController
     end
   end
 
+  def edit_profile_img
+    @enable_profile_upload = !@enable_profile_upload 
+    render :index 
+  end
+
   def upload_profile_img
     if !!@user && @user.update_attribute(:avatar, params[:avatar])
       flash[:notice] = "Avatar uploaded successfully!"
@@ -47,13 +53,23 @@ class AccountController < ApplicationController
   end
 
   def set_up_edit_mode
-    @edit_btn_text = 'Edit'
     @enable_edit = false 
+    @enable_profile_upload = false 
   end
 
   def redirect_edit
     # Cancel the edits
     redirect_to account_index_path if params[:cancel_edit]
+  end
+
+  def remove_pfp_upload
+    if !!@user && params[:cancel_edit_pfp]
+      @user.remove_avatar! 
+      @user.remove_avatar = true
+      @user.save 
+      @user.reload
+      redirect_to account_index_path
+    end
   end
 
 end
