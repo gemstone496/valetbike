@@ -1,12 +1,10 @@
-<div class="flexbox vertical stretch">
-  <div class="section-title">
-    Station <%= station.identifier %>
-  </div>
-  <%= station.name %> (<%= station.address %>)
-  <div class="flexbox vertical stretch">
-    <%= Bike.where(current_station_id: station.id).length %> available bikes
-  </div>
-  <div class="flexbox vertical stretch">
+  <hr class="full-width-line">
+  <span class="flexbox horizontal stretch" style="display: flex; justify-content: space-between; align-items:
+    center; width: 100%;">
+   <span class="section-title" style="margin: 0;"> Station <%= station.identifier %>  </span>
     <%= button_to('More Details', station_path(station), class: "mt-3 custom-btn btn-outline", method: :get) %>
-  </div>
-</div>
+  </span>
+  <%= station.name %> (<%= station.address %>) <br>
+  <%= Bike.where(current_station_id: station.id).length %> available bikes
+
+
