@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
 :root {
-  --title-font:             'Climate Crisis', 'Arial';
-  --body-font:              'Geologica', 'Arial';
+  --title-font: "Inter", sans-serif;
+  --body-font: "Inter", sans-serif;
 
   --black-color:            #160919;
   --light-black-color:      #2E2230;

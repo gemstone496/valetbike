@@ -13,7 +13,10 @@
     <%= button_to('Reserve Bike', {}, class: "mt-3 custom-btn btn-invalid", method: :get) %>
     <small> Bike is currently Unavailable </small>
   <% else %>
-      <%= link_to 'Reserve Bike', new_trip_path(bike_id: bike.id, station_id: station.id, user_id: user.id), class: 'action new' "mt-3 custom-btn btn-outline" "", method: :get %>
+  <div class="mt-3 custom-btn btn-outline">
+    <%= link_to 'Reserve Bike', new_trip_path(bike_id: bike.id, station_id: station.id, user_id: user.id),
+                class: 'action new', method: :get,  :style=>' color: unset; text-decoration: unset;'%>
+  </div>
   <% end %>
   <% end %>
   <% end %>
