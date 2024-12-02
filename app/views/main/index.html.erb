@@ -4,17 +4,67 @@
 <% content_for :content do %>
   <div class="page-section flexbox vertical stretch">
     <div class="section-inner flexbox vertical stretch">
-      <div class="section-title">
-        ValetBike Home Page
+      <div class="section-title text-center">
+        Welcome to <div class = "highlighter">ValetBike</div>
       </div>
     </div>
-    <div class="section-caption" >
-    <caption>
-       This could be you!:
-      </caption>
-        <%= image_tag('MHBike.png') %>
-      </div>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-6">
+                <div class="section-caption text-center">
+                    Discover your city on two wheels! Whether you're commuting, exploring, or just enjoying the ride, 
+                    we’ve got the perfect bike for you. Easy booking, flexible rental options, and a commitment 
+                    to sustainability—all at your fingertips.
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#backdrop">
+                        <div class = "highlighter">This could be you!</div>
+                    </button>
+                </div>
+                <div   class = "modal" id = "backdrop" 
+                        aria-labelledby="backdrop" 
+                        aria-hidden="true"
+                        tabindex="-1">
+                    <div class = "modal-dialog modal-lg modal-dialog-centered">
+                        <div class = "modal-content">
+                            <div class = "modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class = "modal-body">
+                                <%= image_tag('MHBike.png', class: "section-banner") %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-lg-3"></div>
+        </div>
 
-      
+        <div class = "row">
+            <div class = "col-lg-3">
+                <div class = "step-block small">
+                    <%= image_tag('locations.svg', alt: 'Find a nearby station', class: 'svg-icon') %>
+                    <p>Find a nearby station</p>
+                </div>
+            </div>
+            <div class = "col-lg-3">
+                <div class = "step-block small">
+                    <%= image_tag('bike.svg', alt: 'Select an available bike', class: 'svg-icon') %>
+                    <p>Select an available bike</p>
+                </div>
+            </div>
+            <div class = "col-lg-3">
+                <div class = "step-block small">
+                    <%= image_tag('cycling.svg', alt: 'Book a trip and enjoy the ride', class: 'svg-icon') %>
+                    <p>Book a trip and enjoy the ride</p>
+                </div>
+            </div>
+            <div class = "col-lg-3">
+                <div class = "step-block small">
+                    <%= image_tag('pin.svg', alt: 'Park at a service area', class: 'svg-icon') %>
+                    <p>Park at a service area</p>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
 <% end %>

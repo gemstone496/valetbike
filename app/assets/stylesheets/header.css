@@ -1,6 +1,35 @@
-.app-header {
-    margin-bottom: 3em;
-    padding: 1.5em 0;
-    background: rgba(53, 144, 202, 0.95);
-    position: relative;
+.navbar {
+    margin: 3em auto;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: var(--widget-radius);
+}
+
+ul.header {
+    list-style: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+ul.header li {
+    display: block;
+}
+
+.navbar li a {
+    text-decoration: none;
+    font-family: var(--title-font);
+    font-size: 1rem;
+    color: var(--black-color);
+    font-weight: 300;
+    transition: 0.2s ease-in-out;
+}
+
+.navbar li a:hover {
+    color: var(--theme-color);
 }

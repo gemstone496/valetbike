@@ -3,14 +3,14 @@
         <div class = "col-lg-4">
             <div class="form-container">
                 <div class="form-logo">
-                    <%= image_tag('logo.png', alt: 'valetbike-logo') %>
+                    <%= image_tag('logo.png', alt: 'valetbike-logo', class: 'logo-header') %>
                 </div>
                 <div class="form-title">
                     Log into your account 
                 </div> 
                 <div class="form-wrapper">
                     <% if flash[:notice].present? %>
-                        <div class = "alert alert-warning">
+                        <div class = "alert alert-warning" data-turbo-temporary>
                             <p class="error-message"><%= flash[:notice] %></p>
                         </div>
                     <% end %>

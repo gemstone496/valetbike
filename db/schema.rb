@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_20_184529) do
     t.string "string"
     t.string "phone_number"
     t.integer "current_trip_id"
+    t.string "avatar"
   end
 
 end

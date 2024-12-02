@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   get "password/reset/edit", to: "password_resets#edit"
   patch "password/reset/edit", to: "password_resets#update"
 
-  resources :account, only: [:index, :destroy]
+  resources :account, only: [:index, :destroy, :edit, :update]
+  get "profile-picture/edit", to: "account#edit_profile_img"
+  post "profile-picture/upload", to: "account#upload_profile_img"
 
   root to: "main#index"
 end
