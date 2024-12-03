@@ -57,10 +57,6 @@
 
 /** Account page **/
 
-.edit-btn::before {
-    background-color: var(--black-color);
-}
-
 .sm-icon {
     width: 15px;
     height: 15px;
