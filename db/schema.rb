@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_20_184529) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_24_213250) do
   create_table "bikes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "identifier"
     t.integer "current_station_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_20_184529) do
     t.string "password_digest"
     t.string "string"
     t.string "phone_number"
+    t.integer "current_bike_id"
     t.integer "current_trip_id"
     t.string "avatar"
   end
