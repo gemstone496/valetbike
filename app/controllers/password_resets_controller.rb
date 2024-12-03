@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  before_action :disable_navigation
+  
   def create 
     # Process email and send reset link
     @user = User.find_by(email: params[:email])

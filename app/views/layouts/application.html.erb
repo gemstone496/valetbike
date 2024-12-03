@@ -22,15 +22,13 @@
   <body>
     <div id="site-container" class="flexbox vertical stretch flex-1">
       <div class="flexbox vertical center">
-        <div class="horizontal">
-          <%= link_to('Home Page', {controller: 'main' , action: 'index'}) %> |
-          <%= link_to('Bikes/Stations', {controller: 'stations' , action: 'index'}) %> |
-          <%= link_to('Pricing', {controller: 'main' , action: 'pricing'}) %> |
-          <%= link_to('Contact', {controller: 'main' , action: 'contact'}) %> |
-          <%= link_to('Account', {controller: 'account' , action: 'index'}) %>
-        </div>
+        <%= render "shared/header" unless @disable_header %>
         <%= content_for(:content) ? yield(:content) : yield %>
+        <%= render "shared/footer" unless @disable_footer %>
       </div>
     </div>
   </body>
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
 </html>

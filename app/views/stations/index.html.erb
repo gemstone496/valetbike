@@ -1,7 +1,7 @@
 <% content_for :content do %>
- <div class="page-section flexbox vertical stretch">
-<!--    <div class="section-inner flexbox vertical stretch">-->
-      <div class="section-title">
+  <div class="page-section flexbox vertical stretch">
+    <div class="section-inner flexbox vertical stretch">
+      <div class="section-title text-center">
         Find a Station
       </div>
 
@@ -12,7 +12,7 @@
         ids: @ids} 
       %>
 
-      <div class="flexbox vertical stretch" id="stations">
+      <div class="flexbox vertical stretch mt-5" id="stations">
         <% if @stations.present? %> </div> <br>
           <div class="section-body">
             <%= @stations.count %> stations found
@@ -24,5 +24,5 @@
         </div>
         <% end %>
       </div>
-  <br>
+    </div>
 <% end %>
