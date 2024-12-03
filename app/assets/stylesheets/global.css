@@ -5,7 +5,6 @@
 * {
   margin: 0;
   padding: 0;
-  z-index: 1;
 }
 
 html, body {
@@ -38,6 +37,14 @@ sub-caption{
   text-align: center;
 }
 
+a.link-regular {
+    color: var(--theme-color);
+}
+
+a.link-black {
+    color: var(--black-color);
+}
+
 #site-container{
   position: relative;
   width: 100%;
@@ -45,9 +52,15 @@ sub-caption{
   height: auto !important;
   min-height: 100%;
   font-family: var(--body-font);
-  font-weight: 400;
+  font-weight: 100;
   color: var(--black-color);
   background: var(--white-color);
+}
+
+input[type=submit]:disabled {
+    background-color: var(--gray-color);
+    color: var(--white-color);
+    border-color: var(--gray-color);
 }
 
 .bg-fill {
@@ -57,6 +70,12 @@ sub-caption{
     height: auto;
     min-height: 100%;
     padding-bottom: 3rem;
+}
+
+.section-heading {
+    font-size: 1.3em;
+    font-family: var(--title-font);
+    margin-bottom: 0.8rem;
 }
 
 .custom-btn {
@@ -81,17 +100,61 @@ sub-caption{
     border: var(--btn-thickness) solid var(--theme-color);
 }
 
+
 .btn-outline:hover {
     background: var(--theme-color);
     color: var(--white-color);
 }
 
-.btn-danger {
+.btn-fill-danger {
     background: var(--danger-color);
     color: var(--white-color);
+    border: var(--btn-thickness) solid var(--danger-color);
+}
+
+.btn-fill-danger:hover {
+    background-color: var(--white-color);
+    color: var(--danger-color);
 }
 
 .btn-invalid {
     background: var(--invalid-color);
     color: var(--white-color);
+}
+
+.btn-underline {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.2s ease-in-out;
+}
+
+.btn-underline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1.5px;
+    width: 100%;
+}
+
+.btn-underline.regular::before {
+    background-color: var(--black-color);
+}
+
+.btn-underline.danger::before {
+    background-color: var(--danger-color);
+}
+
+.btn-underline:hover {
+    opacity: 0.7;
+}
+
+.highlighter {
+    color: var(--theme-color);
+}
+
+.danger {
+    color: var(--danger-color);
 }

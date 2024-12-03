@@ -41,7 +41,7 @@ export default class extends Controller {
     }).addTo(this.map);
     
     // Set map's center to target.
-    const northamptonLat = '42.327'; // what it says on the tag
+    const northamptonLat = '42.3255'; // what it says on the tag
     const northamptonLng = '-72.646'; // rough center of northampton
     const center = L.latLng(northamptonLat, northamptonLng);
     this.map.setView(center, 13.5); // consider changing zoom
@@ -53,11 +53,23 @@ export default class extends Controller {
   TODO
     - link popup to the station page */
   addMarker(lat, long, name, id) {
+
+    var purpleIcon = L.icon({
+      iconUrl: '/images/map-marker.png',
+      iconSize:     [30, 40] // size of the icon
+    });
+
+        // Place a marker on the location with custom icon
+    L.marker([lat, long], {icon: purpleIcon})
+        .addTo(this.map)
+        .bindPopup(this.buttonTo(name, id));
+  }
+/*  addMarker(lat, long, name, id) {
     // Place a marker on the location.
     L.marker([lat, long])
       .addTo(this.map)
       .bindPopup(this.buttonTo(name, id));
-  }
+  }*/
 
   /* helper method to get the button_to link to place in the popup */
   buttonTo(name, id) {

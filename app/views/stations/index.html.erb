@@ -1,11 +1,8 @@
-<% content_for :head do %>
-<% end %>
-
 <% content_for :content do %>
   <div class="page-section flexbox vertical stretch">
     <div class="section-inner flexbox vertical stretch">
-      <div class="section-title">
-        Bikes and Stations
+      <div class="section-title text-center">
+        Find a Station
       </div>
 
       <%= render partial: "stations/leaflet", locals: 
@@ -15,8 +12,11 @@
         ids: @ids} 
       %>
 
-      <div class="flexbox vertical stretch" id="stations">
-        <% if @stations.present? %>
+      <div class="flexbox vertical stretch mt-5" id="stations">
+        <% if @stations.present? %> </div> <br>
+          <div class="section-body">
+            <%= @stations.count %> stations found
+          </div>
           <%= render(partial: "stations/row", collection: @stations, as: :station) %>
         <% else %>
         <div class="empty">
@@ -25,5 +25,4 @@
         <% end %>
       </div>
     </div>
-  </div>
 <% end %>
