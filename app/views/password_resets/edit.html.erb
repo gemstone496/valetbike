@@ -10,7 +10,7 @@
                 </div> 
                 <div class="form-wrapper">
                     <% if flash[:notice].present? %>
-                        <div class = "alert alert-<%= @success? 'success' : 'warning' %>">
+                        <div class = "alert alert-warning">
                             <p class="error-message"><%= flash[:notice] %></p>
                         </div>
                     <% end %>
