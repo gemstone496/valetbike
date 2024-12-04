@@ -3,13 +3,12 @@ Rails.application.routes.draw do
   get 'stations/show'
   get 'bikes/index'
   get 'bikes/_row'
-  get 'main/pricing'
-  get 'main/contact'
-
+  get 'pricing', to: 'payments#pricing'
+  get 'contact', to: 'main#contact'
+  post 'subscribe', to: 'payments#subscribe'
 
   get "confirm", to: "trips#confirmation"
   get "end_confirm", to: "trips#end_confirmation"
-
 
   # resources :bikes
   # resources :stations

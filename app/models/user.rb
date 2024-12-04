@@ -3,6 +3,7 @@ class User < ApplicationRecord
     mount_uploader :avatar, AvatarUploader
 
     EMAIL_REGEX = /\A[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}\z/
+    SCHOOL_EMAIL_REGEX = /\A[\w\-\.]+@([\w\-]+\.)+edu\z/ # validates school plan. unimplemented
     PHONE_REGEX = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\z/
     validates :email, presence: true,
                       uniqueness: {case_sensitive: false},
@@ -25,6 +26,12 @@ class User < ApplicationRecord
     def has_trip?
         unless current_trip_id.nil?
             current_trip_id
+        end
+    end
+
+    def has_name?
+        unless name.nil?
+            name
         end
     end
 
