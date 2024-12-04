@@ -32,6 +32,7 @@ class TripsController < ApplicationController
     @user = User.find(@trip.user_id)
     @bike = Bike.find(@trip.bike_id)
     @user.update(current_trip_id: nil)
+    @trip.update(end_time: DateTime.now)
     @bike.update(is_available: true, current_station_id: params[:end_station_id])
   end
 

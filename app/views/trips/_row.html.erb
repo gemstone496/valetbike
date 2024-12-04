@@ -1,0 +1,27 @@
+<div class="record-row flexbox vertical stretch">
+  <div class="record-name">
+    Trip <%= trip.id %>
+  </div>
+  <% ongoing = trip.end_time.nil? %>
+  <% if ongoing %>
+    <div class="section-body">
+      Status: Ongoing
+    </div>
+  <% else %>
+    <div class="section-body">
+      Trip Length: <%=trip.time[0]%>h <%=trip.time[1]%>m <%=trip.time[2]%>s<br>
+      Cost:  <br>
+      Status: Ended  <br>
+    </div>
+  <% end %>
+
+<!--  <div class="record-details">
+    <%#= station.address %>
+  </div>
+  <div class="record-details">
+    <%#= Bike.where(current_station_id: station.id).length %> available bikes
+  </div>
+  <div class="flexbox vertical stretch">
+    <%#= button_to('View Station', station_path(station), class: "mt-3 custom-btn btn-outline", method: :get) %>
+  </div>-->
+</div>
