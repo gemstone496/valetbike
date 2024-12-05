@@ -30,18 +30,6 @@ export default class extends Controller {
           this.addMarker(lat, long, name, id, purpleIcon);
       }
     }
-
-    // Add a you-are-here
-    let uLat = this.userCoordValue[0]; // user latitude
-    let uLong = this.userCoordValue[1]; // user longitude
-    let pfpath = this.pfpValue; // ProFile pic PATH
-
-    console.log("Entering from [" + uLat + ", " + uLong + "]");
-    console.log("User profile from `" + pfpath + "`");
-
-    if (uLat !== null && uLong) {
-      this.addMarker(uLat, uLong, null, null, pfpath);
-    }
   }
   
   /* initializes the map for future use */
@@ -53,18 +41,18 @@ export default class extends Controller {
     }).addTo(this.map);
 
     // Add a you-are-here
-    let uCoords = this.userCoordValue; // user lat long
+    let uCoords = this.userValue; // user lat long
     let pfpath = this.pfpValue; // ProFile pic PATH
+    console.log(this.pfpValue);
 
     if (uCoords == null) {
       uCoords = ['42.3255', '-72.646']; // northampton center
     }
 
-    this.addMarker(uCoords[0], uCoords[1], null, null, pfpath);
+    this.addMarker(uCoords[0], uCoords[1], null, null, 'assets/fallback/default.png');
     
     console.log("Entering from [" + uCoords[0] + ", " + uCoords[1] + "]");
     console.log("User profile from `" + pfpath + "`");
-    console.log("Map Loaded!!");
     
     // Set map's center.
     const center = L.latLng(uCoords[0], uCoords[1]);
@@ -76,9 +64,11 @@ export default class extends Controller {
   /* adds a marker to the leaflet */
   addMarker(lat, long, name, id, iconPath) {
 
+    let size = id === null ? [40, 40] : [30, 40]; // size of the icon
+
     let icon = L.icon({
       iconUrl: iconPath,
-      iconSize:     [30, 40] // size of the icon
+      iconSize: size 
     });
 
         // Place a marker on the location with custom icon
