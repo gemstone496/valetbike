@@ -20,18 +20,28 @@ export default class extends Controller {
     let purpleIcon = '/images/map-marker.png';
 
     // Add the markers for each station
-    for (let i = 0; i < this.idValue.length; i++)
-      {
-        console.log("loading item " + i);
-        let lat = this.latValue[i];
-        let long = this.longValue[i];
-        let name = this.nameValue[i];
-        let id = this.idValue[i];
-        if (lat !== null && long !== null && name !== null)
-        {
-            this.addMarker(lat, long, name, id, purpleIcon);
-        }
+    for (let i = 0; i < this.idValue.length; i++) {
+      console.log("loading item " + i);
+      let lat = this.latValue[i];
+      let long = this.longValue[i];
+      let name = this.nameValue[i];
+      let id = this.idValue[i];
+      if (lat !== null && long !== null && name !== null) {
+          this.addMarker(lat, long, name, id, purpleIcon);
       }
+    }
+
+    // Add a you-are-here
+    let uLat = this.userCoordValue[0]; // user latitude
+    let uLong = this.userCoordValue[1]; // user longitude
+    let pfpath = this.pfpValue; // ProFile pic PATH
+
+    console.log("Entering from [" + uLat + ", " + uLong + "]");
+    console.log("User profile from `" + pfpath + "`");
+
+    if (uLat !== null && uLong) {
+      this.addMarker(uLat, uLong, null, null, pfpath);
+    }
   }
   
   /* initializes the map for future use */
@@ -41,11 +51,23 @@ export default class extends Controller {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+
+    // Add a you-are-here
+    let uCoords = this.userCoordValue; // user lat long
+    let pfpath = this.pfpValue; // ProFile pic PATH
+
+    if (uCoords == null) {
+      uCoords = ['42.3255', '-72.646']; // northampton center
+    }
+
+    this.addMarker(uCoords[0], uCoords[1], null, null, pfpath);
     
-    // Set map's center to target.
-    const northamptonLat = '42.3255'; // what it says on the tag
-    const northamptonLng = '-72.646'; // rough center of northampton
-    const center = L.latLng(northamptonLat, northamptonLng);
+    console.log("Entering from [" + uCoords[0] + ", " + uCoords[1] + "]");
+    console.log("User profile from `" + pfpath + "`");
+    console.log("Map Loaded!!");
+    
+    // Set map's center.
+    const center = L.latLng(uCoords[0], uCoords[1]);
     this.map.setView(center, 13.5); // consider changing zoom
 
     console.log("Map Loaded!!");
