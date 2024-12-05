@@ -17,6 +17,8 @@ export default class extends Controller {
     
     this.createMap();
 
+    let purpleIcon = '/images/map-marker.png';
+
     // Add the markers for each station
     for (let i = 0; i < this.idValue.length; i++)
       {
@@ -27,7 +29,7 @@ export default class extends Controller {
         let id = this.idValue[i];
         if (lat !== null && long !== null && name !== null)
         {
-            this.addMarker(lat, long, name, id);
+            this.addMarker(lat, long, name, id, purpleIcon);
         }
       }
   }
@@ -49,27 +51,22 @@ export default class extends Controller {
     console.log("Map Loaded!!");
   }
 
-  /* adds a marker to the leaflet
-  TODO
-    - link popup to the station page */
-  addMarker(lat, long, name, id) {
+  /* adds a marker to the leaflet */
+  addMarker(lat, long, name, id, iconPath) {
 
-    var purpleIcon = L.icon({
-      iconUrl: '/images/map-marker.png',
+    let icon = L.icon({
+      iconUrl: iconPath,
       iconSize:     [30, 40] // size of the icon
     });
 
         // Place a marker on the location with custom icon
-    L.marker([lat, long], {icon: purpleIcon})
-        .addTo(this.map)
-        .bindPopup(this.buttonTo(name, id));
+    let marker = L.marker([lat, long], {icon: icon})
+        .addTo(this.map);
+
+    if (id !== null){ // here markers
+      marker.bindPopup(this.buttonTo(name, id));
+    }
   }
-/*  addMarker(lat, long, name, id) {
-    // Place a marker on the location.
-    L.marker([lat, long])
-      .addTo(this.map)
-      .bindPopup(this.buttonTo(name, id));
-  }*/
 
   /* helper method to get the button_to link to place in the popup */
   buttonTo(name, id) {
