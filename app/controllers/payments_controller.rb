@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
       customer: customer,
       payment_method_types: ['card'],
       line_items: [{
-        price: "price_1QS6gwGS1H69W3qmeSYofOCy"
+        price: "price_1QS6gwGS1H69W3qmeSYofOCy",
         quantity: 1
       }],
       mode: "subscription",
