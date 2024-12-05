@@ -1,3 +1,3 @@
-name,price,desc
-Student,599,Free 30 minutes of ride time a day at the charge of $5.99 a month. Must have vaild student ID from a University or College you are currently attending.
-Regular,1599,Free 10 minutes of ride time a day at the charge of $15.99 a month. 
+name,price,desc,stripe_price_id,stripe_product_id
+Student,599,Free 30 minutes of ride time a day at the charge of $5.99 a month. Must have vaild student ID from a University or College you are currently attending.,price_1QSk1xK3fFRnZeLjnYKyL4fT,prod_RLQt2QWcUhAxaV
+Regular,1599,Free 10 minutes of ride time a day at the charge of $15.99 a month.,price_1QSk2cK3fFRnZeLjMbz4PdfV,prod_RLQuwSERTU0ZMH

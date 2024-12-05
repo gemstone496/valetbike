@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :trips, except: [:destroy]
 
   resources :products, only: [:index]
+  resources :payments, only: [:create]
 
   get "sign-up", to: "user#new"
   post "sign-up", to: "user#create"

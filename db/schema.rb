@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_05_163556) do
     t.string "name"
     t.integer "price"
     t.string "desc"
+    t.string "stripe_price_id"
+    t.string "stripe_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

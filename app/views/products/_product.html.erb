@@ -2,5 +2,12 @@
     <div class = "step-block medium">
         <h4><%= product.name %></h4>
         <p><%= product.desc %></p>
+        <p>
+            <%= button_to("Choose plan", {controller: 'payments', action: 'create'}, 
+                        params: {id: product.id}, 
+                        remote: true, 
+                        data: { turbo: false },
+                        class: "mt-3 custom-btn btn-fill") %>
+        </p>
     </div>
 </div>
