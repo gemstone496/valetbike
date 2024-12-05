@@ -7,7 +7,9 @@ export default class extends Controller {
     lat: Array,
     long: Array,
     name: Array,
-    id: Array
+    id: Array,
+    userCoords: {type: Array, default: ['42.3255', '-72.646'] },
+    pfp: {type: String, default: 'assets/fallback/default.png'}
   };
 
   connect(){
@@ -41,15 +43,10 @@ export default class extends Controller {
     }).addTo(this.map);
 
     // Add a you-are-here
-    let uCoords = this.userValue; // user lat long
+    let uCoords = this.userCoordsValue; // user lat long
     let pfpath = this.pfpValue; // ProFile pic PATH
-    console.log(this.pfpValue);
 
-    if (uCoords == null) {
-      uCoords = ['42.3255', '-72.646']; // northampton center
-    }
-
-    this.addMarker(uCoords[0], uCoords[1], null, null, 'assets/fallback/default.png');
+    this.addMarker(uCoords[0], uCoords[1], null, null, pfpath);
     
     console.log("Entering from [" + uCoords[0] + ", " + uCoords[1] + "]");
     console.log("User profile from `" + pfpath + "`");
