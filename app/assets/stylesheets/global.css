@@ -52,7 +52,7 @@ a.link-black {
   height: auto !important;
   min-height: 100%;
   font-family: var(--body-font);
-  font-weight: 400;
+  font-weight: 100;
   color: var(--black-color);
   background: var(--white-color);
 }
@@ -100,14 +100,21 @@ input[type=submit]:disabled {
     border: var(--btn-thickness) solid var(--theme-color);
 }
 
+
 .btn-outline:hover {
     background: var(--theme-color);
     color: var(--white-color);
 }
 
-.btn-danger {
+.btn-fill-danger {
     background: var(--danger-color);
     color: var(--white-color);
+    border: var(--btn-thickness) solid var(--danger-color);
+}
+
+.btn-fill-danger:hover {
+    background-color: var(--white-color);
+    color: var(--danger-color);
 }
 
 .btn-invalid {
@@ -132,6 +139,22 @@ input[type=submit]:disabled {
     width: 100%;
 }
 
+.btn-underline.regular::before {
+    background-color: var(--black-color);
+}
+
+.btn-underline.danger::before {
+    background-color: var(--danger-color);
+}
+
+.btn-underline:hover {
+    opacity: 0.7;
+}
+
 .highlighter {
     color: var(--theme-color);
+}
+
+.danger {
+    color: var(--danger-color);
 }
