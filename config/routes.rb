@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'stations/show'
   get 'bikes/index'
   get 'bikes/_row'
-  get 'main/pricing'
   get 'main/contact'
 
 
@@ -18,6 +17,8 @@ Rails.application.routes.draw do
     end
 
   resources :trips, except: [:destroy]
+
+  resources :products, only: [:index]
 
   get "sign-up", to: "user#new"
   post "sign-up", to: "user#create"

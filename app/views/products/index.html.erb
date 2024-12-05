@@ -1,0 +1,22 @@
+<div class="page-section flexbox vertical stretch">
+  <div class="section-inner flexbox vertical stretch">
+    <div class="section-title text-center">
+      Pricing
+    </div> 
+    <div class="section-caption text-center">
+        We at ValetBike offer many different options that range various levels. 
+    </div>
+    <div class = "row" id="products">
+        <% @products.each do |product| %>
+            <%= render product %>
+        <% end %>
+    </div>
+    <div class = "row mt-5">
+        <div class = "col-lg-3"></div>
+        <div class = "col-lg-6">
+            <%= image_tag('MHmoney.jpg', class: "section-banner") %>
+        </div>
+        <div class = "col-lg-3"></div>
+    </div>
+  </div>
+</div>
