@@ -1,13 +1,13 @@
 <div class = "col-lg-6" id="<%= dom_id product %>">
     <div class = "step-block medium">
         <h4><%= product.name %></h4>
-        <p><%= product.desc %></p>
-        <p>
+        <div class = "mt-3 mb-4 d-flex align-items-center justify-content-center">
             <%= button_to("Choose plan", {controller: 'payments', action: 'create'}, 
                         params: {id: product.id}, 
                         remote: true, 
                         data: { turbo: false },
-                        class: "mt-3 custom-btn btn-fill") %>
-        </p>
+                        class: "custom-btn btn-fill") %>
+        </div>
+        <p><%= product.desc %></p>
     </div>
 </div>

@@ -17,8 +17,6 @@ class User < ApplicationRecord
                              format: {with: PHONE_REGEX},
                              allow_nil: true,
                              allow_blank: true
-    
-    mount_uploader :avatar, AvatarUploader
 
     has_many :trips, dependent: :destroy
 
