@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_05_213457) do
     t.string "password_digest"
     t.string "string"
     t.string "phone_number"
+    t.integer "current_bike_id"
     t.integer "current_trip_id"
     t.string "avatar"
     t.string "stripe_customer_id"

@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
-  get 'stations/index'
+  get 'stations', to: 'stations#index'
   get 'stations/show'
   get 'bikes/index'
   get 'bikes/_row'
   get 'main/contact'
 
-
   get "confirm", to: "trips#confirmation"
   get "end_confirm", to: "trips#end_confirmation"
 
-
   # resources :bikes
   # resources :stations
-    resources :stations, only: [:index, :show] do
-      resources :bikes, only: [:index, :show]
-    end
+  resources :stations, only: [:index, :show] do
+    resources :bikes, only: [:index, :show]
+  end
 
   resources :trips, except: [:destroy]
 

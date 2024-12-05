@@ -30,4 +30,10 @@ class User < ApplicationRecord
       customer = Stripe::Customer.create(email: email)
       update(stripe_customer_id: customer.id)
     end
+
+    def has_name?
+        unless name.nil?
+            name
+        end
+    end
 end
