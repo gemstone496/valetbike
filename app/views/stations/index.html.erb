@@ -11,14 +11,13 @@
         data-map-long-value="<%= @longs %>"
         data-map-name-value="<%= @names %>"
         data-map-id-value="<%= @ids %>"
-       <% if @user.avatar? then %>
+       <% if @user&.avatar? then %>
         data-map-pfp-value="<%= @user.avatar_url %>"
        <% end %>
        <% if @uCoords.length != 2 then %>
         data-map-userCoords-value="<%= @uCoords %>"
        <% end %>
       >
-      <%= @user.avatar? ? @user.avatar_url : 'assets/fallback/default.png' %>
         <div id="map-interactive" data-map-target="container"></div>
       </div>
 
