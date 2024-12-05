@@ -6,12 +6,16 @@ class StationsController < ApplicationController
     @longs = Array.new # array of longitudes
     @names = Array.new # station names
     @ids = Array.new # station ids
+    @addresses = Array.new # REYFUCKS UP
+    @bikes = Array.new # REYFUCKS UP
     @stations.each do |s|
       if s.latitude && s.longitude then  # block when geocode fails
         @lats.append(s.latitude)
         @longs.append(s.longitude)
         @names.append(s.name)
         @ids.append(s.id)
+        @addresses.append(s.address) #REYFUCKS UP
+        @bikes.append(Bike.where(current_station_id: s.id).length) #REYFUCKS UP
       end
     end
   end

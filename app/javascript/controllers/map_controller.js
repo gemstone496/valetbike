@@ -7,7 +7,9 @@ export default class extends Controller {
     lat: Array,
     long: Array,
     name: Array,
-    id: Array
+    id: Array,
+    address: Array,
+    bike: Array
   };
 
   connect(){
@@ -25,9 +27,11 @@ export default class extends Controller {
         let long = this.longValue[i];
         let name = this.nameValue[i];
         let id = this.idValue[i];
+        let address = this.addressValue[i];
+        let bike = this.bikeValue[i];
         if (lat !== null && long !== null && name !== null)
         {
-            this.addMarker(lat, long, name, id);
+            this.addMarker(lat, long, name, id, address, bike);
         }
       }
   }
@@ -52,7 +56,7 @@ export default class extends Controller {
   /* adds a marker to the leaflet
   TODO
     - link popup to the station page */
-  addMarker(lat, long, name, id) {
+  addMarker(lat, long, name, id, address, bike) {
 
     var purpleIcon = L.icon({
       iconUrl: '/images/map-marker.png',
@@ -62,7 +66,7 @@ export default class extends Controller {
         // Place a marker on the location with custom icon
     L.marker([lat, long], {icon: purpleIcon})
         .addTo(this.map)
-        .bindPopup(this.buttonTo(name, id));
+        .bindPopup(this.popupContent(name, id, address, bike));
   }
 /*  addMarker(lat, long, name, id) {
     // Place a marker on the location.
@@ -72,9 +76,16 @@ export default class extends Controller {
   }*/
 
   /* helper method to get the button_to link to place in the popup */
-  buttonTo(name, id) {
-    return `<form class='button_to' method='get' action='/stations/${id}'> 
-      <button class='mt-3 custom-btn btn-outline' type='submit'>${name}
-      </button></form>`
+  popupContent(name, id, address, bike) {
+    return `
+    <div>
+     <div class="title">  Station ${id}: ${name} </div> <br>
+    <div class="body"> ${address} </div> 
+    <div class="body"> ${bike} available bikes </div> 
+    <form class='button_to' method='get' action='/stations/${id}'> 
+        <button class='mt-3 custom-btn btn-outline' type='submit'>Reserve a Bike</button>
+      </form>
+      </div>
+  `;
   }
 }

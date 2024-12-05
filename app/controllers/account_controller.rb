@@ -4,7 +4,6 @@ class AccountController < ApplicationController
   before_action :remove_pfp_upload, only: [:edit_profile_img, :upload_profile_img]
   def index
     @trips = Trip.all
-
     if !logged_in? || !@user
       redirect_to log_in_path
     end

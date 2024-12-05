@@ -6,6 +6,16 @@ class TripsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+
+  def index
+    @trips = Trip.all
+    @past_trips = @trips.where.not(end_time: nil)
+    @curr_trip = @trips.find_by(end_time: nil)
+    if @curr_trip
+      @curr_address = Station.find(@curr_trip.start_station_is).address
+    end
+  end
+
   def create
     @trip = Trip.new(trip_params)
     if @trip.save
@@ -32,7 +42,7 @@ class TripsController < ApplicationController
     @user = User.find(@trip.user_id)
     @bike = Bike.find(@trip.bike_id)
     @user.update(current_trip_id: nil)
-    @trip.update(end_time: DateTime.now)
+    @trip.update(end_time: DateTime.now, end_station_id: params[:end_station_id])
     @bike.update(is_available: true, current_station_id: params[:end_station_id])
   end
 

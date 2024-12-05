@@ -141,18 +141,6 @@
                         <% end %>
                 <% end %>
             </div>
-          <div class = "section-heading">
-            <br>Past Trips
-              <% if @trips.present? %> </div> <br>
-                <div class="section-body">
-                  <%= @trips.count %> trips found
-                </div>
-                <%= render(partial: "trips/row", collection: @trips, as: :trip) %>
-              <% else %>
-                <div class="empty">
-                  No trips found.
-                </div>
-              <% end %>
         </div>
     <% else %>
       <div class="alert alert-warning">
