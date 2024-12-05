@@ -64,7 +64,7 @@ export default class extends Controller {
   /* adds a marker to the leaflet */
   addMarker(lat, long, name, id, iconPath) {
 
-    let size = id === null ? [40, 40] : [30, 40]; // size of the icon
+    let size = id === null ? [30, 30] : [30, 40]; // size of the icon
 
     let icon = L.icon({
       iconUrl: iconPath,
