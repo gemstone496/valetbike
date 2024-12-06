@@ -48,3 +48,5 @@ Gemfile.lock
 \#*\#
 .idea
 
+config/master.key
+
