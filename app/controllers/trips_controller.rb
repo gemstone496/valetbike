@@ -7,6 +7,12 @@ class TripsController < ApplicationController
   end
 
   def create
+    try_code = gen_code
+      while @trip.select(:code).include?(try_code)
+        try_code = gen_code
+      end
+    if
+    @trip.update(code: try_code)
     @trip = Trip.new(trip_params)
     if @trip.save
       @bike = Bike.find(@trip.bike_id)
@@ -19,6 +25,10 @@ class TripsController < ApplicationController
       render :new
     end
   end
+
+  def try_code {
+    rand(100000...999999)
+  }
   def show
     @trip = Trip.find(params[:trip_id])
   end
