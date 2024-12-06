@@ -18,11 +18,25 @@ class PaymentsController < ApplicationController
           quantity: 1,
         }],
         mode: 'subscription',
-        success_url: root_url,
+        success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}",
         cancel_url: payments_url,
       })
 
       redirect_to @session.url, status: 303, allow_other_host: true
+    end
+  end
+
+  def success 
+    if params[:session_id]
+      # Display message on successfull subscription
+      session_expanded = Stripe::Checkout::Session.retrieve({
+        id: params[:session_id],
+        expand: ["line_items"]}) 
+      session_expanded.line_items.data.each do |item|
+        @product = Product.find_by(stripe_product_id: item.price.product)
+      end
+    else 
+      redirect_to root_url
     end
   end
 
