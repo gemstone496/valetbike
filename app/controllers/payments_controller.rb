@@ -1,6 +1,12 @@
 class PaymentsController < ApplicationController
+  before_action :set_product, only: %i[ create ]
+
+  # GET /products 
+  def index
+    @products = Product.all
+  end
+
   def create 
-    @product = Product.find(params[:id])
     @session = Stripe::Checkout::Session.create({
       line_items: [{
         # name: @product.name,
@@ -12,9 +18,14 @@ class PaymentsController < ApplicationController
       }],
       mode: 'subscription',
       success_url: root_url,
-      cancel_url: products_url,
+      cancel_url: payments_url,
     })
 
     redirect_to @session.url, status: 303, allow_other_host: true
+  end
+
+  private
+  def set_product
+    @product = Product.find(params[:id])
   end
 end
