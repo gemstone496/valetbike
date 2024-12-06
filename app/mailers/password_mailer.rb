@@ -1,5 +1,5 @@
 class PasswordMailer < ApplicationMailer
-
+  default from: "#{Rails.application.credentials.dig(:smtp, :user_name)}@gmail.com"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
