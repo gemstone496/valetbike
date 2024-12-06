@@ -9,7 +9,12 @@ export default class extends Controller {
     name: Array,
     id: Array,
     address: Array,
-    bike: Array
+    bike: Array,
+    userid: Boolean,
+    tripid: Boolean,
+    iduser: String,
+    idtrip: String,
+    bikeid: String
   };
 
   connect(){
@@ -76,7 +81,7 @@ export default class extends Controller {
   }*/
 
   /* helper method to get the button_to link to place in the popup */
-  popupContent(name, id, address, bike) {
+/*  popupContent(name, id, address, bike) {
     return `
     <div>
      <div class="title">  Station ${id}: ${name} </div> <br>
@@ -87,5 +92,53 @@ export default class extends Controller {
       </form>
       </div>
   `;
+  }*/
+  popupContent(name, id, address, bike) {
+    const availableBikes = bike;
+    const user = this.useridValue;
+    const trip = this.tripidValue;
+    const user_id = this.iduserValue;
+    const trip_id = this.idtripValue;
+    const bike_id = this.bikeidValue;
+    let buttonContent = '';
+    if (user && !trip) {
+      buttonContent = `
+        <form method="get" 
+        action="/trips/new?bike_id=${bike_id}&station_id=${id}&user_id=${user_id}">
+          <button class="mt-3 custom-btn btn-fill" type="submit">Reserve Bike</button>
+        </form>
+      `;
+
+    } else if (trip) {
+      buttonContent = `
+        <form method="get" 
+        action="/end_confirm?trip_id=${trip_id}&end_station_id=${id}">
+          <button class="mt-3 custom-btn btn-fill" 
+          type="submit">Return Bike Here</button>
+        </form>
+
+      `;
+    } else if (!user) {
+      buttonContent = `
+        <button onclick="reserve_alert('Please log in to reserve a bike!')" class="mt-3 custom-btn btn-invalid">Reserve Bike</button>
+      `;
+    } else if (availableBikes == 0 && !trip) {
+      buttonContent = `
+        <button onclick="reserve_alert('No bikes at this station!')" class="mt-3 custom-btn btn-invalid">Reserve Bike</button>
+      `;
+    }
+    return `
+      <div>
+        <div class="title">Station ${id}: ${name}</div><br/>
+        <div class="body">${address}</div>
+        <div class="body">${availableBikes} available bikes</div>
+        ${buttonContent}
+      </div>
+      <script>
+        function reserve_alert(message) {
+          alert(message);
+        }
+      </script>
+    `;
   }
 }

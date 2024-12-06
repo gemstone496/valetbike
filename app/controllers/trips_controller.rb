@@ -8,7 +8,8 @@ class TripsController < ApplicationController
 
 
   def index
-    @trips = Trip.all
+    @user = get_user_info_from_session
+    @trips = Trip.all.order(:end_time)
     @past_trips = @trips.where.not(end_time: nil)
     @curr_trip = @trips.find_by(end_time: nil)
     if @curr_trip

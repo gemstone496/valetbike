@@ -3,7 +3,7 @@
     <div class="section-title text-center">
        View and Manage Trips
     </div>
-<% if @trips.present? %> </div> <br>
+<% if @trips.present? && @user %> </div> <br>
    <% if @curr_trip.present?%>
         <div class="record-row flexbox vertical stretch">
           <div class="record-name">
@@ -18,10 +18,6 @@
                                    start_time.in_time_zone('America/New_York').
                                    strftime("%m/%d/%Y %I:%M %p")   %>
             </div>
-          <div class="mt-3 custom-btn btn-outline">
-            <%= link_to 'End Trip', stations_index_path,
-                        :style=>' color: unset; text-decoration: unset;'%>
-          </div>
             </div>
     <%end%>
       <%if @past_trips.count > 0%>
@@ -29,7 +25,11 @@
       <%end%>
 <% else %>
   <div class="section-heading">
+    <% if !@user%>
+    Please log in to see trips!
+    <% else %>
     No trips found
+      <% end %>
       </div>
       </div>
 <% end %>

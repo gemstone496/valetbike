@@ -85,25 +85,25 @@ input[type=submit]:disabled {
 }
 
 .btn-fill {
-    background: var(--theme-color);
-    color: var(--white-color);
-    border: var(--btn-thickness) solid var(--theme-color);
+    background: var(--theme-color) !important;
+    color: var(--white-color) !important;
+    border: var(--btn-thickness) solid var(--theme-color) !important;
 }
 
 .btn-fill:hover {
-    background: var(--white-color);
-    color: var(--black-color);
+    background: var(--white-color) !important;
+    color: var(--black-color) !important;
 }
 
 .btn-outline {
-    background: var(--white-color);
-    border: var(--btn-thickness) solid var(--theme-color);
+    background: var(--white-color) !important;
+    border: var(--btn-thickness) solid var(--theme-color) !important;
 }
 
 
 .btn-outline:hover {
-    background: var(--theme-color);
-    color: var(--white-color);
+    background: var(--theme-color) !important;
+    color: var(--white-color) !important;
 }
 
 .btn-fill-danger {
@@ -118,8 +118,9 @@ input[type=submit]:disabled {
 }
 
 .btn-invalid {
-    background: var(--invalid-color);
-    color: var(--white-color);
+    background: var(--invalid_fill-color);
+    color: var(--invalid_text-color);
+    border: var(--btn-thickness) solid var(--invalid_fill-color);
 }
 
 .btn-underline {

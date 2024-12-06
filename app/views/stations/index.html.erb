@@ -11,7 +11,11 @@
         names: @names, 
         ids: @ids,
         addresses: @addresses, #REYFUCKS UP
-         bikes: @bikes # REYFUCKS UP}
+         bikes: @bikes, # REYFUCKS UP}
+          userid: @userid, #does the id exist?
+          tripid: @tripid, #does the trip id exist?
+          iduser: @iduser, #user id
+          idtrip: @idtrip  #trip id
         }
       %>
 
@@ -21,7 +25,8 @@
             <%= @stations.count %> stations found
           </div>
           <%= render(partial: "stations/row", collection: @stations, as: :station) %>
-        <% else %>
+
+      <% else %>
         <div class="empty">
           No stations found.
         </div>

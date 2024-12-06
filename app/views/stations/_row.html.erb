@@ -1,35 +1,51 @@
-<div class="record-row flexbox vertical stretch">
+<div class="record-row ">
   <div class="record-name">
-    Station <%= station.identifier %>: <%= station.name %>
-    </div>
-    <div class="record-details">
-        <%= station.address %>
-    </div>
-    <div class="record-details">
-        <%= Bike.where(current_station_id: station.id).length %> available bikes <br>
-
-  <button type="button" data-bs-toggle="modal" data-bs-target="#reserveModal" class="mt-3 custom-btn btn-outline">
-    Reserve a Bike
-  </button>
-    </div>
-  <div   class = "modal" id = "reserveModal"
-         aria-labelledby="reserveModal"
-         aria-hidden="true"
-         tabindex="-1">
-    <div class = "modal-dialog modal-lg modal-dialog-centered">
-      <div class = "modal-content">
-        <div class = "modal-header">
-          <h5 class="modal-title">Reserve a Bike</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class = "modal-body">
-          Reserve a bike from station <%= station.identifier %>?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="custom-btn btn-outline" data-bs-dismiss="modal">Close</button>
-          <%= button_to('Reserve Bike', station_path(station), class: "custom-btn btn-fill", method: :get) %>
-        </div>
-      </div>
-    </div>
+    Station <%= station.identifier %>: <%= station.name %> <br>
   </div>
+  <div class="record-details">
+    <%= station.address %>   <br>
+      <%= Bike.where(current_station_id: station.id).length %> available bikes
+      <br><br>
+  </div>
+
+  <% available_bikes = Bike.where(current_station_id: station.id) %>
+  <% if available_bikes.present? %>
+    <% bike = available_bikes.first %>
+  <% end %>
+  <%  user = get_user_info_from_session %>
+  <%  if user %>
+    <%  unless user.current_trip_id.nil? %>
+      <%  trip = Trip.find(user.current_trip_id) %>
+    <% end%>
+  <% end%>
+
+  <% if available_bikes.count == 0 && station&.id &&
+    trip&.id && !user.current_trip_id%>
+    <link_to onclick="reserve_alert('No bikes at this station!')"
+             class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
+
+  <% end %>
+  <!-- Everything good! Reserve bike! -->
+  <% if !user&.id.nil? && !bike&.id.nil? && !station&.id.nil? && !user.current_trip_id.present?%>
+    <%= link_to 'Reserve Bike',new_trip_path(bike_id: bike.id, station_id: station.id, user_id: user.id),
+                class: "mt-3 custom-btn btn-fill", method: :get,  :style=>' color: unset; text-decoration: unset;'%>
+    <!-- Already Have Bike! -->
+  <% elsif user && station&.id &&
+    trip&.id && user.current_trip_id%>
+    <%= link_to 'Return Bike Here', end_confirm_path(trip_id: trip.id, end_station_id: station.id), class: "mt-3 custom-btn btn-fill",
+                :style=>' color: unset; text-decoration: unset;'%>
+
+    <!-- Not Logged in!! -->
+  <% elsif user.nil?%>
+    <link_to onclick="reserve_alert('Please log in to reserve a bike!')"
+            class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
+  <% end %>
+
+  <script>
+      function reserve_alert(string) {
+          alert(string);
+      }
+  </script>
 </div>
+
+
