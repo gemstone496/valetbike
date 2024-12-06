@@ -33,3 +33,31 @@ ul.header li {
 .navbar li a:hover {
     color: var(--theme-color);
 }
+
+.navbar.navbar-mobile {
+    display: none;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    margin: 0;
+    padding: 1em;
+}
+
+/***********************************/
+/*         Responsiveness          */
+/***********************************/
+
+@media (max-width:48em) {
+    .navbar.navbar-desktop {
+      display: none;
+    }
+
+    .navbar.navbar-mobile {
+      display: block;
+    }  
+
+    .navbar.navbar-mobile .show.collapse {
+        visibility: visible;
+    }
+}

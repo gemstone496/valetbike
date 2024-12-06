@@ -11,7 +11,6 @@ class TripsController < ApplicationController
       while @trip.select(:code).include?(try_code)
         try_code = gen_code
       end
-    if
     @trip.update(code: try_code)
     @trip = Trip.new(trip_params)
     if @trip.save
@@ -26,9 +25,10 @@ class TripsController < ApplicationController
     end
   end
 
-  def try_code {
+  def try_code
     rand(100000...999999)
-  }
+  end
+
   def show
     @trip = Trip.find(params[:trip_id])
   end
@@ -54,6 +54,5 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:bike_id, :user_id, :start_station_is, :start_time)
   end
-
 
 end

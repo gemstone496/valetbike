@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_03_205757) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_06_164420) do
   create_table "bikes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "identifier"
     t.integer "current_station_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_available", default: true
+  end
+
+  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.string "desc"
+    t.string "stripe_price_id"
+    t.string "stripe_product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_subscription"
   end
 
   create_table "stations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -51,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_03_205757) do
     t.string "phone_number"
     t.integer "current_trip_id"
     t.string "avatar"
+    t.string "stripe_customer_id"
   end
 
 end

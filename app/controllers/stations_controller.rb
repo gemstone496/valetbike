@@ -2,6 +2,9 @@ class StationsController < ApplicationController
   
   def index
     @stations = Station.all.order(identifier: :asc)
+    @user = get_user_info_from_session
+    @uCoords = Geocoder.search(request.ip).first.coordinates
+
     @lats = Array.new # array of latitudes
     @longs = Array.new # array of longitudes
     @names = Array.new # station names

@@ -5,12 +5,21 @@
         Find a Station
       </div>
 
-      <%= render partial: "stations/leaflet", locals: 
-        {lats: @lats, 
-        longs: @longs,
-        names: @names, 
-        ids: @ids} 
-      %>
+      <div id="map-controller" 
+        data-controller="map"
+        data-map-lat-value="<%= @lats %>"
+        data-map-long-value="<%= @longs %>"
+        data-map-name-value="<%= @names %>"
+        data-map-id-value="<%= @ids %>"
+       <% if @user&.avatar? then %>
+        data-map-pfp-value="<%= @user.avatar_url %>"
+       <% end %>
+       <% if @uCoords.length == 2 then %>
+        data-map-userCoords-value="<%= @uCoords %>"
+       <% end %>
+      >
+        <div id="map-interactive" data-map-target="container"></div>
+      </div>
 
       <div class="flexbox vertical stretch mt-5" id="stations">
         <% if @stations.present? %> </div> <br>
