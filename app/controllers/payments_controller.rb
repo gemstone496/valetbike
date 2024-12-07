@@ -10,20 +10,20 @@ class PaymentsController < ApplicationController
   def create 
     if !logged_in? || !@user
       redirect_to log_in_path
-    else 
-      @session = Stripe::Checkout::Session.create({
-        customer: @user.stripe_customer_id,
-        line_items: [{
-          # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-          price: @product.stripe_price_id
-        }],
-        mode: 'subscription',
-        success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}",
-        cancel_url: payments_url,
-      })
-      
-      redirect_to @session.url, status: 303, allow_other_host: true
-    end
+    else
+        @session = Stripe::Checkout::Session.create({
+          customer: @user.stripe_customer_id,
+          line_items: [{
+            # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+            price: @product.stripe_price_id
+          }],
+          mode: 'subscription',
+          success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}&customer_email={CUSTOMER_EMAIL}",
+          cancel_url: payments_url,
+        })
+        
+        redirect_to @session.url, status: 303, allow_other_host: true
+    end 
   end
 
   def success 
