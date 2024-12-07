@@ -1,5 +1,5 @@
 Hi <%= @user.email %>,
 
-If it was you who requested a password reset, please click on the link below to reset your password. The link will expire in 15 minutes.
+If you requested a password reset, please click on the link below to reset your password. The link will expire in 15 minutes.
 
 <%= password_reset_edit_url(token: @token) %>
