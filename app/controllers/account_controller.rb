@@ -1,3 +1,5 @@
+require 'date'
+
 class AccountController < ApplicationController
   before_action :get_user_info_from_session
   before_action :redirect_edit, only: [:edit, :update]
@@ -6,8 +8,33 @@ class AccountController < ApplicationController
   def index
     if !logged_in? || !@user
       redirect_to log_in_path
+    else 
+      set_up_edit_mode()
+
+      if !!@user.subscription_id
+        # Search for the user's available subscription
+        @subscription = Stripe::Subscription.retrieve(@user.subscription_id)
+        
+        @subscription.items.data.each do |item|
+          @meter_id = item.plan.meter 
+          @start_date = Time.at(item.created).to_datetime.strftime('%F %H:%M')
+          @status = item.plan.active ? "Active" : "Inactive"
+        end
+
+        # Get the product by meter_id
+        @product = Product.find_by(meter_id: @meter_id)
+      end
     end
-    set_up_edit_mode()
+  end
+
+  def cancel_subscription
+    if !!@user && !!@user.subscription_id
+      # Search for the user's available subscription
+      subscription_id = @user.subscription_id
+      Stripe::Subscription.cancel(subscription_id)
+      @user.update(subscription_id: nil)
+      redirect_to account_index_path 
+    end
   end
 
   def destroy 

@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
         id: params[:session_id],
         expand: ["line_items", "subscription"]}) 
       
-      @user.subscription_id = session_expanded.subscription.id
+      @user.update(subscription_id: session_expanded.subscription.id)
 
       session_expanded.line_items.data.each do |item|
         @product = Product.find_by(stripe_product_id: item.price.product)

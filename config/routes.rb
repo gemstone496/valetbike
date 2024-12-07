@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :account, only: [:index, :destroy, :edit, :update]
   get "profile-picture/edit", to: "account#edit_profile_img"
   post "profile-picture/upload", to: "account#upload_profile_img"
+  post "subscription/cancel", to: "account#cancel_subscription"
 
   root to: "main#index"
 end
