@@ -100,6 +100,30 @@ input[type=submit]:disabled {
     border: var(--btn-thickness) solid var(--theme-color) !important;
 }
 
+.btn-toggle {
+    font-family: var(--title-font) !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--btn-radius);
+    transition: 0.1s ease;
+}
+
+.btn-toggle-outline {
+    background: var(--white-color) !important;
+    color: var(--theme-color);
+    border: var(--btn-thickness) solid var(--theme-color) !important;
+}
+
+.btn-toggle-outline:hover {
+    background: var(--theme-color) !important;
+    color: var(--white-color) !important;
+    border: var(--btn-thickness) solid var(--theme-color) !important;
+}
+
+input[type="radio"]:checked + label {
+    background: var(--theme-color) !important;
+    color: var(--white-color) !important;
+    border: var(--btn-thickness) solid var(--theme-color) !important;
+}
 
 .btn-outline:hover {
     background: var(--theme-color) !important;
