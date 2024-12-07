@@ -8,7 +8,7 @@ export default class extends Controller {
     long: Array,
     name: Array,
     id: Array,
-    userCoords: {type: Array, default: ['42.3255', '-72.646'] },
+    userCoords: {type: Array, default: ['42.3172951', '-72.6386734'] },
     pfp: {type: String, default: 'assets/fallback/default.png'}
   };
 
