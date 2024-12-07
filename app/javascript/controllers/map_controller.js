@@ -7,14 +7,14 @@ export default class extends Controller {
     lat: Array,
     long: Array,
     name: Array,
+    identifier: Array,
     id: Array,
     address: Array,
     bike: Array,
     userid: Boolean,
     tripid: Boolean,
     iduser: String,
-    idtrip: String,
-    bikeid: String
+    idtrip: String
   };
 
   connect(){
@@ -31,12 +31,13 @@ export default class extends Controller {
         let lat = this.latValue[i];
         let long = this.longValue[i];
         let name = this.nameValue[i];
+        let identifier = this.identifierValue[i];
         let id = this.idValue[i];
         let address = this.addressValue[i];
         let bike = this.bikeValue[i];
         if (lat !== null && long !== null && name !== null)
         {
-            this.addMarker(lat, long, name, id, address, bike);
+            this.addMarker(lat, long, name, identifier, id, address, bike);
         }
       }
   }
@@ -61,7 +62,7 @@ export default class extends Controller {
   /* adds a marker to the leaflet
   TODO
     - link popup to the station page */
-  addMarker(lat, long, name, id, address, bike) {
+  addMarker(lat, long, name, identifier, id, address, bike) {
 
     var purpleIcon = L.icon({
       iconUrl: '/images/map-marker.png',
@@ -71,7 +72,7 @@ export default class extends Controller {
         // Place a marker on the location with custom icon
     L.marker([lat, long], {icon: purpleIcon})
         .addTo(this.map)
-        .bindPopup(this.popupContent(name, id, address, bike));
+        .bindPopup(this.popupContent(name, identifier, id, address, bike));
   }
 /*  addMarker(lat, long, name, id) {
     // Place a marker on the location.
@@ -93,45 +94,44 @@ export default class extends Controller {
       </div>
   `;
   }*/
-  popupContent(name, id, address, bike) {
+  popupContent(name, identifier, id, address, bike) {
     const availableBikes = bike;
     const user = this.useridValue;
     const trip = this.tripidValue;
     const user_id = this.iduserValue;
-    const trip_id = this.idtripValue;
-    const bike_id = this.bikeidValue;
     let buttonContent = '';
-    if (user && !trip) {
-      buttonContent = `
-        <form method="get" 
-        action="/trips/new?bike_id=${bike_id}&station_id=${id}&user_id=${user_id}">
-          <button class="mt-3 custom-btn btn-fill" type="submit">Reserve Bike</button>
-        </form>
+
+      if (!user) {
+        buttonContent = `
+        <button onclick="reserve_alert('Please log in to reserve a bike!')" 
+        class="mt-3 custom-btn btn-invalid">Reserve Bike</button>
       `;
 
+      } else if (availableBikes == 0 && !trip) {
+        buttonContent = `
+        <button onclick="reserve_alert('No bikes at this station!')" 
+        class="mt-3 custom-btn btn-invalid">Reserve Bike</button>
+      `;
+      } else if (!trip) {
+      buttonContent = `
+        <a href="/trips/new?station_id=${id}&user_id=${user_id}" class="mt-3 custom-btn btn-fill" 
+        style="color: unset; text-decoration: unset;">
+      Reserve Bike
+    </a>
+      `;
     } else if (trip) {
       buttonContent = `
-        <form method="get" 
-        action="/end_confirm?trip_id=${trip_id}&end_station_id=${id}">
-          <button class="mt-3 custom-btn btn-fill" 
-          type="submit">Return Bike Here</button>
-        </form>
-
-      `;
-    } else if (!user) {
-      buttonContent = `
-        <button onclick="reserve_alert('Please log in to reserve a bike!')" class="mt-3 custom-btn btn-invalid">Reserve Bike</button>
-      `;
-    } else if (availableBikes == 0 && !trip) {
-      buttonContent = `
-        <button onclick="reserve_alert('No bikes at this station!')" class="mt-3 custom-btn btn-invalid">Reserve Bike</button>
+       <a href="/end_confirm?end_station_id=${id}&user_id=${user_id}" class="mt-3 custom-btn btn-fill" 
+       style="color: unset; text-decoration: unset;">
+      Return Bike Here
+    </a>
       `;
     }
     return `
       <div>
-        <div class="title">Station ${id}: ${name}</div><br/>
+        <div class="title">Station ${identifier}: ${name}</div><br/>
         <div class="body">${address}</div>
-        <div class="body">${availableBikes} available bikes</div>
+        <div class="body">${availableBikes} available bikes</div><br>
         ${buttonContent}
       </div>
       <script>

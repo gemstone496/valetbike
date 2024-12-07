@@ -1,5 +1,5 @@
 <div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
-  <%= button_to("Back to Bikes", station_path(@station), class: "mt-3 custom-btn btn-outline", method: :get) %>
+  <%= button_to("Back to Bikes", stations_index_path, class: "mt-3 custom-btn btn-outline", method: :get) %>
 
   <%= form_for(@trip) do |f| %>
   <table summary="Trip form fields">

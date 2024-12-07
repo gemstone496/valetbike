@@ -6,13 +6,17 @@ class StationsController < ApplicationController
       @trip = Trip.find(@user.current_trip_id)
     end
     Station.find_by(name: "State St/Mass Central Rail Trail").update(address: "298 State St Northampton MA")
+
     @stations = Station.all.order(identifier: :asc)
+
     @lats = Array.new # array of latitudes
     @longs = Array.new # array of longitudes
     @names = Array.new # station names
+    @identifiers = Array.new # station identifierss
     @ids = Array.new # station ids
     @addresses = Array.new # REYFUCKS UP
     @bikes = Array.new # REYFUCKS UP
+
     @userid = @user&.id.present? || false #does the user id exist?
     @tripid = @user&.current_trip_id.present? || false #does trip id exist?
     @iduser = @user&.id #user id
@@ -24,7 +28,8 @@ class StationsController < ApplicationController
         @lats.append(s.latitude)
         @longs.append(s.longitude)
         @names.append(s.name)
-        @ids.append(s.identifier)
+        @identifiers.append(s.identifier)
+        @ids.append(s.id)
         @addresses.append(s.address) #REYFUCKS UP
         @bikes.append(Bike.where(current_station_id: s.id).length) #REYFUCKS UP
       end
@@ -38,6 +43,15 @@ class StationsController < ApplicationController
     unless @user.current_trip_id.nil?
       @trip = Trip.find(@user.current_trip_id)
     end
+    end
+  end
+
+  def _row
+    @user = get_user_info_from_session
+    if @user
+      unless @user.current_trip_id.nil?
+        @trip = Trip.find(@user.current_trip_id)
+      end
     end
   end
   end

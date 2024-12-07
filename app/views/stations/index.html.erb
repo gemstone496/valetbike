@@ -5,32 +5,86 @@
         Find a Station
       </div>
 
-      <%= render partial: "stations/leaflet", locals: 
-        {lats: @lats, 
-        longs: @longs,
-        names: @names, 
-        ids: @ids,
-        addresses: @addresses, #REYFUCKS UP
-         bikes: @bikes, # REYFUCKS UP}
-          userid: @userid, #does the id exist?
-          tripid: @tripid, #does the trip id exist?
-          iduser: @iduser, #user id
-          idtrip: @idtrip  #trip id
-        }
-      %>
+      <div class="btn-group" role="group" aria-label="toggle button group for station view">
+        <!-- Map View-->
+        <input type="radio" class="btn-check" name="btnradio" id="map_view" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="map_view">
+            Map View
+        </label>
 
-      <div class="flexbox vertical stretch mt-5" id="stations">
-        <% if @stations.present? %> </div> <br>
-          <div class="section-body">
-            <%= @stations.count %> stations found
-          </div>
-          <%= render(partial: "stations/row", collection: @stations, as: :station) %>
+        <!-- List View-->
+        <input type="radio" class="btn-check" name="btnradio" id="list_view" autocomplete="off">
+        <label class="btn btn-outline-primary" for="list_view">
+           List View
+        </label>
+      </div>
 
-      <% else %>
-        <div class="empty">
-          No stations found.
+<br>
+
+
+      <!-- Map stuffff :) -->
+      <div id="map-view" class="station-view">
+        <div class="section-body">
+          <%= @stations.count %> stations found
         </div>
-        <% end %>
+        <br>
+        <%= render partial: "stations/leaflet", locals: {
+          lats: @lats,
+          longs: @longs,
+          names: @names,
+          identifiers: @identifiers,
+          ids: @ids,
+          addresses: @addresses,
+          bikes: @bikes,
+          userid: @userid,
+          tripid: @tripid,
+          iduser: @iduser,
+          idtrip: @idtrip
+        } %>
+      </div>
+
+      <!-- List stuffff-->
+      <div id="list-view" class="station-view" style="display: none;">
+        <div class="section-body">
+          <%= @stations.count %> stations found
+        </div>
+        <%= render partial: "stations/list", locals: { stations: @stations } %>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Event listener -->
+  <script>
+      document.addEventListener('DOMContentLoaded',
+
+          function pageLoad() {
+
+          const mapViewRadio = document.getElementById('map_view');
+          const listViewRadio = document.getElementById('list_view');
+
+          const mapView = document.getElementById('map-view');
+          const listView = document.getElementById('list-view');
+
+          function toggleViews() {
+              if (mapViewRadio.checked) {
+                  mapView.style.display = 'block'; // show map stuff
+                  listView.style.display = 'none'; // hide list stuff
+              } else if (listViewRadio.checked) {
+                  mapView.style.display = 'none'; // show list stuff
+                  listView.style.display = 'block'; // hide map stuff
+              }
+          }
+
+          //as I understand it the change event is 'fired' when an element is changed by a
+              // user, so I have added an event listener s.t. when the 'mapViewRadio' is changed
+              // it will call the function toggleViews
+          mapViewRadio.addEventListener('change', toggleViews);
+          listViewRadio.addEventListener('change', toggleViews);
+      });
+  </script>
+
+
       </div>
     </div>
 <% end %>

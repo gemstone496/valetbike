@@ -8,38 +8,26 @@
       <br><br>
   </div>
 
-  <% available_bikes = Bike.where(current_station_id: station.id) %>
-  <% if available_bikes.present? %>
-    <% bike = available_bikes.first %>
-  <% end %>
-  <%  user = get_user_info_from_session %>
-  <%  if user %>
-    <%  unless user.current_trip_id.nil? %>
-      <%  trip = Trip.find(user.current_trip_id) %>
-    <% end%>
-  <% end%>
-
-  <% if available_bikes.count == 0 && station&.id &&
-    trip&.id && !user.current_trip_id%>
+  <% bikes = Bike.where(current_station_id: station.id) %>
+  <!-- Not Logged in!! -->
+  <% if @user&.id.nil?%>
+  <link_to onclick="reserve_alert('Please log in to reserve a bike!')"
+           class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
+  <% elsif bikes.count == 0 && station&.id && !@user.current_trip_id%>
     <link_to onclick="reserve_alert('No bikes at this station!')"
              class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
 
-  <% end %>
   <!-- Everything good! Reserve bike! -->
-  <% if !user&.id.nil? && !bike&.id.nil? && !station&.id.nil? && !user.current_trip_id.present?%>
-    <%= link_to 'Reserve Bike',new_trip_path(bike_id: bike.id, station_id: station.id, user_id: user.id),
+  <% elsif !@user&.id.nil? && !station&.id.nil? && !@user.current_trip_id.present? && bikes%>
+    <%= link_to 'Reserve Bike',new_trip_path(station_id: station.id, user_id: @user.id),
                 class: "mt-3 custom-btn btn-fill", method: :get,  :style=>' color: unset; text-decoration: unset;'%>
     <!-- Already Have Bike! -->
-  <% elsif user && station&.id &&
-    trip&.id && user.current_trip_id%>
-    <%= link_to 'Return Bike Here', end_confirm_path(trip_id: trip.id, end_station_id: station.id), class: "mt-3 custom-btn btn-fill",
+  <% elsif station&.id &&
+    @trip&.id && @user.current_trip_id%>
+    <%= link_to 'Return Bike Here', end_confirm_path(end_station_id: station.id, user_id: @user.id), class: "mt-3 custom-btn btn-fill",
                 :style=>' color: unset; text-decoration: unset;'%>
-
-    <!-- Not Logged in!! -->
-  <% elsif user.nil?%>
-    <link_to onclick="reserve_alert('Please log in to reserve a bike!')"
-            class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
   <% end %>
+
 
   <script>
       function reserve_alert(string) {

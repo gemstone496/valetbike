@@ -1,15 +1,14 @@
 class TripsController < ApplicationController
   def new
     @trip = Trip.new
-    @bike = Bike.find(params[:bike_id])
     @station = Station.find(params[:station_id])
     @user = User.find(params[:user_id])
+    @bike = Bike.where(current_station_id: params[:station_id]).first
   end
-
 
   def index
     @user = get_user_info_from_session
-    @trips = Trip.all.order(:end_time)
+    @trips = Trip.all.order(end_time: :desc)
     @past_trips = @trips.where.not(end_time: nil)
     @curr_trip = @trips.find_by(end_time: nil)
     if @curr_trip
@@ -39,8 +38,8 @@ class TripsController < ApplicationController
   end
 
   def end_confirmation
-    @trip = Trip.find(params[:trip_id])
-    @user = User.find(@trip.user_id)
+    @user = User.find(params[:user_id])
+    @trip = Trip.find(@user.current_trip_id)
     @bike = Bike.find(@trip.bike_id)
     @user.update(current_trip_id: nil)
     @trip.update(end_time: DateTime.now, end_station_id: params[:end_station_id])
