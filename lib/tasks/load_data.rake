@@ -27,7 +27,9 @@ namespace :load_data do
     CSV.foreach('notes/plan-data.csv', :headers => true) do |row| #product
       product = Product.create(name: row[0], price: row[1], desc: row[2], 
                                 stripe_price_id: row[3], 
-                                stripe_product_id: row[4])
+                                stripe_product_id: row[4],
+                                meter_event: row[5],
+                                meter_id: row[6])
     end
 
   end
