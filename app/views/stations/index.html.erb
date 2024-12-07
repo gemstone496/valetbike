@@ -1,10 +1,10 @@
 <% content_for :content do %>
-  <div class="page-section flexbox vertical stretch">
+  <div class="page-section flexbox vertical stretch" >
     <div class="section-inner flexbox vertical stretch">
       <div class="section-title text-center">
         Find a Station
       </div>
-      <div class="btn-group" role="group" aria-label="toggle button group for station view">
+      <div class="btn-group togglestuff" role="group" aria-label="toggle button group for station view">
         <!-- Map View-->
         <input type="radio" class="btn-check" name="btnradio" id="map_view" autocomplete="off" checked>
         <label class="btn btn-toggle btn-toggle-outline" for="map_view" >
@@ -22,7 +22,7 @@
 
 
       <!-- Map stuffff :) -->
-      <div id="map-view" class="station-view">
+      <div id="map_view_content" class="station-view">
         <div class="section-body">
           <%= @stations.count %> stations found
         </div>
@@ -43,7 +43,7 @@
       </div>
 
       <!-- List stuffff-->
-      <div id="list-view" class="station-view" style="display: none;">
+      <div id="list_view_content" class="station-view" style="display: none;">
         <div class="section-body">
           <%= @stations.count %> stations found
         </div>
@@ -55,15 +55,13 @@
 
   <!-- Event listener -->
   <script>
-      document.addEventListener('DOMContentLoaded',
-
-          function pageLoad() {
+       document.addEventListener('turbo:load', function pageLoad() {
 
           const mapViewRadio = document.getElementById('map_view');
           const listViewRadio = document.getElementById('list_view');
 
-          const mapView = document.getElementById('map-view');
-          const listView = document.getElementById('list-view');
+          const mapView = document.getElementById('map_view_content');
+          const listView = document.getElementById('list_view_content');
 
           function toggleViews() {
               if (mapViewRadio.checked) {
@@ -74,13 +72,12 @@
                   listView.style.display = 'block'; // hide map stuff
               }
           }
-
           //as I understand it the change event is 'fired' when an element is changed by a
               // user, so I have added an event listener s.t. when the 'mapViewRadio' is changed
               // it will call the function toggleViews
           mapViewRadio.addEventListener('change', toggleViews);
           listViewRadio.addEventListener('change', toggleViews);
-      });
+       });
   </script>
 
 

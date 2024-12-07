@@ -100,20 +100,20 @@ input[type=submit]:disabled {
     border: var(--btn-thickness) solid var(--theme-color) !important;
 }
 
-.btn-toggle {
-    font-family: var(--title-font) !important;
+.togglestuff .btn-toggle {
+    font-family: var(--body-font) !important;
+    font-weight: 200;
     padding: 0.5rem 1.5rem;
     border-radius: var(--btn-radius);
     transition: 0.1s ease;
 }
 
-.btn-toggle-outline {
+.togglestuff .btn-toggle-outline {
     background: var(--white-color) !important;
-    color: var(--theme-color);
     border: var(--btn-thickness) solid var(--theme-color) !important;
 }
 
-.btn-toggle-outline:hover {
+.togglestuff .btn-toggle-outline:hover {
     background: var(--theme-color) !important;
     color: var(--white-color) !important;
     border: var(--btn-thickness) solid var(--theme-color) !important;
