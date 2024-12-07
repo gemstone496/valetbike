@@ -14,8 +14,7 @@ class PaymentsController < ApplicationController
         customer: @user.stripe_customer_id,
         line_items: [{
           # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-          price: @product.stripe_price_id,
-          quantity: 1,
+          price: @product.stripe_price_id
         }],
         mode: 'subscription',
         success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}",
