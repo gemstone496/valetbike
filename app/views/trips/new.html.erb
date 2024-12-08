@@ -3,7 +3,7 @@
     <div class = "row">
         <nav aria-label="breadcrumb" class="breadcrumb-container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><%= link_to 'All bikes', station_path(@station.id) %></li>
+                <li class="breadcrumb-item"><%= link_to 'All bikes', station_path(@station.id), class: "link-regular" %></li>
                 <li class="breadcrumb-item active" aria-current="page">Bike <%= @bike.identifier %></li>
             </ol>
         </nav>
