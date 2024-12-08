@@ -16,7 +16,7 @@ export default class extends Controller {
     iduser: String,
     idtrip: String,
     userCoords: {type: Array, default: ['42.3172951', '-72.6386734'] },
-    pfp: {type: String, default: 'assets/fallback/default.png'}
+    pfp: {type: String, default: '/images/fallback/default.png'}
   };
 
 
