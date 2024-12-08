@@ -90,6 +90,12 @@ input[type=submit]:disabled {
     transition: 0.1s ease;
 }
 
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Optional: adds some space between the button and the link */
+}
+
 .btn-fill {
     background: var(--theme-color) !important;
     color: var(--white-color) !important;
