@@ -121,7 +121,7 @@
 /*         Responsiveness          */
 /***********************************/
 
-@media (max-width:48em) {
+@media (max-width:868px) {
   .page-section {
     margin-top: 3em; 
   }
