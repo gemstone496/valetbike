@@ -16,7 +16,10 @@
       </div>
       <div class="row">
         <% unless @user&.current_trip_id.nil? && @trip&.id.nil? %>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#returnModal" class="mt-3 custom-btn btn-outline">
+            <button type="button" data-bs-toggle="modal" 
+            data-bs-target="#returnModal" 
+            class="custom-btn btn-fill"
+            style="width: auto; margin: 1rem auto">
                 Return bike to this station
             </button>
                 <div   class = "modal" id = "returnModal" 
@@ -36,7 +39,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="custom-btn btn-outline" data-bs-dismiss="modal">Close</button>
                                 <%= link_to 'Return Bike to This Station', end_confirm_path(id:@trip&.id, user_id: @user.id, end_station_id: @station.id),
-                        class: "custom-btn btn-outline" %>
+                        class: "custom-btn btn-outline", style: 'color: unset; text-decoration: unset;'%>
                             </div>
                         </div>
                     </div>
