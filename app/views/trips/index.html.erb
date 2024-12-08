@@ -1,36 +1,46 @@
 <div class="page-section flexbox vertical stretch">
   <div class="section-inner flexbox vertical stretch">
     <div class="section-title text-center">
-       View and Manage Trips
+       Manage your trips
     </div>
-<% if @trips.present? && @user %> </div> <br>
-   <% if @curr_trip.present?%>
-        <div class="record-row flexbox vertical stretch">
-          <div class="record-name">
-            Trip <%= @curr_trip.id %>
-          </div>
-            <div class="section-body">
-              Status: <b>Ongoing</b>
+    <div class = "row">
+        <% if @trips.present? && @user %> 
+            <% if @curr_trip.present?%>
+                <div class="record-row flexbox vertical stretch">
+                <div class="record-name">
+                    Trip <%= @curr_trip.id %>
+                </div>
+                    <div class="section-body">
+                    Status: <b>Ongoing</b>
+                    </div>
+                <div class="section-body">
+                    <b>Start Location:</b> <%= @curr_address%> <br>
+                    <b>Start Time:</b> <%=@curr_trip.
+                                        start_time.in_time_zone('America/New_York').
+                                        strftime("%m/%d/%Y %I:%M %p")   %>
+                    </div>
+                    </div>
+            <% end %>
+            <%if @past_trips.count > 0 %>
+                <%= render(partial: "trips/row", collection: @past_trips, as: :trip) %>
+            <%end%>
+        <% else %>
+            <div class="section-caption text-center">
+                <% if !@user %>
+                Please log in to see trips!
+                <% else %>
+                No trips found. Start your journey with us so you can be like her. 
+                <% end %>
             </div>
-           <div class="section-body">
-             <b>Start Location:</b> <%= @curr_address%> <br>
-             <b>Start Time:</b> <%=@curr_trip.
-                                   start_time.in_time_zone('America/New_York').
-                                   strftime("%m/%d/%Y %I:%M %p")   %>
+            <div class = "row mt-5">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-6">
+                    <%= image_tag('MHBike.png', class: "section-banner") %>
+                </div>
+                <div class = "col-lg-3"></div>
             </div>
-            </div>
-    <%end%>
-      <%if @past_trips.count > 0%>
-        <%= render(partial: "trips/row", collection: @past_trips, as: :trip) %>
-      <%end%>
-<% else %>
-  <div class="section-heading">
-    <% if !@user%>
-    Please log in to see trips!
-    <% else %>
-    No trips found
-      <% end %>
-      </div>
-      </div>
-<% end %>
+        <% end %>
+    </div>
+</div>
+</div>
 

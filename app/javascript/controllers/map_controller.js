@@ -16,7 +16,7 @@ export default class extends Controller {
     iduser: String,
     idtrip: String,
     userCoords: {type: Array, default: ['42.3172951', '-72.6386734'] },
-    pfp: {type: String, default: 'assets/fallback/default.png'}
+    pfp: {type: String, default: '/images/fallback/default.png'}
   };
 
 
@@ -40,7 +40,7 @@ export default class extends Controller {
       let address = this.addressValue[i];
       let bike = this.bikeValue[i];
       if (lat !== null && long !== null && name !== null) {
-        this.addMarker(lat, long, name, identifier, id, address, bike, purpleIcon);
+        this.addMarker(lat, long, purpleIcon, name, identifier, id, address, bike);
       }
     }
   }
@@ -57,7 +57,7 @@ export default class extends Controller {
     let uCoords = this.userCoordsValue; // user lat long
     let pfpath = this.pfpValue; // ProFile pic PATH
 
-    this.addMarker(uCoords[0], uCoords[1], null, null, pfpath);
+    this.addMarker(uCoords[0], uCoords[1], pfpath, null, null, null, null, null);
 
     console.log("Entering from [" + uCoords[0] + ", " + uCoords[1] + "]");
     console.log("User profile from `" + pfpath + "`");
@@ -65,7 +65,6 @@ export default class extends Controller {
     // Set map's center.
     const center = L.latLng(uCoords[0], uCoords[1]);
 
-    // Set map's center to target.
     /*const northamptonLat = '42.3255'; // what it says on the tag
     const northamptonLng = '-72.646'; // rough center of northampton
     const center = L.latLng(northamptonLat, northamptonLng);
@@ -74,10 +73,8 @@ export default class extends Controller {
     console.log("Map Loaded!!");
   }
 
-  /* adds a marker to the leaflet
-  TODO
-    - link popup to the station page */
-  addMarker(lat, long, name, identifier, id, address, bike, iconPath) {
+  /* adds a marker to the leaflet */
+  addMarker(lat, long, iconPath, name, identifier, id, address, bike) {
 
     let size = id === null ? [30, 30] : [30, 40]; // size of the icon
 
@@ -93,7 +90,8 @@ export default class extends Controller {
     }
   }
 
-  /* helper method to get the button_to link to place in the popup */
+/* helper method to get the button_to link to place in the popup */
+
 /*  popupContent(name, id, address, bike) {
     return `
     <div>

@@ -39,12 +39,8 @@ class TripsController < ApplicationController
 
   def end_confirmation
     @user = User.find(params[:user_id])
-    @trip = Trip.find(@user.current_trip_id)
-    @bike = Bike.find(@trip.bike_id)
-    @user.update(current_trip_id: nil)
-    @trip.update(end_time: DateTime.now, end_station_id: params[:end_station_id])
-    @bike.update(is_available: true, current_station_id: params[:end_station_id])
     if !!@user.subscription_id
+      @trip = Trip.find(params[:id])
       user_stripe_id = @user.stripe_customer_id
       # Search for the user's available subscription
       subscription = Stripe::Subscription.retrieve(@user.subscription_id)
@@ -61,14 +57,14 @@ class TripsController < ApplicationController
       @meter = Stripe::Billing::MeterEvent.create({
         event_name: product.meter_event,
         payload: {
-          value: @trip.time_minutes, # this should be number of minutes
+          value: @trip.time_minutes.to_s, # this should be number of minutes
           stripe_customer_id: user_stripe_id
         }
       })
-      @trip = Trip.find(params[:trip_id])
       @bike = Bike.find(@trip.bike_id)
       @user.update(current_trip_id: nil)
       @bike.update(is_available: true, current_station_id: params[:end_station_id])
+      @trip.update(end_time: DateTime.now, end_station_id: params[:end_station_id])
     else 
       # No subscription
       # Make the trip status *Payment pending*
@@ -83,7 +79,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:bike_id, :user_id, :start_station_is, :start_time)
+    params.require(:trip).permit(:id, :bike_id, :user_id, :start_station_is, :start_time)
   end
 
   private

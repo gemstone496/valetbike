@@ -48,7 +48,7 @@ ul.header li {
 /*         Responsiveness          */
 /***********************************/
 
-@media (max-width:48em) {
+@media (max-width:868px) {
     .navbar.navbar-desktop {
       display: none;
     }

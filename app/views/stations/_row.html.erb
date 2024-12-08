@@ -1,58 +1,58 @@
-<div class="record-row ">
-  <div class="record-name">
-    Station <%= station.identifier %>: <%= station.name %> <br>
-  </div>
-  <div class="record-details">
-    <%= station.address %>   <br>
-      <%= Bike.where(current_station_id: station.id).length %> available bikes
-  </div>
-
-  <% bikes = Bike.where(current_station_id: station.id) %>
-  <!-- Not Logged in!! -->
-  <% if @user&.id.nil?%>
-    <br>
-  <link_to onclick="reserve_alert('Please log in to reserve a bike!')"
-           class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
-  <% elsif bikes.count == 0 && station&.id && !@user.current_trip_id%>
-    <br>
-    <link_to onclick="reserve_alert('No bikes at this station!')"
-             class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
-
-  <!-- Everything good! Reserve bike! -->
-  <% elsif !@user&.id.nil? && !station&.id.nil? && !@user.current_trip_id.present? && bikes%>
-    <br>
-    <%= link_to 'Reserve Bike',new_trip_path(station_id: station.id, user_id: @user.id),
-                class: "mt-3 custom-btn btn-fill", method: :get,  :style=>' color: unset; text-decoration: unset;'%>
-    <!-- Already Have Bike! -->
-  <% elsif station&.id &&
-    @trip&.id && @user.current_trip_id%>
-    <button type="button" data-bs-toggle="modal" data-bs-target="#returnModal" class="mt-3 custom-btn btn-fill">
-      Return Bike Here
-    </button>
-    <div   class = "modal" id = "returnModal"
-           aria-labelledby="returnModal"
-           aria-hidden="true"
-           tabindex="-1">
-      <div class = "modal-dialog modal-lg modal-dialog-centered">
-        <div class = "modal-content">
-          <div class = "modal-header">
-            <h5 class="modal-title">Return Bike</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class = "modal-body">
-            Return your current bike to station  <%=station.identifier%>?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="mt-3 custom-btn btn-outline" data-bs-dismiss="modal">Close</button>
-            <%= link_to 'Return Bike', end_confirm_path(end_station_id: station.id, user_id: @user.id), class: "mt-3 custom-btn btn-fill",
-                        :style=>' color: unset; text-decoration: unset;'%>
-          </div>
+<div class="record-row">
+      <div class="row">
+        <div class="col-lg-8">
+            <div class="record-name">
+                Station <%= station.identifier %>: <%= station.name %>
+            </div>
+            <%= station.address %><br>
+            <%= Bike.where(current_station_id: station.id).length %> available bike(s)
         </div>
-      </div>
-    </div>
-  <% end %>
+        <div class="col-lg-4 d-flex flex-row-reverse align-items-start">
+            <% bikes = Bike.where(current_station_id: station.id) %>
+            <!-- Not Logged in!! -->
+            <% if @user&.id.nil?%>
+            <link_to onclick="reserve_alert('Please log in to reserve a bike!')"
+                    class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
+            <% elsif bikes.count == 0 && station&.id && !@user.current_trip_id%>
+                <link_to onclick="reserve_alert('No bikes at this station!')"
+                        class="mt-3 custom-btn btn-invalid">Reserve Bike</link_to>
 
-
+            <!-- Everything good! Reserve bike! -->
+            <% elsif !@user&.id.nil? && !station&.id.nil? && !@user.current_trip_id.present? && bikes%>
+                <%= link_to 'Reserve Bike',new_trip_path(station_id: station.id, user_id: @user.id),
+                            class: "mt-3 custom-btn btn-fill", method: :get,  :style=>' color: unset; text-decoration: unset;'%>
+                <!-- Already Have Bike! -->
+            <% elsif station&.id &&
+                @trip&.id && @user.current_trip_id%>
+                 <button type="button" data-bs-toggle="modal" data-bs-target="#returnModal" class="mt-3 custom-btn btn-outline">
+                    Return bike here 
+                </button>
+                <div   class = "modal" id = "returnModal" 
+                        aria-labelledby="returnModal" 
+                        aria-hidden="true"
+                        tabindex="-1">
+                    <div class = "modal-dialog modal-lg modal-dialog-centered">
+                        <div class = "modal-content">
+                            <div class = "modal-header">
+                                <h5 class="modal-title">Return here?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class = "modal-body">
+                                Please confirm that you want to return the bike for the trip #<%= @trip&.id %> at this location 
+                                (<%= station.address %>).
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="custom-btn btn-outline" data-bs-dismiss="modal">Close</button>
+                                <%= link_to 'Return Bike Here', end_confirm_path(id:@trip&.id, end_station_id: station.id, user_id: @user.id), class: "custom-btn btn-fill",
+                            :style=>' color: unset; text-decoration: unset;'%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+  </div>
+  
   <script>
       function reserve_alert(string) {
           alert(string);

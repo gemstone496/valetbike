@@ -1,33 +1,18 @@
 <div class="page-section flexbox vertical stretch">
   <div class="section-inner flexbox vertical stretch">
-    <div class="section-title">
-      thanks for booking!!
-      Confirmation
+    <div class="section-title text-center">
+      Thank you for booking
     </div>
-  Trip is Confirmed! id:
-  <%= @trip.id %>
-<!--
-  <table summary="Trip  fields">
-    <h2>Trip confirmed!</h2>
-    <tr>
-      <th>Bike ID: </th>
-      <td><%##= @bike.identifier %></td>
-    </tr>
-    <tr>
-    <tr>
-      <th>User ID:</th>
-      <td><%##= @user.id %></td>
-    </tr>
-    <tr>
-    <tr>
-      <th>Station:</th>
-      <td><%##= @station.identifier %></td>
-    </tr>
-    <tr>
-    <tr>
-      <th> Trip ID:</th>
-      <td><%##= @trip.id %></td>
-    </tr>
-    </table>-->
+    <div class = "row">
+        <div class = "col-lg-3"></div>
+        <div class = "col-lg-6">
+            <div class="section-caption text-center">
+                Your trip (ID: <%= @trip.id %>) is confirmed. Navigate to <%= link_to 'your trips dashboard', trips_path %> to manage your trip. 
+                We hope you will enjoy the ride.
+            </div>
+            <%= image_tag('MHEndTrip.png', class: "section-banner") %>
+        </div>
+        <div class = "col-lg-3"></div>
+    </div>
 </div>
 </div>
