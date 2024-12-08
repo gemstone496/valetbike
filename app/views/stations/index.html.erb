@@ -55,6 +55,8 @@
     </div>
   </div>
 
+
+
   <!-- Event listener -->
   <script>
        document.addEventListener('turbo:load', function pageLoad() {
@@ -72,6 +74,10 @@
               } else if (listViewRadio.checked) {
                   mapView.style.display = 'none'; // show list stuff
                   listView.style.display = 'block'; // hide map stuff
+
+                  if (window.controller && window.controller.map) {
+                      window.controller.map.closePopup();
+                  }
               }
           }
           //as I understand it the change event is 'fired' when an element is changed by a
