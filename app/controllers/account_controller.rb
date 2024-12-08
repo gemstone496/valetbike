@@ -23,6 +23,13 @@ class AccountController < ApplicationController
 
         # Get the product by meter_id
         @product = Product.find_by(meter_id: @meter_id)
+
+        @upcoming_invoice = Stripe::Invoice.upcoming({customer: @user.stripe_customer_id})
+        
+        @invoice_total = @upcoming_invoice.amount_due
+        @created_time = Time.at(@upcoming_invoice.created).to_datetime.strftime('%F %H:%M')
+        @attempted = Time.now < Time.at(@upcoming_invoice.created) ? 'Payment not started' : @upcoming_invoice.attempted ? 'Paid' : 'Unpaid'
+        
       end
     end
   end

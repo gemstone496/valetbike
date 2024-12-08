@@ -57,7 +57,7 @@ class TripsController < ApplicationController
       @meter = Stripe::Billing::MeterEvent.create({
         event_name: product.meter_event,
         payload: {
-          value: @trip.time_minutes, # this should be number of minutes
+          value: @trip.time_minutes.to_s, # this should be number of minutes
           stripe_customer_id: user_stripe_id
         }
       })

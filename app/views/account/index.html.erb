@@ -13,7 +13,33 @@
             <% end %>
         </div>
         <div class = "row">
-            <div class = "col-lg-4">
+            <div class="col-lg-5"></div>
+            <div class = "col-lg-2 mb-3">
+                <div class = "float-right">
+                    <%= button_to 'Edit', 
+                            profile_picture_edit_path(@user[:id]), 
+                            class: "btn-underline regular", 
+                            method: :get %>
+                </div>
+                <div class = "avatar-wrapper mt-1 mb-4">
+                    <%= image_tag(@user.avatar? ? @user.avatar_url : 'fallback/default.png') %>
+                </div>
+                <% if !!@enable_profile_upload %>
+                        <%= form_with url: {action: :upload_profile_img} do |f| %>
+                            <%= f.file_field :avatar, class: "form-control mt-2 mb-2" %>
+                            <%= f.hidden_field :avatar_cache %>
+                            <%= f.submit "Upload", class: "mt-3 custom-btn btn-fill"%>
+                            <%= button_tag 'Remove profile picture',
+                                type: 'submit',
+                                name: 'cancel_edit_pfp',
+                                class: "ms-3 custom-btn btn-fill-danger" %>
+                        <% end %>
+                <% end %>
+            </div>
+            <div class="col-lg-5"></div>
+        </div>
+        <div class = "row">
+            <div class = "col-lg-6 mb-3 order-1">
                 <div class = "row">
                     <div class = "col-lg-8">
                         <div class = "section-heading">
@@ -114,12 +140,34 @@
                     </div>
                 </div>
             </div>
-            <div class = "col-lg-4">
+            <div class = "col-lg-6 mb-3 order-2">
                 <div class = "row"></div> <!-- ?? -->
                 <div class = "section-heading">
                     Subscription information 
                 </div>
                 <% if @product %>
+                    <% if @upcoming_invoice %>
+                        <h4 class="section-heading-h2">Upcoming Invoice</h4>
+                        <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Total amount</th>
+                                    <td>$<%= @invoice_total.to_f/100 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Due on</th>
+                                    <td><%= @created_time %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Payment status</th>
+                                    <td><%= @attempted %></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% end %>
+                    <h4 class="section-heading-h2">Plan details</h4>
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
@@ -170,28 +218,6 @@
                 <% else %>
                     <p>You have no subscription available.</p>
                     <p>Please go to <%= link_to('Pricing', {controller: 'payments' , action: 'index'}) %> to select a plan.</p>
-                <% end %>
-            </div>
-            <div class = "col-lg-4">
-                <div class = "float-right">
-                    <%= button_to 'Edit', 
-                            profile_picture_edit_path(@user[:id]), 
-                            class: "btn-underline regular", 
-                            method: :get %>
-                </div>
-                <div class = "avatar-wrapper mt-1 mb-4">
-                    <%= image_tag(@user.avatar? ? @user.avatar_url : 'fallback/default.png') %>
-                </div>
-                <% if !!@enable_profile_upload %>
-                        <%= form_with url: {action: :upload_profile_img} do |f| %>
-                            <%= f.file_field :avatar, class: "form-control mt-2 mb-2" %>
-                            <%= f.hidden_field :avatar_cache %>
-                            <%= f.submit "Upload", class: "mt-3 custom-btn btn-fill"%>
-                            <%= button_tag 'Remove profile picture',
-                                type: 'submit',
-                                name: 'cancel_edit_pfp',
-                                class: "ms-3 custom-btn btn-fill-danger" %>
-                        <% end %>
                 <% end %>
             </div>
         </div>
