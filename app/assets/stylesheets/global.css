@@ -155,7 +155,7 @@ input[type="radio"]:checked + label {
     color: var(--danger-color);
 }
 
-.btn-invalid {
+.btn-invalid, button:disabled, button[disabled] {
     background: var(--invalid_fill-color);
     color: var(--invalid_text-color);
     border: var(--btn-thickness) solid var(--invalid_fill-color);
