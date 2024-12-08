@@ -17,8 +17,6 @@ class User < ApplicationRecord
                              format: {with: PHONE_REGEX},
                              allow_nil: true,
                              allow_blank: true
-    
-    mount_uploader :avatar, AvatarUploader
 
     has_many :trips, dependent: :destroy
 
@@ -28,4 +26,14 @@ class User < ApplicationRecord
         end
     end
 
+    after_create do
+      customer = Stripe::Customer.create(email: email)
+      update(stripe_customer_id: customer.id)
+    end
+
+    def has_name?
+        unless name.nil?
+            name
+        end
+    end
 end

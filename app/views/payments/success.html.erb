@@ -1,0 +1,40 @@
+<div class="page-section flexbox vertical stretch">
+  <div class="section-inner flexbox vertical stretch">
+    <div class="section-title text-center">
+      Thank you for subscribing
+    </div> 
+    <% if @product %>
+    <div class="section-caption text-center">
+        We received your payment for the subscription to <span class = "highlighter"><%= @product.name %></span> plan. 
+        We hope you will enjoy our service. 
+    </div>
+    <div class = "row mt-5">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Plan</th>
+                        <td><%= @product.name %> plan</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Monthly price</th>
+                        <td>$<%= @product.price.to_f/100 %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td><%= @product.desc %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class = "row mt-5">
+        <div class = "col-lg-3"></div>
+        <div class = "col-lg-6">
+            <%= image_tag('MHPaymentSuccess.png', class: "section-banner") %>
+        </div>
+        <div class = "col-lg-3"></div>
+    </div>
+    <% end %>
+  </div>
+</div>

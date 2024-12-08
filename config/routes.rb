@@ -1,24 +1,23 @@
 Rails.application.routes.draw do
-  get 'stations/index'
   get 'trips/index'
+  get 'stations', to: 'stations#index'
   get 'stations/show'
   get 'bikes/index'
   get 'bikes/_row'
-  get 'main/pricing'
   get 'main/contact'
-
 
   get "confirm", to: "trips#confirmation"
   get "end_confirm", to: "trips#end_confirmation"
 
-
   # resources :bikes
   # resources :stations
-    resources :stations, only: [:index, :show] do
-      resources :bikes, only: [:index, :show]
-    end
+  resources :stations, only: [:index, :show] do
+    resources :bikes, only: [:index, :show]
+  end
 
   resources :trips, except: [:destroy]
+  resources :payments, only: [:index, :create]
+  get "success", to: "payments#success"
 
   get "sign-up", to: "user#new"
   post "sign-up", to: "user#create"
@@ -35,6 +34,7 @@ Rails.application.routes.draw do
   resources :account, only: [:index, :destroy, :edit, :update]
   get "profile-picture/edit", to: "account#edit_profile_img"
   post "profile-picture/upload", to: "account#upload_profile_img"
+  post "subscription/cancel", to: "account#cancel_subscription"
 
   root to: "main#index"
 end

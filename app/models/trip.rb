@@ -1,5 +1,6 @@
 class Trip < ApplicationRecord
   belongs_to :user
+
   def time
     hour = 3600
     minute = 60
@@ -12,6 +13,14 @@ class Trip < ApplicationRecord
     else
       0
     end
+  end
+
+  def time_minutes
+    hr_min_sec = self.time
+    hr = hr_min_sec[0]
+    min = hr_min_sec[1]
+    sec = hr_min_sec[2]
+    record = 60*hr + min + (sec/60).round
   end
 end
 
