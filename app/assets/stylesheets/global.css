@@ -75,12 +75,14 @@ input[type=submit]:disabled {
 .section-heading {
     font-size: 1.3em;
     font-family: var(--title-font);
+    font-weight: 600;
     margin-bottom: 0.8rem;
 }
 
 .section-heading-h2 {
     font-size: 1em;
     font-family: var(--title-font);
+    font-weight: 600;
     margin-bottom: 0.8rem;
 }
 
