@@ -6,7 +6,7 @@
     <% if @product %>
     <div class="section-caption text-center">
         We received your payment for the subscription to <span class = "highlighter"><%= @product.name %></span> plan. 
-        We hope you will enjoy our service. 
+        We hope you will enjoy our service. Go to <%= link_to "our stations page", stations_path, class: "link-regular" %> to continue your journey.
     </div>
     <div class = "row mt-5">
         <div class="table-responsive">

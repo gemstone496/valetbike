@@ -24,10 +24,11 @@ ul.header li {
 .navbar li a {
     text-decoration: none;
     font-family: var(--title-font);
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     color: var(--black-color);
-    font-weight: 300;
     transition: 0.2s ease-in-out;
+    text-transform: uppercase;
 }
 
 .navbar li a:hover {
