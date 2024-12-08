@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :get_user_info_from_session
   helper_method :logged_in?
   helper_method :disable_navigation
-
+  helper_method :station
   def get_user_info_from_session
     @user = User.find_by(id: session[:user_id])
   end

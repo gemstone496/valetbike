@@ -1,0 +1,23 @@
+<div id="map-controller" 
+  data-controller="map"
+  data-map-lat-value="<%= lats %>"
+  data-map-long-value="<%= longs %>"
+  data-map-name-value="<%= names %>"
+  data-map-identifier-value="<%= identifiers %>"
+  data-map-id-value="<%= ids %>"
+  data-map-address-value="<%= addresses %>"
+  data-map-bike-value="<%= bikes %>"
+  data-map-userid-value="<%= userid %>"
+  data-map-tripid-value="<%= tripid %>"
+  data-map-iduser-value="<%= iduser %>"
+  data-map-idtrip-value="<%= idtrip %>"
+ <% if @user&.avatar? then %>
+  data-map-pfp-value="<%= @user.avatar_url %>"
+ <% end %>
+ <% if @uCoords.length == 2 then %>
+  data-map-userCoords-value="<%= @uCoords %>"
+ <% end %>
+>
+
+  <div id="map-interactive" data-map-target="container"></div>
+</div>

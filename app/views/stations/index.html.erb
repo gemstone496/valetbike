@@ -1,37 +1,88 @@
 <% content_for :content do %>
-  <div class="page-section flexbox vertical stretch">
+  <div class="page-section flexbox vertical stretch" >
     <div class="section-inner flexbox vertical stretch">
       <div class="section-title text-center">
         Find a Station
       </div>
+      <div class="btn-group togglestuff" role="group" aria-label="toggle button group for station view">
+        <!-- Map View-->
+        <input type="radio" class="btn-check" name="btnradio" id="map_view" autocomplete="off" checked>
+        <label class="btn btn-toggle btn-toggle-outline" for="map_view" >
+            Map View
+        </label>
 
-      <div id="map-controller" 
-        data-controller="map"
-        data-map-lat-value="<%= @lats %>"
-        data-map-long-value="<%= @longs %>"
-        data-map-name-value="<%= @names %>"
-        data-map-id-value="<%= @ids %>"
-       <% if @user&.avatar? then %>
-        data-map-pfp-value="<%= @user.avatar_url %>"
-       <% end %>
-       <% if @uCoords.length == 2 then %>
-        data-map-userCoords-value="<%= @uCoords %>"
-       <% end %>
-      >
-        <div id="map-interactive" data-map-target="container"></div>
+        <!-- List View-->
+        <input type="radio" class="btn-check" name="btnradio" id="list_view" autocomplete="off">
+        <label class="btn btn-toggle btn-toggle-outline" for="list_view" >
+           List View
+        </label>
       </div>
 
-      <div class="flexbox vertical stretch mt-5" id="stations">
-        <% if @stations.present? %> </div> <br>
-          <div class="section-body">
-            <%= @stations.count %> stations found
-          </div>
-          <%= render(partial: "stations/row", collection: @stations, as: :station) %>
-        <% else %>
-        <div class="empty">
-          No stations found.
+<br>
+
+
+      <!-- Map stuffff :) -->
+      <div id="map_view_content" class="station-view">
+        <div class="section-body">
+          <%= @stations.count %> stations found
         </div>
-        <% end %>
+        <br>
+        <%= render partial: "stations/leaflet", locals: {
+          lats: @lats,
+          longs: @longs,
+          names: @names,
+          identifiers: @identifiers,
+          ids: @ids,
+          addresses: @addresses,
+          bikes: @bikes,
+          userid: @userid,
+          tripid: @tripid,
+          iduser: @iduser,
+          idtrip: @idtrip,
+          user: @user,
+          uCoords: @uCoords
+        } %>
+      </div>
+
+      <!-- List stuffff-->
+      <div id="list_view_content" class="station-view" style="display: none;">
+        <div class="section-body">
+          <%= @stations.count %> stations found
+        </div>
+        <%= render partial: "stations/list", locals: { stations: @stations } %>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Event listener -->
+  <script>
+       document.addEventListener('turbo:load', function pageLoad() {
+
+          const mapViewRadio = document.getElementById('map_view');
+          const listViewRadio = document.getElementById('list_view');
+
+          const mapView = document.getElementById('map_view_content');
+          const listView = document.getElementById('list_view_content');
+
+          function toggleViews() {
+              if (mapViewRadio.checked) {
+                  mapView.style.display = 'block'; // show map stuff
+                  listView.style.display = 'none'; // hide list stuff
+              } else if (listViewRadio.checked) {
+                  mapView.style.display = 'none'; // show list stuff
+                  listView.style.display = 'block'; // hide map stuff
+              }
+          }
+          //as I understand it the change event is 'fired' when an element is changed by a
+              // user, so I have added an event listener s.t. when the 'mapViewRadio' is changed
+              // it will call the function toggleViews
+          mapViewRadio.addEventListener('change', toggleViews);
+          listViewRadio.addEventListener('change', toggleViews);
+       });
+  </script>
+
+
       </div>
     </div>
 <% end %>

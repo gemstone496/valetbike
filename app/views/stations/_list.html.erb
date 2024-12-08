@@ -1,0 +1,7 @@
+ <% if stations.present? %>
+      <%= render(partial: "stations/row", collection: stations, as: :station) %>
+    <% else %>
+      <div class="empty">
+        No stations found.
+      </div>
+    <% end %>

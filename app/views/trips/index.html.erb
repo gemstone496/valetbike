@@ -1,0 +1,36 @@
+<div class="page-section flexbox vertical stretch">
+  <div class="section-inner flexbox vertical stretch">
+    <div class="section-title text-center">
+       View and Manage Trips
+    </div>
+<% if @trips.present? && @user %> </div> <br>
+   <% if @curr_trip.present?%>
+        <div class="record-row flexbox vertical stretch">
+          <div class="record-name">
+            Trip <%= @curr_trip.id %>
+          </div>
+            <div class="section-body">
+              Status: <b>Ongoing</b>
+            </div>
+           <div class="section-body">
+             <b>Start Location:</b> <%= @curr_address%> <br>
+             <b>Start Time:</b> <%=@curr_trip.
+                                   start_time.in_time_zone('America/New_York').
+                                   strftime("%m/%d/%Y %I:%M %p")   %>
+            </div>
+            </div>
+    <%end%>
+      <%if @past_trips.count > 0%>
+        <%= render(partial: "trips/row", collection: @past_trips, as: :trip) %>
+      <%end%>
+<% else %>
+  <div class="section-heading">
+    <% if !@user%>
+    Please log in to see trips!
+    <% else %>
+    No trips found
+      <% end %>
+      </div>
+      </div>
+<% end %>
+

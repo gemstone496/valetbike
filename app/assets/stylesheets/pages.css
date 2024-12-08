@@ -88,6 +88,21 @@
     margin: 1em auto;
 }
 
+.leaflet-popup-content {
+    font-family: var(--body-font) !important;
+    font-weight: 200 !important;
+}
+
+.leaflet-popup-content .title {
+    font-size: 1rem !important;
+    color: var(--theme-color) !important;
+}
+
+.leaflet-popup-content .body {
+    font-weight: 100 !important;
+    font-size: 1em !important;
+}
+
 .record-row {
   padding: 2em 1.25em;
   font-size: 0.85em;

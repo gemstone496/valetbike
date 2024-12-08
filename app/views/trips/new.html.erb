@@ -1,5 +1,5 @@
 <div class="record-row <%= cycle "odd", "even", name: "row-cycler" %> flexbox vertical stretch">
-  <%= button_to("Back to Bikes", station_path(@station), class: "mt-3 custom-btn btn-outline", method: :get) %>
+  <%= button_to("Back to Bikes", stations_index_path, class: "mt-3 custom-btn btn-outline", method: :get) %>
 
   <%= form_for(@trip) do |f| %>
   <table summary="Trip form fields">
@@ -20,13 +20,12 @@
     </tr>
     <tr>
     <tr>
+    <tr>
       <%= f.hidden_field :bike_id, value: @bike.id %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.hidden_field :start_station_is, value: @station.id %>
-
+      <%= f.hidden_field :start_time, value: DateTime.now %>
     <tr>
-      <th>Pickup Time</th>
-      <td><%= f.time_field(:start_time) %></td>
     </tr>
     </table>
 
