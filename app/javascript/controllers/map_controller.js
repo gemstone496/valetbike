@@ -7,9 +7,16 @@ export default class extends Controller {
     lat: Array,
     long: Array,
     name: Array,
+    identifier: Array,
     id: Array,
-    userCoords: {type: Array, default: ['42.3255', '-72.646'] },
-    pfp: {type: String}
+    address: Array,
+    bike: Array,
+    userid: Boolean,
+    tripid: Boolean,
+    iduser: String,
+    idtrip: String,
+    userCoords: {type: Array, default: ['42.3172951', '-72.6386734'] },
+    pfp: {type: String, default: 'assets/fallback/default.png'}
   };
 
 
@@ -28,9 +35,12 @@ export default class extends Controller {
       let lat = this.latValue[i];
       let long = this.longValue[i];
       let name = this.nameValue[i];
+      let identifier = this.identifierValue[i];
       let id = this.idValue[i];
+      let address = this.addressValue[i];
+      let bike = this.bikeValue[i];
       if (lat !== null && long !== null && name !== null) {
-          this.addMarker(lat, long, name, id, purpleIcon);
+        this.addMarker(lat, long, name, identifier, id, address, bike, purpleIcon);
       }
     }
   }
@@ -55,7 +65,6 @@ export default class extends Controller {
     // Set map's center.
     const center = L.latLng(uCoords[0], uCoords[1]);
 
-    // Set map's center to target.
     /*const northamptonLat = '42.3255'; // what it says on the tag
     const northamptonLng = '-72.646'; // rough center of northampton
     const center = L.latLng(northamptonLat, northamptonLng);
@@ -65,7 +74,7 @@ export default class extends Controller {
   }
 
   /* adds a marker to the leaflet */
-  addMarker(lat, long, name, id, iconPath) {
+  addMarker(lat, long, name, identifier, id, address, bike, iconPath) {
 
     let size = id === null ? [30, 30] : [30, 40]; // size of the icon
 
@@ -75,11 +84,9 @@ export default class extends Controller {
     });
 
         // Place a marker on the location with custom icon
-    let marker = L.marker([lat, long], {icon: icon})
-        .addTo(this.map);
-
-    if (id !== null){ // here markers
-      marker.bindPopup(this.buttonTo(name, id));
+    let marker = L.marker([lat, long], {icon: icon}).addTo(this.map);
+    if (id !== null) { // here markers
+      marker.bindPopup(this.popupContent(name, identifier, id, address, bike));
     }
   }
 
