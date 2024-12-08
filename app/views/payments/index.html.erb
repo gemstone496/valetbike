@@ -3,8 +3,13 @@
     <div class="section-title text-center">
       Pricing
     </div> 
+    <% if flash[:notice].present? %>
+        <div class = "alert alert-warning">
+            <p class="error-message"><%= flash[:notice] %></p>
+        </div>
+    <% end %>
     <div class="section-caption text-center">
-        We at ValetBike offer many different options that range various levels. 
+        We at ValetBike offer many different options that range various levels. Choose a plan to start your journey!
     </div>
     <div class = "row" id="products">
         <% @products.each do |product| %>
