@@ -27,7 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_07_035648) do
     t.string "stripe_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_subscription"
     t.string "meter_event"
     t.string "meter_id"
   end
@@ -51,7 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_07_035648) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "start_station_is"
-    t.integer "code"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

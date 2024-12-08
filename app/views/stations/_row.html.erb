@@ -24,7 +24,7 @@
                 <!-- Already Have Bike! -->
             <% elsif station&.id &&
                 @trip&.id && @user.current_trip_id%>
-                <%= link_to 'Return Bike Here', end_confirm_path(end_station_id: station.id, user_id: @user.id), class: "mt-3 custom-btn btn-fill",
+                <%= link_to 'Return Bike Here', end_confirm_path(id:@trip&.id, end_station_id: station.id, user_id: @user.id), class: "mt-3 custom-btn btn-fill",
                             :style=>' color: unset; text-decoration: unset;'%>
             <% end %>
         </div>

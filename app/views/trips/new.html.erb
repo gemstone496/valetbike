@@ -13,40 +13,37 @@
     </div>
 
     <div class="row">
-        
-
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
         <%= form_for(@trip) do |f| %>
-        <table summary="Trip form fields">
-            <tr>
-            <th>Bike ID: </th>
-            <td><%= @bike.identifier %></td>
-            </tr>
-            <tr>
-            <tr>
-            <th>User ID:</th>
-            <td><%= @user.id %></td>
-            </tr>
-            <tr>
-            <tr>
-            <th>Station:</th>
-            <td><%= @station.identifier %></td>
-            </tr>
-            <tr>
-            <tr>
-            <tr>
-            <%= f.hidden_field :bike_id, value: @bike.id %>
-            <%= f.hidden_field :user_id, value: @user.id %>
-            <%= f.hidden_field :start_station_is, value: @station.id %>
-            <%= f.hidden_field :start_time, value: DateTime.now %>
-            <tr>
-            </tr>
-            </table>
-
-            <div class="form-buttons">
-                <%= f.submit("Create Trip") %>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Bike ID</th>
+                            <td><%= @bike.identifier %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">User</th>
+                            <td><%= @user.email %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Station</th>
+                            <td><%= @station.identifier %></td>
+                        </tr>
+                        <%= f.hidden_field :bike_id, value: @bike.id %>
+                        <%= f.hidden_field :user_id, value: @user.id %>
+                        <%= f.hidden_field :start_station_is, value: @station.id %>
+                        <%= f.hidden_field :start_time, value: DateTime.now %>
+                    </tbody>
+                </table>
             </div>
-
+            <div class="mt-3 text-center">
+                <%= f.submit("Create Trip", class: "custom-btn btn-fill") %>
+            </div>
             <% end %>
+        </div>
+        <div class="col-lg-3"></div>
         </div>
   </div>
 </div>

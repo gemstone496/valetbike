@@ -6,7 +6,6 @@
   <div class="section-body">
       Status: <b>Ended</b> <br>
       Trip Length: <%=trip.time[0]%>h <%=trip.time[1]%>m <%=trip.time[2]%>s<br>
-      Cost:  <br>
       <b>Start Location:</b> <%= Station.find(trip.start_station_is).address %> <br>
       <b>Start Time:</b> <%= trip.start_time.in_time_zone('America/New_York').
                             strftime("%m/%d/%Y %I:%M %p")   %>

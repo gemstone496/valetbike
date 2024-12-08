@@ -20,8 +20,8 @@
                                         strftime("%m/%d/%Y %I:%M %p")   %>
                     </div>
                     </div>
-            <%end%>
-            <%if @past_trips.count > 0%>
+            <% end %>
+            <%if @past_trips.count > 0 %>
                 <%= render(partial: "trips/row", collection: @past_trips, as: :trip) %>
             <%end%>
         <% else %>
