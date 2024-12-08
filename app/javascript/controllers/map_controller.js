@@ -40,7 +40,7 @@ export default class extends Controller {
       let address = this.addressValue[i];
       let bike = this.bikeValue[i];
       if (lat !== null && long !== null && name !== null) {
-        this.addMarker(lat, long, name, identifier, id, address, bike, purpleIcon);
+        this.addMarker(lat, long, purpleIcon, name, identifier, id, address, bike);
       }
     }
   }
@@ -57,7 +57,7 @@ export default class extends Controller {
     let uCoords = this.userCoordsValue; // user lat long
     let pfpath = this.pfpValue; // ProFile pic PATH
 
-    this.addMarker(uCoords[0], uCoords[1], null, null, pfpath);
+    this.addMarker(uCoords[0], uCoords[1], pfpath, null, null, null, null, null);
 
     console.log("Entering from [" + uCoords[0] + ", " + uCoords[1] + "]");
     console.log("User profile from `" + pfpath + "`");
@@ -74,7 +74,7 @@ export default class extends Controller {
   }
 
   /* adds a marker to the leaflet */
-  addMarker(lat, long, name, identifier, id, address, bike, iconPath) {
+  addMarker(lat, long, iconPath, name, identifier, id, address, bike) {
 
     let size = id === null ? [30, 30] : [30, 40]; // size of the icon
 
