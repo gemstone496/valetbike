@@ -11,7 +11,7 @@
   data-map-tripid-value="<%= tripid %>"
   data-map-iduser-value="<%= iduser %>"
   data-map-idtrip-value="<%= idtrip %>"
-  data-map-pfp-value="<%= @user.avatar? ? @user.avatar_url : image_url('fallback/default.png') %>"
+  data-map-pfp-value="<%= @user && @user.avatar? ? @user.avatar_url : image_url('fallback/default.png') %>"
  <% if uCoords.length == 2 then %>
   data-map-userCoords-value="<%= uCoords %>"
  <% end %>
