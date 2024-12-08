@@ -21,5 +21,17 @@ namespace :load_data do
 
     end
   end
+
+  desc "Read the plan pricing data from the CSV."
+  task :product => :environment do 
+    CSV.foreach('notes/plan-data.csv', :headers => true) do |row| #product
+      product = Product.create(name: row[0], price: row[1], desc: row[2], 
+                                stripe_price_id: row[3], 
+                                stripe_product_id: row[4],
+                                meter_event: row[5],
+                                meter_id: row[6])
+    end
+
+  end
         
 end

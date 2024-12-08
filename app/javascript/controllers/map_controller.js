@@ -14,7 +14,9 @@ export default class extends Controller {
     userid: Boolean,
     tripid: Boolean,
     iduser: String,
-    idtrip: String
+    idtrip: String,
+    userCoords: {type: Array, default: ['42.3172951', '-72.6386734'] },
+    pfp: {type: String, default: 'assets/fallback/default.png'}
   };
 
   connect(){
@@ -24,22 +26,22 @@ export default class extends Controller {
     
     this.createMap();
 
+    let purpleIcon = '/images/map-marker.png';
+
     // Add the markers for each station
-    for (let i = 0; i < this.idValue.length; i++)
-      {
-        console.log("loading item " + i);
-        let lat = this.latValue[i];
-        let long = this.longValue[i];
-        let name = this.nameValue[i];
-        let identifier = this.identifierValue[i];
-        let id = this.idValue[i];
-        let address = this.addressValue[i];
-        let bike = this.bikeValue[i];
-        if (lat !== null && long !== null && name !== null)
-        {
-            this.addMarker(lat, long, name, identifier, id, address, bike);
-        }
+    for (let i = 0; i < this.idValue.length; i++) {
+      console.log("loading item " + i);
+      let lat = this.latValue[i];
+      let long = this.longValue[i];
+      let name = this.nameValue[i];
+      let identifier = this.identifierValue[i];
+      let id = this.idValue[i];
+      let address = this.addressValue[i];
+      let bike = this.bikeValue[i];
+      if (lat !== null && long !== null && name !== null) {
+        this.addMarker(lat, long, name, identifier, id, address, bike, purpleIcon);
       }
+    }
   }
   
   /* initializes the map for future use */
@@ -49,11 +51,18 @@ export default class extends Controller {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+
+    // Add a you-are-here
+    let uCoords = this.userCoordsValue; // user lat long
+    let pfpath = this.pfpValue; // ProFile pic PATH
+
+    this.addMarker(uCoords[0], uCoords[1], null, null, pfpath);
     
-    // Set map's center to target.
-    const northamptonLat = '42.3255'; // what it says on the tag
-    const northamptonLng = '-72.646'; // rough center of northampton
-    const center = L.latLng(northamptonLat, northamptonLng);
+    console.log("Entering from [" + uCoords[0] + ", " + uCoords[1] + "]");
+    console.log("User profile from `" + pfpath + "`");
+    
+    // Set map's center.
+    const center = L.latLng(uCoords[0], uCoords[1]);
     this.map.setView(center, 13.5); // consider changing zoom
 
     console.log("Map Loaded!!");
@@ -62,24 +71,21 @@ export default class extends Controller {
   /* adds a marker to the leaflet
   TODO
     - link popup to the station page */
-  addMarker(lat, long, name, identifier, id, address, bike) {
+  addMarker(lat, long, name, identifier, id, address, bike, iconPath) {
 
-    var purpleIcon = L.icon({
-      iconUrl: '/images/map-marker.png',
-      iconSize:     [30, 40] // size of the icon
+    let size = id === null ? [30, 30] : [30, 40]; // size of the icon
+
+    let icon = L.icon({
+      iconUrl: iconPath,
+      iconSize: size 
     });
 
         // Place a marker on the location with custom icon
-    L.marker([lat, long], {icon: purpleIcon})
-        .addTo(this.map)
-        .bindPopup(this.popupContent(name, identifier, id, address, bike));
+    let marker = L.marker([lat, long], {icon: icon}).addTo(this.map);
+    if (id !== null) { // here markers
+      marker.bindPopup(this.popupContent(name, identifier, id, address, bike));
+    }
   }
-/*  addMarker(lat, long, name, id) {
-    // Place a marker on the location.
-    L.marker([lat, long])
-      .addTo(this.map)
-      .bindPopup(this.buttonTo(name, id));
-  }*/
 
   /* helper method to get the button_to link to place in the popup */
 /*  popupContent(name, id, address, bike) {
