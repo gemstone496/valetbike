@@ -68,8 +68,8 @@
 }
 
 .step-block:hover {
-    transition: all 0.2s ease-in;
-    background-color: var(--theme-color);
+/*    transition: all 0.2s ease-in;
+    background-color: var(--theme-color);*/
 }
 
 .step-block h4 {

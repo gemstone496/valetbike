@@ -77,7 +77,7 @@
                         <%= f.text_field :phone_number, placeholder: @user[:phone_number]? @user[:phone_number] : '-', class: "form-control", :readonly => !@enable_edit %>
                     </div>
                     <% if !!@enable_edit %>
-                        <%= f.submit "Reset", class: "mt-3 custom-btn btn-fill" %>
+                        <%= f.submit "Save", class: "mt-3 custom-btn btn-fill" %>
                         <%= button_tag t('buttons.cancel'),
                             type: 'submit',
                             name: 'cancel_edit',
