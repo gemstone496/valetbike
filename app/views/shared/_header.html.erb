@@ -2,6 +2,11 @@
 <nav class="navbar fixed-top navbar-desktop">
     <div class="container">
         <ul class="header">
+          <li>
+            <%= link_to root_path do %>
+              <img src="<%= asset_path('logo.png') %>" style="width:300px">
+            <% end %>
+          </li>
             <li>
                 <%= link_to('Home', {controller: 'main' , action: 'index'}) %> 
             </li>

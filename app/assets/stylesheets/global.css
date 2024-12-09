@@ -139,6 +139,15 @@ input[type="radio"]:checked + label {
     border: var(--btn-thickness) solid var(--theme-color) !important;
 }
 
+.shrikhand-regular {
+    font-family: var(--logo-font) !important;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 80px;
+    color: var(--theme-color) !important;
+}
+
+
 .btn-outline:hover {
     background: var(--theme-color) !important;
     color: var(--white-color) !important;
