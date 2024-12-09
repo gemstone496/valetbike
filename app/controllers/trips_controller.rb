@@ -61,7 +61,10 @@ class TripsController < ApplicationController
 
     # Get the product by meter_id
     product = Product.find_by(meter_id: @meter_id)
-          
+
+    # Update the end time for the trip before ending the event to Stripe
+    @trip.update(end_time: DateTime.now, end_station_id: params[:end_station_id])
+
     # Create the meter
     @meter = Stripe::Billing::MeterEvent.create({
         event_name: product.meter_event,
@@ -70,10 +73,10 @@ class TripsController < ApplicationController
           stripe_customer_id: user_stripe_id
         }
     })
+
     @bike = Bike.find(@trip.bike_id)
     @user.update(current_trip_id: nil)
     @bike.update(is_available: true, current_station_id: params[:end_station_id])
-    @trip.update(end_time: DateTime.now, end_station_id: params[:end_station_id])
   end
 
   def update
