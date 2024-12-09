@@ -1,6 +1,6 @@
 .navbar {
     margin: 3em auto;
-    width: 90%;
+    width: 85%;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -13,7 +13,7 @@ ul.header {
     margin: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+   justify-content: space-between;
     width: 100%;
 }
 
@@ -25,10 +25,9 @@ ul.header li {
     text-decoration: none;
     font-family: var(--title-font);
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     color: var(--black-color);
     transition: 0.2s ease-in-out;
-    text-transform: uppercase;
 }
 
 .navbar li a:hover {
