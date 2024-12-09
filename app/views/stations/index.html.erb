@@ -56,7 +56,6 @@
   </div>
 
 
-
   <!-- Event listener -->
   <script>
        document.addEventListener('turbo:load', function pageLoad() {
@@ -86,5 +85,14 @@
           mapViewRadio.addEventListener('change', toggleViews);
           listViewRadio.addEventListener('change', toggleViews);
        });
+
+ /*      document.addEventListener('click', function(event) {
+           if (event.target && event.target.id === 'return-btn') {
+               event.preventDefault();
+               const stationId = event.target.getAttribute('data-station-id');
+               var myModal = new bootstrap.Modal(document.getElementById('returnBikeModal'));
+               myModal.show();
+           }
+       });*/
   </script>
 

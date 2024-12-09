@@ -30,8 +30,12 @@
 </nav>
 
 <!-- Mobile -->
-<nav class="navbar navbar-expand-lg navbar-light navbar-mobile">
-  <button class="navbar-toggler" type="button" 
+<nav class="navbar navbar-expand-lg navbar-light navbar-mobile d-md-none">
+
+
+
+  <div class="col-lg-4 d-flex align-items-center">
+  <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" 
             data-bs-target="#navbarToggler" 
             aria-controls="navbarToggler" 
@@ -39,10 +43,17 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+    <div class="navbar-brand mx-auto">
+      <%= link_to root_path do %>
+        <img src="<%= asset_path('logo.png') %>" style="width:200px;">
+      <% end %>
+    </div>
+  </div>
+
   <div class="navbar-collapse collapse" id="navbarToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <%= link_to('Home', {controller: 'main' , action: 'index'}) %> 
+        <%= link_to('Home', {controller: 'main' , action: 'index'}) %>
       </li>
       <li class="nav-item">
         <%= link_to('Bikes/Stations', {controller: 'stations' , action: 'index'}) %> 

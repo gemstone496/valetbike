@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
         hours = (diff/3600).floor
         minutes = ((diff - hours*hour) / minute).floor
         seconds = (diff - hours*hour - minute*minutes).round
-        vars = [hours, minutes, seconds]
+        [hours, minutes, seconds]
     else
       0
     end
@@ -20,7 +20,7 @@ class Trip < ApplicationRecord
     hr = hr_min_sec[0]
     min = hr_min_sec[1]
     sec = hr_min_sec[2]
-    record = 60*hr + min + (sec/60).round
+    60*hr + min + (sec/60).round
   end
 end
 
