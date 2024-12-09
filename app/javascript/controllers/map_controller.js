@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 import L from 'leaflet'
-
 export default class extends Controller {
   static targets = [ "container" ];
   static values = {
@@ -109,6 +108,7 @@ export default class extends Controller {
     const user = this.useridValue;
     const trip = this.tripidValue;
     const user_id = this.iduserValue;
+    const idtrip = this.idtripValue;
     let buttonContent = '';
 
       if (!user) {
@@ -136,18 +136,20 @@ export default class extends Controller {
       `;
     } else if (trip) {
         buttonContent = `
-       <a href="/end_confirm?end_station_id=${id}&user_id=${user_id}" class="mt-3 custom-btn btn-fill" 
-        style="display: inline-block; text-decoration: none; color: inherit;" 
-        style="color: unset; text-decoration: unset;">
-      Return Bike Here
-    </a>
+          <a href="end_confirm?id=${idtrip}&end_station_id=${id}&user_id=${user_id}"
+                 class="mt-3 custom-btn btn-fill" 
+                    style="display: inline-block; text-decoration: none; color: inherit;" 
+                    style="color: unset; text-decoration: unset;">
+          Return Bike Here
+          </a>
+<!--   <button id="return-btn" class="mt-3 custom-btn btn-fill" data-station-id=id>Return Bike Here</button>-->
       `;
     }
     return `
       <div>
-        <div class="title">Station ${identifier}: ${name}</div><br/>
+        <div class="title_popup">Station ${identifier}: ${name}</div>
         <div class="body">${address}</div>
-        <div class="body">${availableBikes} available bikes</div>
+        <div class="body">${availableBikes} available bike(s)</div>
         ${buttonContent}
       </div>
       <script>
