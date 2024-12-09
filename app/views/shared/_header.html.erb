@@ -41,6 +41,11 @@
 
   <div class="navbar-collapse collapse" id="navbarToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li>
+        <%= link_to root_path do %>
+          <img src="<%= asset_path('logo.png') %>" style="width:300px">
+        <% end %>
+      </li>
       <li class="nav-item">
         <%= link_to('Home', {controller: 'main' , action: 'index'}) %> 
       </li>
