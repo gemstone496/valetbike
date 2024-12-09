@@ -48,7 +48,7 @@ class TripsController < ApplicationController
 
   def end_confirmation
     @user = User.find(params[:user_id])
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find(@user.current_trip_id)
     
     user_stripe_id = @user.stripe_customer_id
     # Search for the user's available subscription
