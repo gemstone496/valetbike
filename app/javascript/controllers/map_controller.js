@@ -14,7 +14,6 @@ export default class extends Controller {
     tripid: Boolean,
     iduser: String,
     idtrip: String,
-    userCoords: {type: Array, default: ['42.3172951', '-72.6386734'] },
     pfp: {type: String, default: '/images/fallback/default.png'}
   };
 
@@ -42,6 +41,12 @@ export default class extends Controller {
         this.addMarker(lat, long, purpleIcon, name, identifier, id, address, bike);
       }
     }
+
+    // Add a you-are-here
+    navigator.geolocation.getCurrentPosition(
+      (position) => { this.locationSuccess(position); },
+      (error) => { this.defaultZoom(); }  // show at bass hall
+    );
   }
 
   /* initializes the map for future use */
@@ -52,24 +57,36 @@ export default class extends Controller {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-    // Add a you-are-here
-    let uCoords = this.userCoordsValue; // user lat long
-    let pfpath = this.pfpValue; // ProFile pic PATH
+    this.defaultZoom();
 
-    this.addMarker(uCoords[0], uCoords[1], pfpath, null, null, null, null, null);
+    console.log("User profile from `" + this.pfpValue + "`");
 
-    console.log("Entering from [" + uCoords[0] + ", " + uCoords[1] + "]");
-    console.log("User profile from `" + pfpath + "`");
-
-    // Set map's center.
-    const center = L.latLng(uCoords[0], uCoords[1]);
-
-    /*const northamptonLat = '42.3255'; // what it says on the tag
-    const northamptonLng = '-72.646'; // rough center of northampton
-    const center = L.latLng(northamptonLat, northamptonLng);
-    */
-    this.map.setView(center, 13.5); // consider changing zoom
     console.log("Map Loaded!!");
+  }
+
+  /* what to do if the user allows location access */
+  locationSuccess(position) {
+    let pfpath = this.pfpValue; // ProFile pic PATH
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude;
+    this.addMarker(lat, long, pfpath, null, null, null, null, null);
+
+    // set as center
+    const center = L.latLng(lat, long);
+    this.map.setView(center, 13.5); // consider changing zoom
+  }
+
+  /* */
+  defaultZoom() {
+    const northamptonLat = '42.3172951'; // what it says on the tag
+    const northamptonLng = '-72.6386734'; // bass hall hardcoded values :)
+
+    let pfpath = this.pfpValue; // ProFile pic PATH
+    this.addMarker(northamptonLat, northamptonLng, pfpath, null, null, null, null, null);
+
+    // set as center
+    const center = L.latLng(northamptonLat, northamptonLng);
+    this.map.setView(center, 13.5); // consider changing zoom
   }
 
   /* adds a marker to the leaflet */
@@ -83,7 +100,7 @@ export default class extends Controller {
     });
 
         // Place a marker on the location with custom icon
-    let marker = L.marker([lat, long], {icon: icon}).addTo(this.map);
+    let marker = L.marker([lat.toString(), long.toString()], {icon: icon}).addTo(this.map);
     if (id !== null) { // here markers
       marker.bindPopup(this.popupContent(name, identifier, id, address, bike));
     }

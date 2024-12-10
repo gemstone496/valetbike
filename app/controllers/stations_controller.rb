@@ -2,7 +2,6 @@ class StationsController < ApplicationController
   
   def index
     @user = get_user_info_from_session
-    @uCoords = request.location.coordinates
     unless @user&.current_trip_id.nil?
       @trip = Trip.find(@user.current_trip_id)
     end

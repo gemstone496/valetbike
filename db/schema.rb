@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_08_201444) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_07_035648) do
   create_table "bikes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "identifier"
     t.integer "current_station_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_08_201444) do
     t.string "stripe_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_subscription"
     t.string "meter_event"
     t.string "meter_id"
   end
@@ -51,8 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_08_201444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "start_station_is"
-    t.integer "code"
-    t.integer "payment_pending"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
