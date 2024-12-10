@@ -80,10 +80,7 @@ export default class extends Controller {
   defaultZoom() {
     const northamptonLat = '42.3172951'; // what it says on the tag
     const northamptonLng = '-72.6386734'; // bass hall hardcoded values :)
-
-    let pfpath = this.pfpValue; // ProFile pic PATH
-    this.addMarker(northamptonLat, northamptonLng, pfpath, null, null, null, null, null);
-
+    
     // set as center
     const center = L.latLng(northamptonLat, northamptonLng);
     this.map.setView(center, 13.5); // consider changing zoom
